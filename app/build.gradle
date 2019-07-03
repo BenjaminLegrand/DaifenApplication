@@ -1,18 +1,23 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion Versions.COMPILE_SDK
     defaultConfig {
         applicationId "fr.legrand.daifen.application"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion Versions.MIN_SDK
+        targetSdkVersion Versions.TARGET_SDK
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"https://www.daifen.com/\"")
+        buildConfigField("String", "DAIFEN_TEST_LOGIN", "\"${daifenTestLogin}\"")
+        buildConfigField("String", "DAIFEN_TEST_PASSWORD", "\"${daifenTestPassword}\"")
     }
     buildTypes {
         release {
@@ -23,11 +28,22 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation Libraries.KTX
+    implementation Libraries.KOTLIN_STDLIB
+    implementation Libraries.SUPPORT
+    implementation Libraries.ARCH_COMPONENTS
+    implementation Libraries.NAVIGATION
+    implementation Libraries.RX_JAVA_2
+    implementation Libraries.RX_KOTLIN
+    implementation Libraries.GLIDE
+    implementation Libraries.TIMBER
+    implementation Libraries.KOIN
+    implementation Libraries.RETROFIT
+    implementation Libraries.JSPOON
+
+    testImplementation Libraries.JUNIT
+    testImplementation Libraries.ASSERTJ
+    testImplementation Libraries.KOIN_TEST
+    testImplementation Libraries.ROBOLETRIC
+    androidTestImplementation Libraries.TEST_RUNNER
 }

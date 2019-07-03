@@ -5,19 +5,19 @@ object Versions {
     const val COMPILE_SDK = 28
     const val TARGET_SDK = 28
     const val MIN_SDK = 21
-    const val KOTLIN = "1.3.31"
+    const val KOTLIN = "1.3.40"
 
     /**
      * Gradle dependencies versions
      */
-    const val ANDROID_GRADLE = "3.3.1"
+    const val ANDROID_GRADLE = "3.4.1"
 
     /**
      * Support versions
      */
     const val KTX = "1.0.1"
     const val CONSTRAINT = "1.1.3"
-    const val APP_COMPAT = "1.0.0"
+    const val APP_COMPAT = "1.0.2"
     const val MATERIAL = "1.0.0"
     const val ARCH_COMPONENTS = "2.0.0"
     const val NAVIGATION = "2.0.0"
@@ -25,16 +25,23 @@ object Versions {
     /**
      * Thrid party versions
      */
-    const val DAGGER = "2.19"
-    const val RX_JAVA_2 = "2.1.10"
-    const val RX_KOTLIN = "2.2.0"
+    const val KOIN = "2.0.1"
+    const val RX_JAVA_2 = "2.2.10"
+    const val RX_KOTLIN = "2.3.0"
 
-    const val GLIDE = "4.6.1"
-    const val MATERIAL_DIALOG = "2.0.0"
-    const val TIMBER = "4.7.0"
-    const val EXOPLAYER = "2.8.4"
-    const val ROOM = "2.0.0"
-    const val GSON = "2.8.5"
+    const val GLIDE = "4.9.0"
+    const val TIMBER = "4.7.1"
+    const val RETROFIT = "2.6.0"
+    const val OK_HTTP = "3.12.1"
+    const val JSPOON = "1.3.2"
+
+    /**
+     * Test versions
+     */
+    const val JUNIT = "4.12"
+    const val ROBOLECTRIC = "4.0.2"
+    const val TEST_RUNNER = "1.1.0"
+    const val ASSERTJ = "3.11.1"
 }
 
 object Libraries {
@@ -53,41 +60,46 @@ object Libraries {
         "com.google.android.material:material:${Versions.MATERIAL}",
         "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT}"
     )
-    const val ARCH_COMPONENTS = "android.arch.lifecycle:extensions:${Versions.ARCH_COMPONENTS}"
+    const val ARCH_COMPONENTS = "androidx.lifecycle:lifecycle-extensions:${Versions.ARCH_COMPONENTS}"
 
     @JvmField
     val NAVIGATION = arrayOf(
         "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}",
         "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
     )
-    const val ROOM = "androidx.room:room-runtime:${Versions.ROOM}"
-    const val ROOM_PROCESSOR = "androidx.room:room-compiler:${Versions.ROOM}"
 
     /**
-     * Third party libraries dependencies
+     * Test dependencies
      */
-    const val DAGGER = "com.google.dagger:dagger:${Versions.DAGGER}"
-    const val DAGGER_PROCESSOR = "com.google.dagger:dagger-compiler:${Versions.DAGGER}"
+    const val JUNIT = "junit:junit:${Versions.JUNIT}"
+    const val ROBOLETRIC = "org.robolectric:robolectric:${Versions.ROBOLECTRIC}"
+    const val TEST_RUNNER = "androidx.test:runner:${Versions.TEST_RUNNER}"
+    const val KOIN_TEST = "org.koin:koin-test:${Versions.KOIN}"
+    const val ASSERTJ = "org.assertj:assertj-core:${Versions.ASSERTJ}"
+
     @JvmField
-    val DAGGER_ANDROID = arrayOf(
-        DAGGER,
-        "com.google.dagger:dagger-android-support:${Versions.DAGGER}"
-    )
-    @JvmField
-    val DAGGER_ANDROID_PROCESSORS = arrayOf(
-        DAGGER_PROCESSOR,
-        "com.google.dagger:dagger-android-processor:${Versions.DAGGER}"
+    val KOIN = arrayOf(
+        "org.koin:koin-androidx-scope:${Versions.KOIN}",
+        "org.koin:koin-androidx-viewmodel:${Versions.KOIN}"
     )
 
     const val RX_JAVA_2 = "io.reactivex.rxjava2:rxjava:${Versions.RX_JAVA_2}"
     const val RX_KOTLIN = "io.reactivex.rxjava2:rxkotlin:${Versions.RX_KOTLIN}"
 
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
-    const val MATERIAL_DIALOG = "com.afollestad.material-dialogs:core:${Versions.MATERIAL_DIALOG}"
 
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
-    const val EXOPLAYER = "com.google.android.exoplayer:exoplayer:${Versions.EXOPLAYER}"
-    const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
+    @JvmField
+    val RETROFIT = arrayOf(
+        "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}",
+        "com.squareup.retrofit2:adapter-rxjava2:${Versions.RETROFIT}",
+        "com.squareup.okhttp3:logging-interceptor:${Versions.OK_HTTP}"
+    )
+    @JvmField
+    val JSPOON = arrayOf(
+        "pl.droidsonroids.retrofit2:converter-jspoon:${Versions.JSPOON}",
+        "pl.droidsonroids:jspoon:${Versions.JSPOON}"
+    )
 
 }
 
