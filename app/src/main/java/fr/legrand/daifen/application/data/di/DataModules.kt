@@ -1,9 +1,12 @@
 package fr.legrand.daifen.application.data.di
 
+import com.google.gson.GsonBuilder
 import fr.legrand.daifen.application.BuildConfig
+import fr.legrand.daifen.application.data.entity.mapper.PigeonRemoteEntityDataMapper
 import fr.legrand.daifen.application.data.manager.api.ApiManager
 import fr.legrand.daifen.application.data.manager.api.ApiManagerImpl
 import fr.legrand.daifen.application.data.manager.api.ApiService
+import fr.legrand.daifen.application.data.manager.api.NetworkInterceptor
 import fr.legrand.daifen.application.data.manager.prefs.SharedPrefsManager
 import fr.legrand.daifen.application.data.manager.prefs.SharedPrefsManagerImpl
 import fr.legrand.daifen.application.data.repository.AuthRepository
@@ -24,6 +27,10 @@ val repositoryModule = module {
     single { ContentRepository(get(), get(), get()) }
 }
 
+val mapperModule = module {
+    single { PigeonRemoteEntityDataMapper() }
+}
+
 val networkModule = module {
     single {
         Retrofit.Builder()
@@ -37,8 +44,14 @@ val networkModule = module {
         get<Retrofit>().create(ApiService::class.java)
     }
     single {
-        OkHttpClient.Builder().followRedirects(false).addInterceptor(HttpLoggingInterceptor()).build()
+        OkHttpClient.Builder().followRedirects(false)
+            .addInterceptor(NetworkInterceptor(get(), get()))
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build()
     }
 }
 
-val dataModules = listOf(managerModule, networkModule, repositoryModule)
+val generalModule = module {
+    single { GsonBuilder().create() }
+}
+
+val dataModules = managerModule + networkModule + repositoryModule + mapperModule + generalModule

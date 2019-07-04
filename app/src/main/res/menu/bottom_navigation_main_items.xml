@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/fragment_capture"
+        android:id="@+id/pigeonListFragment"
         android:enabled="true"
         android:icon="@drawable/ic_pigeon"
         android:title="@string/pigeon_title"

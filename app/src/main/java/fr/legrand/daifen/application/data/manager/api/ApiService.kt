@@ -7,7 +7,7 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET("pigeonnier/")
-    fun getPigeonList(@Header("Cookie") cookie: String): Single<Response<Unit>>
+    fun getPigeonList(@Header("Cookie") cookie: String): Single<PigeonListResponse>
 
     @FormUrlEncoded
     @POST("site/login.php")
