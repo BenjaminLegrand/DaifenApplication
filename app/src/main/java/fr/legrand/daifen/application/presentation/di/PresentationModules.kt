@@ -1,6 +1,7 @@
 package fr.legrand.daifen.application.presentation.di
 
-import org.koin.core.module.Module
+private val activityModules = arrayOf(
+    mainActivityModule
+)
 
-
-val presentationModules = listOf<Module>()
+val presentationModules = listOf(activityModules)
