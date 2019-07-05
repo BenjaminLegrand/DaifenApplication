@@ -14,7 +14,7 @@ class ContentRepository(
 ) {
     fun getPigeonList(): Single<List<Pigeon>> = Single.defer {
         sharedPrefsManager.getAuthCookie()?.let {
-            apiManager.getPigeonList(it).map {
+            apiManager.getPigeonList().map {
                 pigeonRemoteEntityDataMapper.transform(it)
             }
         } ?: throw AuthenticationException()

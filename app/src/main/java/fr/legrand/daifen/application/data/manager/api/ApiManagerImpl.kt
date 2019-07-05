@@ -11,8 +11,8 @@ private const val HTTP_REDIRECT_CODE = 302
 
 class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
 
-    override fun getPigeonList(authCookie: String): Single<List<PigeonRemoteEntity>> =
-            apiService.getPigeonList(authCookie).map {
+    override fun getPigeonList(): Single<List<PigeonRemoteEntity>> =
+            apiService.getPigeonList().map {
                 it.pigeonRemoteList
             }.addRedirectCheck()
 

@@ -5,6 +5,6 @@ import io.reactivex.Completable
 import io.reactivex.Single
 
 interface ApiManager {
-    fun getPigeonList(authCookie: String): Single<List<PigeonRemoteEntity>>
+    fun getPigeonList(): Single<List<PigeonRemoteEntity>>
     fun login(username: String, password: String): Completable
 }
