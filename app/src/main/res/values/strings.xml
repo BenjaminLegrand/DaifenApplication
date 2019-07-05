@@ -2,4 +2,8 @@
     <string name="app_name">DaifenApplication</string>
     <string name="pigeon_title">Pigeons</string>
     <string name="connect">Connexion</string>
+    <string name="username_hint">Nom d\'utilisateur</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="login_title">Connexion</string>
+    <string name="piegon_date_format">\'Reçu le \'dd/MM/yy\' à \'HH\':\'mm</string>
 </resources>

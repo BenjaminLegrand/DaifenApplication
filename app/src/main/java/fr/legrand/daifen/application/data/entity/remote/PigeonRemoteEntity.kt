@@ -7,4 +7,6 @@ class PigeonRemoteEntity {
     lateinit var emitter: String
     @Selector("td:nth-child(2) a")
     lateinit var subject: String
+    @Selector("td:nth-child(3)")
+    lateinit var date: String
 }

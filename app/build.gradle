@@ -8,7 +8,7 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 android {
     compileSdkVersion Versions.COMPILE_SDK
     defaultConfig {
-        applicationId "fr.legrand.daifen.application"
+        applicationId "fr.legrand.daifen.android"
         minSdkVersion Versions.MIN_SDK
         targetSdkVersion Versions.TARGET_SDK
         versionCode 1
