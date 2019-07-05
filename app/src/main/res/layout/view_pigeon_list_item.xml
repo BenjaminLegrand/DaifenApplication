@@ -32,14 +32,14 @@
         android:id="@+id/pigeon_list_item_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/game_list_item_final_separator"
+        app:layout_constraintBottom_toTopOf="@id/pigeon_list_item_final_separator"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
         app:layout_constraintTop_toBottomOf="@id/pigeon_list_item_subject"
         tools:text="Reçu le 12/07/2019 à 15h45" />
 
     <View
-        android:id="@+id/game_list_item_final_separator"
+        android:id="@+id/pigeon_list_item_final_separator"
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_separator_height"
         android:layout_marginTop="@dimen/base_margin"
@@ -52,12 +52,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/base_margin" />
+        app:layout_constraintGuide_begin="@dimen/double_base_margin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/end_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/base_margin" />
+        app:layout_constraintGuide_end="@dimen/double_base_margin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

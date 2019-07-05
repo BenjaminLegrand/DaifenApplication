@@ -9,5 +9,6 @@ import java.util.*
 class PigeonViewDataWrapper(private val pigeon: Pigeon) {
     fun getEmitter() = pigeon.emitter
     fun getSubject() = pigeon.subject
-    fun getDate(context: Context) = SimpleDateFormat(context.getString(R.string.piegon_date_format), Locale.getDefault()).format(pigeon.date)
+    fun getDate(context: Context): String = SimpleDateFormat(context.getString(R.string.piegon_date_format), Locale.getDefault()).format(pigeon.date)
+    fun getId() = pigeon.id
 }

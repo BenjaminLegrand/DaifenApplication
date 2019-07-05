@@ -12,13 +12,19 @@ private const val MEMORIZE_FORM_VALUE = "on"
 
 class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
 
-    override fun getPigeonList(): Single<List<PigeonRemoteEntity>> =
-        apiService.getPigeonList().map {
-            it.pigeonRemoteList
-        }.addRedirectCheck()
+    override fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>> =
+            apiService.getPigeonList(page).map {
+                it.pigeonRemoteList
+            }.onErrorResumeNext {
+                return@onErrorResumeNext if (it is UninitializedPropertyAccessException) {
+                    Single.just(emptyList())
+                } else {
+                    Single.error(it)
+                }
+            }.addRedirectCheck()
 
     override fun login(username: String, password: String): Completable =
-        apiService.login(username, password, MEMORIZE_FORM_VALUE).addRedirectCheck().ignoreElement()
+            apiService.login(username, password, MEMORIZE_FORM_VALUE).addRedirectCheck().ignoreElement()
 
     private fun <T> Single<T>.addRedirectCheck(): Single<T> {
         return onErrorResumeNext {

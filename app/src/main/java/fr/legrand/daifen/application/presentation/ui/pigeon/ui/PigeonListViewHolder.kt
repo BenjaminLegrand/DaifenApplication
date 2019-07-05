@@ -18,6 +18,7 @@ class PigeonListViewHolder(private val context: Context, pigeonView: View) :
     private val pigeonDate = pigeonView.findViewById<TextView>(R.id.pigeon_list_item_date)
 
     fun bindItem(pigeon: PigeonViewDataWrapper, listener: (Int) -> Unit) {
+        itemView.setOnClickListener { listener(pigeon.getId()) }
         pigeonEmitter.text = pigeon.getEmitter()
         pigeonSubject.text = pigeon.getSubject()
         pigeonDate.text = pigeon.getDate(context)
