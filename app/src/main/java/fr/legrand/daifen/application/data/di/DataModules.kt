@@ -2,6 +2,7 @@ package fr.legrand.daifen.application.data.di
 
 import com.google.gson.GsonBuilder
 import fr.legrand.daifen.application.BuildConfig
+import fr.legrand.daifen.application.data.entity.mapper.PigeonDBEntityDataMapper
 import fr.legrand.daifen.application.data.entity.mapper.PigeonRemoteEntityDataMapper
 import fr.legrand.daifen.application.data.manager.api.ApiManager
 import fr.legrand.daifen.application.data.manager.api.ApiManagerImpl
@@ -9,6 +10,8 @@ import fr.legrand.daifen.application.data.manager.api.ApiService
 import fr.legrand.daifen.application.data.manager.api.NetworkInterceptor
 import fr.legrand.daifen.application.data.manager.prefs.SharedPrefsManager
 import fr.legrand.daifen.application.data.manager.prefs.SharedPrefsManagerImpl
+import fr.legrand.daifen.application.data.manager.storage.StorageManager
+import fr.legrand.daifen.application.data.manager.storage.StorageManagerImpl
 import fr.legrand.daifen.application.data.repository.AuthRepository
 import fr.legrand.daifen.application.data.repository.ContentRepository
 import okhttp3.OkHttpClient
@@ -21,14 +24,16 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 val managerModule = module {
     single<ApiManager> { ApiManagerImpl(get()) }
     single<SharedPrefsManager> { SharedPrefsManagerImpl(get()) }
+    single<StorageManager> { StorageManagerImpl(get()) }
 }
 val repositoryModule = module {
     single { AuthRepository(get(), get()) }
-    single { ContentRepository(get(), get(), get()) }
+    single { ContentRepository(get(), get(), get(), get(), get()) }
 }
 
 val mapperModule = module {
     single { PigeonRemoteEntityDataMapper() }
+    single { PigeonDBEntityDataMapper() }
 }
 
 val networkModule = module {
@@ -46,7 +51,8 @@ val networkModule = module {
     single {
         OkHttpClient.Builder().followRedirects(false)
             .addInterceptor(NetworkInterceptor(get(), get()))
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build()
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .build()
     }
 }
 

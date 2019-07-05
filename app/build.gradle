@@ -42,6 +42,9 @@ dependencies {
     implementation Libraries.JSPOON
     implementation Libraries.GSON
 
+    implementation Libraries.ROOM
+    kapt Libraries.ROOM_PROCESSOR
+
     testImplementation Libraries.JUNIT
     testImplementation Libraries.ASSERTJ
     testImplementation Libraries.KOIN_TEST
