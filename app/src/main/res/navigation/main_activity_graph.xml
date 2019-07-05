@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_activity_graph"
+    app:startDestination="@id/pigeonListFragment">
+
+    <fragment
+        android:id="@+id/pigeonListFragment"
+        android:name="fr.legrand.daifen.application.presentation.ui.pigeon.PigeonListFragment"
+        android:label="PigeonListFragment" >
+        <action
+            android:id="@+id/action_pigeonListFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="fr.legrand.daifen.application.presentation.ui.login.LoginActivity"
+        android:label="LoginActivity" />
+</navigation>

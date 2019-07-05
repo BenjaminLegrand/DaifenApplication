@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/pigeon_list_item_emitter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/pigeon_list_item_subject"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pigeon_list_item_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pigeon_list_item_emitter" />
+    <View
+        android:id="@+id/game_list_item_final_separator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_separator_height"
+        android:layout_marginTop="@dimen/base_half_margin"
+        android:background="@color/base_separator_color"
+        app:layout_constraintTop_toBottomOf="@id/pigeon_list_item_subject" />
+</androidx.constraintlayout.widget.ConstraintLayout>

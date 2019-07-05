@@ -34,6 +34,7 @@ object Versions {
     const val RETROFIT = "2.6.0"
     const val OK_HTTP = "3.12.1"
     const val JSPOON = "1.3.2"
+    const val GSON = "2.8.5"
 
     /**
      * Test versions
@@ -89,6 +90,7 @@ object Libraries {
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
 
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
+    const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
     @JvmField
     val RETROFIT = arrayOf(
         "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}",

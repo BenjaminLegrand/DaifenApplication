@@ -13,7 +13,7 @@ class DFApplication : Application() {
             // Android context
             androidContext(this@DFApplication)
             // modules
-            modules(presentationModules + dataModules)
+            modules((presentationModules + dataModules).toList())
         }
     }
 }

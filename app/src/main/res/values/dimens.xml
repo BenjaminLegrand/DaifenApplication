@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="base_separator_height">0.5dp</dimen>
+    <dimen name="double_base_margin">16dp</dimen>
+    <dimen name="base_margin">8dp</dimen>
+    <dimen name="base_half_margin">4dp</dimen>
+    <dimen name="base_padding">8dp</dimen>
+    <dimen name="base_half_padding">4dp</dimen>
+
+    <dimen name="default_progress_size">100dp</dimen>
+</resources>

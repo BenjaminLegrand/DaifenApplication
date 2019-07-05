@@ -40,6 +40,7 @@ dependencies {
     implementation Libraries.KOIN
     implementation Libraries.RETROFIT
     implementation Libraries.JSPOON
+    implementation Libraries.GSON
 
     testImplementation Libraries.JUNIT
     testImplementation Libraries.ASSERTJ
