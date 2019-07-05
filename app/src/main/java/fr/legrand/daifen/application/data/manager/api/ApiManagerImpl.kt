@@ -8,16 +8,17 @@ import retrofit2.HttpException
 
 
 private const val HTTP_REDIRECT_CODE = 302
+private const val MEMORIZE_FORM_VALUE = "on"
 
 class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
 
     override fun getPigeonList(): Single<List<PigeonRemoteEntity>> =
-            apiService.getPigeonList().map {
-                it.pigeonRemoteList
-            }.addRedirectCheck()
+        apiService.getPigeonList().map {
+            it.pigeonRemoteList
+        }.addRedirectCheck()
 
     override fun login(username: String, password: String): Completable =
-            apiService.login(username, password).addRedirectCheck().ignoreElement()
+        apiService.login(username, password, MEMORIZE_FORM_VALUE).addRedirectCheck().ignoreElement()
 
     private fun <T> Single<T>.addRedirectCheck(): Single<T> {
         return onErrorResumeNext {

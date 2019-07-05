@@ -11,5 +11,5 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("site/login.php")
-    fun login(@Field("nom") username: String, @Field("pass") password: String): Single<Response<Unit>>
+    fun login(@Field("nom") username: String, @Field("pass") password: String, @Field("mem") memorize: String): Single<Response<Unit>>
 }

@@ -8,12 +8,10 @@ import okhttp3.Response
 
 private const val COOKIE_RESPONSE_HEADER_NAME = "set-cookie"
 private const val COOKIE_REQUEST_HEADER_NAME = "Cookie"
-private const val CACHE_CONTROL_REQUEST_HEADER_NAME = "cache-control"
-private const val CACHE_CONTROL_REQUEST_HEADER_VALUE = "no-store, no-cache, must-revalidate"
 private const val COOKIE_DATA_SEPARATOR = "="
 private val COOKIE_ITEM_SEPARATOR_REGEX = Regex("[;,]\\s*")
 private const val COOKIE_ITEM_SEPARATOR = "; "
-private val COOKIE_IDENTIFIERS = arrayOf("s", "id", "SERVERID31394")
+private val COOKIE_IDENTIFIERS = arrayOf("s", "id", "SERVERID31394", "pass")
 
 class NetworkInterceptor(private val sharedPrefsManager: SharedPrefsManager, private val gson: Gson) : Interceptor {
 
@@ -24,7 +22,7 @@ class NetworkInterceptor(private val sharedPrefsManager: SharedPrefsManager, pri
                 gson.fromJson<MutableMap<String, String>>(it).map { entry -> "${entry.key}$COOKIE_DATA_SEPARATOR${entry.value}" }.joinToString(
                     COOKIE_ITEM_SEPARATOR
                 )
-            ).addHeader(CACHE_CONTROL_REQUEST_HEADER_NAME, CACHE_CONTROL_REQUEST_HEADER_VALUE).build()
+            ).build()
         } ?: chain.request()
 
         val response = chain.proceed(request)
