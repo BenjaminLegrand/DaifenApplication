@@ -4,10 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/fragment_pigeon_list_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/pigeon_title"
+        app:titleTextColor="@color/white" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_pigeon_list_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize" />
 
     <ProgressBar
         android:id="@+id/fragment_pigeon_list_progress"

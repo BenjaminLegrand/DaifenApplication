@@ -30,12 +30,12 @@ class LoginFragmentViewModel(private val authRepository: AuthRepository) : State
                 },
                 onComplete = {
                     loginSuccess.call()
-                    viewState.update { loading = false }
                 }
         ).addToComposite(disposable)
     }
 
     private fun checkLogin() {
+        viewState.update { loading = true }
         authRepository.checkLogin().subscribeOn(Schedulers.io()).subscribeBy(
                 onError = {
                     viewState.update { loading = false }

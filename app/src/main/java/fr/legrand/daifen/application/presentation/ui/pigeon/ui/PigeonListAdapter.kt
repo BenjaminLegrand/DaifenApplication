@@ -14,7 +14,7 @@ class PigeonListAdapter : RecyclerView.Adapter<PigeonListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PigeonListViewHolder {
         val gameItemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.view_pigeon_list_item, parent, false)
-        return PigeonListViewHolder(gameItemView)
+        return PigeonListViewHolder(parent.context, gameItemView)
     }
 
     override fun getItemCount(): Int = itemList.size

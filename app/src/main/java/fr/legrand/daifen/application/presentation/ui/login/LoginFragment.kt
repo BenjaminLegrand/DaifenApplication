@@ -5,12 +5,8 @@ import android.view.View
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.login.navigator.LoginFragmentNavigatorListener
-import fr.legrand.daifen.application.presentation.utils.hide
-import fr.legrand.daifen.application.presentation.utils.observe
-import fr.legrand.daifen.application.presentation.utils.observeSafe
-import fr.legrand.daifen.application.presentation.utils.show
+import fr.legrand.daifen.application.presentation.utils.*
 import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.android.synthetic.main.fragment_pigeon_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseNavFragment<LoginFragmentNavigatorListener>() {
@@ -26,7 +22,7 @@ class LoginFragment : BaseNavFragment<LoginFragmentNavigatorListener>() {
 
         viewModel.viewState.observeSafe(this) {
             if (it.loading) {
-                fragment_login_form_group.hide()
+                fragment_login_form_group.invisible()
                 fragment_login_progress.show()
             } else {
                 fragment_login_form_group.show()

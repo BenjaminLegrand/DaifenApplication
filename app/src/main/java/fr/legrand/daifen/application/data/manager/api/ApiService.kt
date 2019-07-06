@@ -7,7 +7,7 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET("pigeonnier/")
-    fun getPigeonList(): Single<PigeonListResponse>
+    fun getPigeonList(@Query("page") page: Int): Single<PigeonListResponse>
 
     @FormUrlEncoded
     @POST("site/login.php")
