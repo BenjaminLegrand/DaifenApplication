@@ -1,13 +1,14 @@
-package fr.legrand.daifen.application.presentation.ui.pigeon
+package fr.legrand.daifen.application.presentation.ui.pigeon.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.data.exception.AuthenticationException
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
-import fr.legrand.daifen.application.presentation.ui.pigeon.navigator.PigeonListFragmentNavigatorListener
-import fr.legrand.daifen.application.presentation.ui.pigeon.ui.PigeonListAdapter
+import fr.legrand.daifen.application.presentation.ui.pigeon.list.navigator.PigeonListFragmentNavigatorListener
+import fr.legrand.daifen.application.presentation.ui.pigeon.list.ui.PigeonListAdapter
 import fr.legrand.daifen.application.presentation.utils.hide
 import fr.legrand.daifen.application.presentation.utils.observeSafe
 import fr.legrand.daifen.application.presentation.utils.show
@@ -27,8 +28,12 @@ class PigeonListFragment : BaseNavFragment<PigeonListFragmentNavigatorListener>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
+        (activity as AppCompatActivity).setSupportActionBar(fragment_pigeon_list_toolbar)
+
         fragment_pigeon_list_recycler.adapter = pigeonListAdapter
         fragment_pigeon_list_recycler.layoutManager = LinearLayoutManager(requireContext())
+        pigeonListAdapter.onItemClickListener = navigatorListener::displayPigeonDetails
 
         viewModel.viewState.observeSafe(this) {
             if (it.loading) {
@@ -40,8 +45,8 @@ class PigeonListFragment : BaseNavFragment<PigeonListFragmentNavigatorListener>(
             }
         }
 
-        viewModel.errorEvent.observeSafe(this){
-            when(it){
+        viewModel.errorEvent.observeSafe(this) {
+            when (it) {
                 is AuthenticationException -> navigatorListener.displayLoginActivity()
             }
         }

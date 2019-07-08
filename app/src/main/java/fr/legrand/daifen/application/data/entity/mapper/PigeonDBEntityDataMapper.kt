@@ -31,7 +31,9 @@ class PigeonDBEntityDataMapper {
                 model.id,
                 model.emitter,
                 model.subject,
-                model.date
+                model.date,
+                model.content,
+                model.history
             )
         } catch (e: Exception) {
             throw MappingException()
@@ -44,7 +46,9 @@ class PigeonDBEntityDataMapper {
                 db.id,
                 db.emitter,
                 db.subject,
-                db.date
+                db.date,
+                db.content,
+                db.history
             )
         } catch (e: Exception) {
             throw MappingException()

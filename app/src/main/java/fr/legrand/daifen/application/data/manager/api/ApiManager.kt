@@ -7,4 +7,5 @@ import io.reactivex.Single
 interface ApiManager {
     fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>>
     fun login(username: String, password: String): Completable
+    fun getPigeon(id: Int): Single<PigeonRemoteEntity>
 }

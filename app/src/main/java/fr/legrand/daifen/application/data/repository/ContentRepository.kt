@@ -5,6 +5,7 @@ import fr.legrand.daifen.application.data.entity.mapper.PigeonRemoteEntityDataMa
 import fr.legrand.daifen.application.data.entity.model.Pigeon
 import fr.legrand.daifen.application.data.exception.AuthenticationException
 import fr.legrand.daifen.application.data.exception.EmptyPigeonPageException
+import fr.legrand.daifen.application.data.exception.PigeonAlreadyLoadedException
 import fr.legrand.daifen.application.data.manager.api.ApiManager
 import fr.legrand.daifen.application.data.manager.prefs.SharedPrefsManager
 import fr.legrand.daifen.application.data.manager.storage.StorageManager
@@ -23,24 +24,31 @@ class ContentRepository(
     private val pigeonRemoteEntityDataMapper: PigeonRemoteEntityDataMapper
 ) {
     fun getPigeonList(): Single<List<Pigeon>> = Single.defer {
+        val currentPigeons =
+            pigeonDBEntityDataMapper.transformEntity(storageManager.getAllPigeons())
         val pigeonList = mutableListOf<Pigeon>()
         Single.concat((START_PIGEON_PAGE..PIGEON_LIMIT_PAGE).map {
             getPigeonListForPage(it)
         }).doOnNext {
-            pigeonList.addAll(it)
+            //We keep only pigeons that are more recent
+            it.forEach { pigeon ->
+                if (pigeon.date.time > (currentPigeons.firstOrNull()?.date?.time ?: 0)) {
+                    pigeonList.add(pigeon)
+                } else {
+                    throw PigeonAlreadyLoadedException()
+                }
+            }
         }.ignoreElements().onErrorResumeNext {
-            if (it is EmptyPigeonPageException) {
+            if (it is EmptyPigeonPageException || it is PigeonAlreadyLoadedException) {
                 Completable.complete()
             } else {
                 Completable.error(it)
             }
         }.toSingle {
-            val currentPigeons =
-                pigeonDBEntityDataMapper.transformEntity(storageManager.getAllPigeons())
             //TODO do this with scraping
-            pigeonList.forEach { if (it !in currentPigeons) it.unread = true }
+            pigeonList.forEach { it.unread = true }
             storageManager.savePigeonList(pigeonDBEntityDataMapper.transformModel(pigeonList))
-            pigeonList
+            pigeonList + currentPigeons
         }
     }
 
@@ -54,4 +62,11 @@ class ContentRepository(
             Timber.e(it)
             if (it is AuthenticationException) sharedPrefsManager.resetAuthCookie()
         }
+
+    fun getPigeon(id: Int): Single<Pigeon> = apiManager.getPigeon(id).map {
+        pigeonRemoteEntityDataMapper.transform(it)
+    }.doOnError {
+        Timber.e(it)
+        if (it is AuthenticationException) sharedPrefsManager.resetAuthCookie()
+    }
 }

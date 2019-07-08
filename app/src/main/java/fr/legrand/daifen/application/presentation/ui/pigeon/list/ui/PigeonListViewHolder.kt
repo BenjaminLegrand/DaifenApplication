@@ -1,4 +1,4 @@
-package fr.legrand.daifen.application.presentation.ui.pigeon.ui
+package fr.legrand.daifen.application.presentation.ui.pigeon.list.ui
 
 import android.content.Context
 import android.graphics.Typeface
@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import fr.legrand.daifen.application.R
-import fr.legrand.daifen.application.presentation.ui.pigeon.item.PigeonViewDataWrapper
+import fr.legrand.daifen.application.presentation.ui.pigeon.list.item.PigeonViewDataWrapper
 
 /**
  * Created by Benjamin on 29/04/2018.

@@ -10,21 +10,66 @@ import retrofit2.HttpException
 private const val HTTP_REDIRECT_CODE = 302
 private const val MEMORIZE_FORM_VALUE = "on"
 
+private const val PIGEON_DETAIL_DATE_REGEX = "le "
+private const val PIGEON_DETAIL_CONVERSATION_LINE_SEPARATOR = "\n"
+private const val PIGEON_DETAIL_CONVERSATION_START_SEPARATOR = '>'
+private val PIGEON_DETAIL_CONVERSATION_START_REGEX = Regex(">+")
+private val PIGEON_DETAIL_CONVERSATION_REGEX = Regex(">.*?\\s+(?=>)")
+
 class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
 
     override fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>> =
-            apiService.getPigeonList(page).map {
-                it.pigeonRemoteList
-            }.onErrorResumeNext {
-                return@onErrorResumeNext if (it is UninitializedPropertyAccessException) {
-                    Single.just(emptyList())
-                } else {
-                    Single.error(it)
+        apiService.getPigeonList(page).map {
+            it.pigeonRemoteList
+        }.onErrorResumeNext {
+            return@onErrorResumeNext if (it is UninitializedPropertyAccessException) {
+                Single.just(emptyList())
+            } else {
+                Single.error(it)
+            }
+        }.addRedirectCheck()
+
+    override fun getPigeon(id: Int): Single<PigeonRemoteEntity> =
+        apiService.getPigeon(id).map {
+            val date = it.pigeonConversationData[1].substringAfterLast(PIGEON_DETAIL_DATE_REGEX)
+            //The three first items are useless : links/emitter/receiver
+            val data = it.pigeonConversationData.drop(3)
+
+            val lastMessage =
+                data.take(data.size - 1).joinToString(PIGEON_DETAIL_CONVERSATION_LINE_SEPARATOR)
+            val historyMessages =
+                PIGEON_DETAIL_CONVERSATION_REGEX.findAll(data.last()).map { it.value }
+                    .toMutableList().asReversed()
+            val fullHistory = mutableListOf<String>()
+            if (historyMessages.isNotEmpty()) {
+                PIGEON_DETAIL_CONVERSATION_START_REGEX.find(historyMessages.first())
+                    ?.value?.length?.let { highestLevel ->
+                    for (level in highestLevel downTo 1) {
+                        val currentMessagesSeparator =
+                            (1..level).map { PIGEON_DETAIL_CONVERSATION_START_SEPARATOR }
+                                .joinToString("")
+                        val currentLevelMessages = historyMessages.filter {
+                            it.startsWith(currentMessagesSeparator)
+                        }.asReversed()
+                        fullHistory.add(currentLevelMessages.map { it.drop(level) }.filter { it.isNotBlank() }
+                            .joinToString(PIGEON_DETAIL_CONVERSATION_LINE_SEPARATOR))
+                        historyMessages.removeAll(currentLevelMessages)
+                    }
                 }
-            }.addRedirectCheck()
+            }
+
+            PigeonRemoteEntity().apply {
+                this.id = id.toString()
+                this.emitter = it.emitter
+                this.subject = it.subject
+                this.date = date
+                this.content = lastMessage
+                this.history = fullHistory.reversed()
+            }
+        }
 
     override fun login(username: String, password: String): Completable =
-            apiService.login(username, password, MEMORIZE_FORM_VALUE).addRedirectCheck().ignoreElement()
+        apiService.login(username, password, MEMORIZE_FORM_VALUE).addRedirectCheck().ignoreElement()
 
     private fun <T> Single<T>.addRedirectCheck(): Single<T> {
         return onErrorResumeNext {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_activity_graph"
+    app:startDestination="@id/pigeonDetailFragment">
+
+    <fragment
+        android:id="@+id/pigeonDetailFragment"
+        android:name="fr.legrand.daifen.application.presentation.ui.pigeon.detail.PigeonDetailFragment"
+        android:label="PigeonDetailFragment">
+        <argument
+            android:name="pigeonId"
+            app:argType="integer" />
+    </fragment>
+</navigation>

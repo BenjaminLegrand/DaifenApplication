@@ -8,7 +8,7 @@ import fr.legrand.daifen.application.data.entity.db.PigeonDBEntity
 
 @Dao
 interface RoomManager {
-    @Query("SELECT * FROM pigeondbentity")
+    @Query("SELECT * FROM pigeondbentity ORDER BY date DESC")
     fun getAllPigeons(): List<PigeonDBEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
