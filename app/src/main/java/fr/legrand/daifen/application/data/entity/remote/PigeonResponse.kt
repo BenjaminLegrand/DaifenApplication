@@ -8,5 +8,7 @@ data class PigeonResponse(
     @Selector("#main .fiche")
     var emitter: String = "",
     @Selector("#main h2")
-    var subject: String = ""
+    var subject: String = "",
+    @Selector("#main :nth-child(5) a", attr = "href")
+    var emitterId: String = ""
 )

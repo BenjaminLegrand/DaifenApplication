@@ -7,6 +7,7 @@ data class Pigeon(
     val emitter: String,
     val subject: String,
     val date: Date,
+    val emitterImage: String = "",
     val content: String = "",
     val history: List<String> = emptyList(),
     var unread: Boolean = false

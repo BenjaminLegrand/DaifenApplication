@@ -32,6 +32,7 @@ class PigeonDBEntityDataMapper {
                 model.emitter,
                 model.subject,
                 model.date,
+                model.emitterImage,
                 model.content,
                 model.history
             )
@@ -47,6 +48,7 @@ class PigeonDBEntityDataMapper {
                 db.emitter,
                 db.subject,
                 db.date,
+                db.emitterImage,
                 db.content,
                 db.history
             )

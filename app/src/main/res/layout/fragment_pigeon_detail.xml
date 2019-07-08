@@ -1,69 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/base_background_color"
+    android:fitsSystemWindows="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/fragment_pigeon_detail_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/fragment_pigeon_detail_toolbar"
+        <!--Title is only a whitespace to prevent default title to appear on screen start up-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/fragment_pigeon_detail_collapsible_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:textColor="@color/white"
+            app:collapsedTitleTextAppearance="@style/CollapsedToolbarTitle"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="bottom|center_horizontal"
+            app:expandedTitleTextAppearance="@style/ExpandedToolbarTitle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:scrimAnimationDuration="@integer/collapsible_toolbar_duration"
+            app:title=" ">
 
-        <TextView
-            android:id="@+id/fragment_pigeon_detail_emitter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_pigeon_detail_subject"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_toolbar"
-            tools:text="Emis par Jojopainpain" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/fragment_pigeon_detail_subject"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_pigeon_detail_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_pigeon_detail_emitter"
-            tools:text="Re : Attaques" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/fragment_pigeon_detail_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_pigeon_detail_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_pigeon_detail_subject"
-            tools:text="Reçu le 15/06/2019 à 17h44" />
+            <ImageView
+                android:id="@+id/fragment_pigeon_detail_emitter_image"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/pigeon_detail_emitter_image_size"
+                android:layout_gravity="center"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_marginBottom="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
 
-        <TextView
-            android:id="@+id/fragment_pigeon_detail_content"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_pigeon_detail_history"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_pigeon_detail_date"
-            tools:text="On s'est fait attaquer !" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/fragment_pigeon_detail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_collapseMode="pin" />
 
-        <LinearLayout
-            android:id="@+id/fragment_pigeon_detail_history"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_pigeon_detail_date" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/fragment_pigeon_detail_content_area"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:elevation="@dimen/pigeon_subject_view_elevation"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/fragment_pigeon_detail_subject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="@dimen/base_padding"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_date"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Attaques !" />
+
+
+                <TextView
+                    android:id="@+id/fragment_pigeon_detail_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="@dimen/base_padding"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_content"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_subject"
+                    tools:text="Reçu le 15/06/2019 à 17h44" />
+
+                <TextView
+                    android:id="@+id/fragment_pigeon_detail_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/base_padding"
+                    android:paddingTop="@dimen/base_padding"
+                    android:paddingEnd="@dimen/base_padding"
+                    android:paddingBottom="@dimen/double_base_padding"
+                    app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_history_card"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_date"
+                    tools:text="On s'est fait attaquer !" />
+            </LinearLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fragment_pigeon_detail_history_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/double_base_margin"
+                android:layout_marginTop="@dimen/double_base_margin"
+                android:layout_marginEnd="@dimen/double_base_margin"
+                android:layout_marginBottom="@dimen/base_margin"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/pigeon_history_card_radius"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_content_area">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/fragment_pigeon_detail_history_card_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/base_margin"
+                        android:layout_marginTop="@dimen/base_half_margin"
+                        android:layout_marginEnd="@dimen/base_margin"
+                        android:drawableStart="@drawable/ic_pigeon_history"
+                        android:drawablePadding="@dimen/base_padding"
+                        android:gravity="center_vertical"
+                        android:text="@string/pigeon_history_card_title"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_history_card_separator"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/fragment_pigeon_detail_history_card_separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_separator_height"
+                        android:layout_marginTop="@dimen/base_half_margin"
+                        android:background="@color/base_separator_color"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_history"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_history_card_title" />
+
+                    <LinearLayout
+                        android:id="@+id/fragment_pigeon_detail_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_history_card_separator" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

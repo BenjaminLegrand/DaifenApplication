@@ -28,6 +28,7 @@ class PigeonRemoteEntityDataMapper {
                 remote.emitter,
                 remote.subject,
                 SimpleDateFormat(REMOTE_DATE_FORMAT, Locale.getDefault()).parse(remote.date),
+                remote.emitterImage,
                 remote.content,
                 remote.history
             )

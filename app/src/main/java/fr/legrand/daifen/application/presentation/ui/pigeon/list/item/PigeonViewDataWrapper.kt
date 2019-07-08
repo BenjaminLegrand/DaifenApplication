@@ -13,8 +13,11 @@ class PigeonViewDataWrapper(private val pigeon: Pigeon) {
         context.getString(R.string.piegon_date_format),
         Locale.getDefault()
     ).format(pigeon.date)
+
     fun getHistory() = pigeon.history
 
     fun getId() = pigeon.id
     fun isUnread() = pigeon.unread
+    fun getEmitterImageUrl() = pigeon.emitterImage
+    fun getContent() = pigeon.content
 }

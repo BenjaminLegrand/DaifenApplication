@@ -18,6 +18,8 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.ui.pigeon.detail.PigeonDetailActivity" />
+        <activity
+            android:name=".presentation.ui.pigeon.detail.PigeonDetailActivity"
+            android:theme="@style/AppTheme.NoStatusBar" />
     </application>
 </manifest>

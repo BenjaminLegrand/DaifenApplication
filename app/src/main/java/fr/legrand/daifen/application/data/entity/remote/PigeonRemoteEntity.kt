@@ -11,6 +11,8 @@ data class PigeonRemoteEntity(
     var subject: String = "",
     @Selector("td:nth-child(3)")
     var date: String = "",
+    var emitterImage: String = "",
+    var emitterId: Int = 0,
     var content: String = "",
     var history: List<String> = emptyList()
 )

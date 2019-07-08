@@ -1,5 +1,6 @@
 package fr.legrand.daifen.application.data.manager.api
 
+import fr.legrand.daifen.application.BuildConfig
 import fr.legrand.daifen.application.data.entity.remote.PigeonRemoteEntity
 import fr.legrand.daifen.application.data.exception.AuthenticationException
 import io.reactivex.Completable
@@ -15,6 +16,7 @@ private const val PIGEON_DETAIL_CONVERSATION_LINE_SEPARATOR = "\n"
 private const val PIGEON_DETAIL_CONVERSATION_START_SEPARATOR = '>'
 private val PIGEON_DETAIL_CONVERSATION_START_REGEX = Regex(">+")
 private val PIGEON_DETAIL_CONVERSATION_REGEX = Regex(">.*?\\s+(?=>)")
+private val EMITTER_ID_REGEX = Regex("[0-9]+")
 
 class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
 
@@ -61,10 +63,16 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
             PigeonRemoteEntity().apply {
                 this.id = id.toString()
                 this.emitter = it.emitter
+                this.emitterId = EMITTER_ID_REGEX.find(it.emitterId)?.value?.toInt() ?: 0
                 this.subject = it.subject
                 this.date = date
                 this.content = lastMessage
                 this.history = fullHistory.reversed()
+            }
+        }.flatMap { pigeon ->
+            apiService.getPlayer(pigeon.emitterId).map {
+                pigeon.emitterImage = "${BuildConfig.BASE_URL}${it.image}"
+                pigeon
             }
         }
 

@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#4E342E</color>
     <color name="colorAccent">#C62828</color>
 
+    <color name="base_background_color">#E0E0E0</color>
     <color name="white">#FFFFFF</color>
     <color name="bottom_bar_unselected_color">#E0E0E0</color>
     <color name="base_separator_color">#757575</color>
