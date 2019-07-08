@@ -144,7 +144,7 @@
                         android:drawablePadding="@dimen/base_padding"
                         android:gravity="center_vertical"
                         android:text="@string/pigeon_history_card_title"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textAppearance="@style/AppStyle.Card.Title"
                         app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_history_card_separator"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -152,7 +152,9 @@
                         android:id="@+id/fragment_pigeon_detail_history_card_separator"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/base_separator_height"
+                        android:layout_marginStart="@dimen/base_margin"
                         android:layout_marginTop="@dimen/base_half_margin"
+                        android:layout_marginEnd="@dimen/base_margin"
                         android:background="@color/base_separator_color"
                         app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_history"
                         app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_history_card_title" />
