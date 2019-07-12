@@ -9,9 +9,7 @@ import fr.legrand.daifen.application.data.exception.AuthenticationException
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.navigator.PigeonListFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.ui.PigeonListAdapter
-import fr.legrand.daifen.application.presentation.utils.hide
 import fr.legrand.daifen.application.presentation.utils.observeSafe
-import fr.legrand.daifen.application.presentation.utils.show
 import kotlinx.android.synthetic.main.fragment_pigeon_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,15 +32,10 @@ class PigeonListFragment : BaseNavFragment<PigeonListFragmentNavigatorListener>(
         fragment_pigeon_list_recycler.adapter = pigeonListAdapter
         fragment_pigeon_list_recycler.layoutManager = LinearLayoutManager(requireContext())
         pigeonListAdapter.onItemClickListener = navigatorListener::displayPigeonDetails
+        fragment_pigeon_list_swipe_refresh.setOnRefreshListener { viewModel.getPigeonList() }
 
         viewModel.viewState.observeSafe(this) {
-            if (it.loading) {
-                fragment_pigeon_list_recycler.hide()
-                fragment_pigeon_list_progress.show()
-            } else {
-                fragment_pigeon_list_recycler.show()
-                fragment_pigeon_list_progress.hide()
-            }
+            fragment_pigeon_list_swipe_refresh.isRefreshing = it.loading
         }
 
         viewModel.errorEvent.observeSafe(this) {

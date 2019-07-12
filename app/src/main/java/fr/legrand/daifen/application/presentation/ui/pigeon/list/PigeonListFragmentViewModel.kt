@@ -26,7 +26,7 @@ class PigeonListFragmentViewModel(private val contentRepository: ContentReposito
         disposable.clear()
     }
 
-    private fun getPigeonList() {
+    fun getPigeonList() {
         viewState.update { loading = true }
         contentRepository.getPigeonList().subscribeOn(Schedulers.io()).subscribeBy(
                 onError = {

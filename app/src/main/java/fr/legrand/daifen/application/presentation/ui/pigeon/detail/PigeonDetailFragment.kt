@@ -62,9 +62,13 @@ class PigeonDetailFragment : BaseNavFragment<PigeonDetailFragmentNavigatorListen
 
         viewModel.viewState.observeSafe(this) {
             if (it.loading) {
-                //TODO
+                fragment_pigeon_detail_content_area.hide()
+                fragment_pigeon_detail_history_card.hide()
+                fragment_pigeon_detail_progress.show()
             } else {
-                //TODO
+                fragment_pigeon_detail_content_area.show()
+                fragment_pigeon_detail_history_card.show()
+                fragment_pigeon_detail_progress.hide()
             }
         }
     }
