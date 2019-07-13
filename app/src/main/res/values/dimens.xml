@@ -12,7 +12,7 @@
     <dimen name="login_logo_size">150dp</dimen>
     <dimen name="pigeon_emitter_text_size">16sp</dimen>
     <dimen name="pigeon_detail_emitter_image_size">120dp</dimen>
-    <dimen name="pigeon_history_card_radius">4dp</dimen>
-    <dimen name="pigeon_subject_view_elevation">4dp</dimen>
-    <dimen name="pigeon_subject_content_z">5dp</dimen>
+    <dimen name="pigeon_detail_content_separator_size">1dp</dimen>
+    <dimen name="min_clickable_size">48dp</dimen>
+    <dimen name="toggle_icon_padding">12dp</dimen>
 </resources>

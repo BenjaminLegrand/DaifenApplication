@@ -10,6 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/base_margin"
+        android:textColor="@android:color/primary_text_light"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         app:layout_constraintBottom_toTopOf="@id/pigeon_history_separator"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
