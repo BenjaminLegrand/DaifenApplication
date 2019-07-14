@@ -98,10 +98,10 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:paddingStart="@dimen/base_padding"
+                android:paddingStart="@dimen/double_base_padding"
                 android:paddingTop="@dimen/base_padding"
-                android:paddingEnd="@dimen/base_padding"
+                android:paddingBottom="@dimen/base_padding"
+                android:paddingEnd="@dimen/double_base_padding"
                 app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_content_separator"
                 app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_date"
                 tools:text="On s'est fait attaquer !" />
@@ -110,7 +110,6 @@
                 android:id="@+id/fragment_pigeon_detail_content_separator"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/pigeon_detail_content_separator_size"
-                android:layout_marginTop="@dimen/base_margin"
                 android:background="@color/base_separator_color"
                 app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_history_title"
                 app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_content" />
@@ -122,7 +121,7 @@
                 android:layout_marginEnd="@dimen/base_margin"
                 android:padding="@dimen/toggle_icon_padding"
                 android:src="@drawable/ic_toggle_down"
-                app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_history_separator"
+                app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_history"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/fragment_pigeon_detail_history_title"
@@ -132,7 +131,7 @@
                 android:id="@+id/fragment_pigeon_detail_history_title"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/base_margin"
+                android:layout_marginStart="@dimen/double_base_margin"
                 android:layout_marginEnd="@dimen/base_margin"
                 android:gravity="center_vertical"
                 android:text="@string/pigeon_history_card_title"
@@ -151,16 +150,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/fragment_pigeon_detail_history_toggle" />
 
-            <View
-                android:id="@+id/fragment_pigeon_detail_history_separator"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/base_separator_height"
-                android:layout_marginStart="@dimen/base_margin"
-                android:layout_marginTop="@dimen/base_half_margin"
-                android:layout_marginEnd="@dimen/base_margin"
-                android:background="@color/base_separator_color"
-                app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_history"
-                app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_history_title" />
 
             <LinearLayout
                 android:id="@+id/fragment_pigeon_detail_history"
@@ -169,7 +158,7 @@
                 android:orientation="vertical"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_history_separator" />
+                app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_history_collapse_area" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/fragment_pigeon_detail_history_group"
@@ -178,8 +167,7 @@
                 android:visibility="gone"
                 app:constraint_referenced_ids="fragment_pigeon_detail_content_separator,
                 fragment_pigeon_detail_history_toggle,
-                fragment_pigeon_detail_history_title,
-                fragment_pigeon_detail_history_separator" />
+                fragment_pigeon_detail_history_title" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/fragment_pigeon_detail_content_group"

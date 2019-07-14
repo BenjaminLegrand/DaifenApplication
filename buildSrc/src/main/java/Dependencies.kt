@@ -21,6 +21,7 @@ object Versions {
     const val MATERIAL = "1.0.0"
     const val ARCH_COMPONENTS = "2.0.0"
     const val NAVIGATION = "2.0.0"
+    const val WORK_MANAGER = "2.1.0"
 
     /**
      * Thrid party versions
@@ -63,6 +64,10 @@ object Libraries {
         "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT}"
     )
     const val ARCH_COMPONENTS = "androidx.lifecycle:lifecycle-extensions:${Versions.ARCH_COMPONENTS}"
+    @JvmField val WORK_MANAGER = arrayOf(
+        "androidx.work:work-runtime-ktx:${Versions.WORK_MANAGER}",
+        "androidx.work:work-rxjava2:${Versions.WORK_MANAGER}"
+    )
 
     @JvmField
     val NAVIGATION = arrayOf(
