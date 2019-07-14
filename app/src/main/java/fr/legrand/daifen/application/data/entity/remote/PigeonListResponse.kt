@@ -2,7 +2,7 @@ package fr.legrand.daifen.application.data.entity.remote
 
 import pl.droidsonroids.jspoon.annotation.Selector
 
-class PigeonListResponse {
+data class PigeonListResponse(
     @Selector("#formpigeons .even, #formpigeons .odd")
-    lateinit var pigeonRemoteList: List<PigeonRemoteEntity>
-}
+    var pigeonRemoteList: List<PigeonRemoteEntity> = emptyList()
+)

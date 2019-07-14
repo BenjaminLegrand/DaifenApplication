@@ -6,4 +6,6 @@
     <string name="password_hint">Mot de passe</string>
     <string name="login_title">Connexion</string>
     <string name="piegon_date_format">\'Reçu le \'dd/MM/yy\' à \'HH\':\'mm</string>
+    <string name="pigeon_history_card_title">Anciens messages</string>
+    <string name="new_pigeon_received">Votre pigeonnier se remplit !</string>
 </resources>

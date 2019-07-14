@@ -1,7 +1,14 @@
 package fr.legrand.daifen.application.data.di
 
+import android.app.NotificationManager
+import android.content.Context
+import androidx.work.WorkManager
 import com.google.gson.GsonBuilder
 import fr.legrand.daifen.application.BuildConfig
+import fr.legrand.daifen.application.data.component.background.BackgroundComponent
+import fr.legrand.daifen.application.data.component.background.BackgroundComponentImpl
+import fr.legrand.daifen.application.data.component.notification.NotificationComponent
+import fr.legrand.daifen.application.data.component.notification.NotificationComponentImpl
 import fr.legrand.daifen.application.data.entity.mapper.PigeonDBEntityDataMapper
 import fr.legrand.daifen.application.data.entity.mapper.PigeonRemoteEntityDataMapper
 import fr.legrand.daifen.application.data.manager.api.ApiManager
@@ -58,6 +65,18 @@ val networkModule = module {
 
 val generalModule = module {
     single { GsonBuilder().create() }
+    single { WorkManager.getInstance(get()) }
+    single { get<Context>().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager }
 }
 
-val dataModules = managerModule + networkModule + repositoryModule + mapperModule + generalModule
+val componentModule = module {
+    single<BackgroundComponent> {
+        BackgroundComponentImpl(get())
+    }
+    single<NotificationComponent> {
+        NotificationComponentImpl(get(), get())
+    }
+}
+
+val dataModules =
+    managerModule + networkModule + repositoryModule + mapperModule + generalModule + componentModule

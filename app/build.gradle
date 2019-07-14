@@ -19,6 +19,9 @@ android {
         buildConfigField("String", "DAIFEN_TEST_LOGIN", "\"${daifenTestLogin}\"")
         buildConfigField("String", "DAIFEN_TEST_PASSWORD", "\"${daifenTestPassword}\"")
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,6 +36,7 @@ dependencies {
     implementation Libraries.SUPPORT
     implementation Libraries.ARCH_COMPONENTS
     implementation Libraries.NAVIGATION
+    implementation Libraries.WORK_MANAGER
     implementation Libraries.RX_JAVA_2
     implementation Libraries.RX_KOTLIN
     implementation Libraries.GLIDE

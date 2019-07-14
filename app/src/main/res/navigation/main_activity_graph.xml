@@ -6,14 +6,25 @@
 
     <fragment
         android:id="@+id/pigeonListFragment"
-        android:name="fr.legrand.daifen.application.presentation.ui.pigeon.PigeonListFragment"
+        android:name="fr.legrand.daifen.application.presentation.ui.pigeon.list.PigeonListFragment"
         android:label="PigeonListFragment" >
         <action
             android:id="@+id/action_pigeonListFragment_to_loginActivity"
             app:destination="@id/loginActivity" />
+        <action
+            android:id="@+id/action_pigeonListFragment_to_pigeonDetailActivity"
+            app:destination="@id/pigeonDetailActivity" />
     </fragment>
     <activity
         android:id="@+id/loginActivity"
         android:name="fr.legrand.daifen.application.presentation.ui.login.LoginActivity"
         android:label="LoginActivity" />
+    <activity
+        android:id="@+id/pigeonDetailActivity"
+        android:name="fr.legrand.daifen.application.presentation.ui.pigeon.detail.PigeonDetailActivity"
+        android:label="PigeonDetailActivity" >
+        <argument
+            android:name="pigeonId"
+            app:argType="integer" />
+    </activity>
 </navigation>
