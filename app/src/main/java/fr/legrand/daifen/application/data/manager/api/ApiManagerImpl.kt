@@ -1,6 +1,7 @@
 package fr.legrand.daifen.application.data.manager.api
 
 import fr.legrand.daifen.application.BuildConfig
+import fr.legrand.daifen.application.data.entity.remote.OrderResponseRemoteEntity
 import fr.legrand.daifen.application.data.entity.remote.PigeonRemoteEntity
 import fr.legrand.daifen.application.data.exception.AuthenticationException
 import io.reactivex.Completable
@@ -19,6 +20,7 @@ private val PIGEON_DETAIL_CONVERSATION_REGEX = Regex(">.*?\\s+(?=>)")
 private val EMITTER_ID_REGEX = Regex("[0-9]+")
 
 class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
+
 
     override fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>> =
         apiService.getPigeonList(page).map {
@@ -75,6 +77,10 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
                 pigeon
             }
         }
+
+    override fun getOrders(): Single<OrderResponseRemoteEntity> =
+        apiService.getOrders().addRedirectCheck()
+
 
     override fun login(username: String, password: String): Completable =
         apiService.login(username, password, MEMORIZE_FORM_VALUE).addRedirectCheck().ignoreElement()

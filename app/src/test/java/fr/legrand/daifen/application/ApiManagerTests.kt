@@ -1,20 +1,19 @@
 package fr.legrand.daifen.application
 
+import androidx.test.core.app.ApplicationProvider
 import fr.legrand.daifen.application.data.di.dataModules
-import fr.legrand.daifen.application.data.entity.remote.PigeonRemoteEntity
+import fr.legrand.daifen.application.data.exception.AuthenticationException
 import fr.legrand.daifen.application.data.manager.api.ApiManager
-import io.reactivex.observers.TestObserver
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.inject
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.shadows.ShadowLog
-import retrofit2.HttpException
 
 @RunWith(RobolectricTestRunner::class)
 class ApiManagerTests : KoinTest {
@@ -23,8 +22,10 @@ class ApiManagerTests : KoinTest {
 
     @Before
     fun init() {
-        ShadowLog.stream = System.out
-        startKoin { modules(dataModules) }
+        startKoin {
+            androidContext(ApplicationProvider.getApplicationContext())
+            modules(dataModules)
+        }
     }
 
     @After
@@ -34,35 +35,38 @@ class ApiManagerTests : KoinTest {
 
     @Test
     fun `check login`() {
-        val pigeonListSingle = apiManager.login(BuildConfig.DAIFEN_TEST_LOGIN, BuildConfig.DAIFEN_TEST_PASSWORD)
-        val subscriber = TestObserver<String>()
-
-        pigeonListSingle.subscribe(subscriber)
-        subscriber.assertNoErrors()
-        subscriber.assertValue { it.isNotEmpty() }
+        val obs =
+            apiManager.login(BuildConfig.DAIFEN_TEST_LOGIN, BuildConfig.DAIFEN_TEST_PASSWORD).test()
+        obs.assertNoErrors()
+        obs.assertComplete()
     }
 
     @Test
     fun `check login and get pigeons`() {
-        val loginSingle = apiManager.login(BuildConfig.DAIFEN_TEST_LOGIN, BuildConfig.DAIFEN_TEST_PASSWORD)
-        val loginSubscriber = TestObserver<String>()
+        val obs =
+            apiManager.login(BuildConfig.DAIFEN_TEST_LOGIN, BuildConfig.DAIFEN_TEST_PASSWORD).test()
+        obs.assertNoErrors()
+        obs.assertComplete()
 
-        loginSingle.subscribe(loginSubscriber)
-        val cookie = loginSubscriber.values().first()
-        val pigeonListSingle = apiManager.getPigeonList(cookie)
-        val pigeonSubscriber = TestObserver<List<PigeonRemoteEntity>>()
-
-        pigeonListSingle.subscribe(pigeonSubscriber)
-        pigeonSubscriber.assertNoErrors()
+        val pigeonListObs = apiManager.getPigeonList(1).test()
+        pigeonListObs.assertNoErrors()
     }
 
     @Test
     fun `check pigeons call bad cookie`() {
-        val pigeonListSingle = apiManager.getPigeonList("zefpokzefpo")
-        val subscriber = TestObserver<List<PigeonRemoteEntity>>()
+        val pigeonListObs = apiManager.getPigeonList(1).test()
+        pigeonListObs.assertError(AuthenticationException::class.java)
+    }
 
-        pigeonListSingle.subscribe(subscriber)
-        subscriber.assertError(HttpException::class.java)
+    @Test
+    fun `check login and get orders`() {
+        val obs =
+            apiManager.login(BuildConfig.DAIFEN_TEST_LOGIN, BuildConfig.DAIFEN_TEST_PASSWORD).test()
+        obs.assertNoErrors()
+        obs.assertComplete()
+
+        val ordersObs = apiManager.getOrders().test()
+        ordersObs.assertNoErrors()
     }
 
 

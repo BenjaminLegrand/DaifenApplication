@@ -53,5 +53,5 @@ dependencies {
     testImplementation Libraries.ASSERTJ
     testImplementation Libraries.KOIN_TEST
     testImplementation Libraries.ROBOLETRIC
-    androidTestImplementation Libraries.TEST_RUNNER
+    testImplementation Libraries.TEST_KTX
 }
