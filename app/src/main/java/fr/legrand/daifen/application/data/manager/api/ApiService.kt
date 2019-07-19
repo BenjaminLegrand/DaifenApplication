@@ -1,6 +1,6 @@
 package fr.legrand.daifen.application.data.manager.api
 
-import fr.legrand.daifen.application.data.entity.remote.OrderResponseRemoteEntity
+import fr.legrand.daifen.application.data.entity.remote.OrderResponse
 import fr.legrand.daifen.application.data.entity.remote.PigeonListResponse
 import fr.legrand.daifen.application.data.entity.remote.PigeonResponse
 import fr.legrand.daifen.application.data.entity.remote.PlayerResponse
@@ -23,5 +23,5 @@ interface ApiService {
     fun getPlayer(@Path("id") id: Int): Single<PlayerResponse>
 
     @GET("royaume/confirmation.php")
-    fun getOrders(): Single<OrderResponseRemoteEntity>
+    fun getOrders(): Single<OrderResponse>
 }

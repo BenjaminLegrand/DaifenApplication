@@ -1,9 +1,12 @@
 package fr.legrand.daifen.application.data.manager.api
 
 import fr.legrand.daifen.application.BuildConfig
-import fr.legrand.daifen.application.data.entity.remote.OrderResponseRemoteEntity
+import fr.legrand.daifen.application.data.entity.remote.BuildingRemoteEntity
+import fr.legrand.daifen.application.data.entity.remote.OrderRemoteEntity
 import fr.legrand.daifen.application.data.entity.remote.PigeonRemoteEntity
 import fr.legrand.daifen.application.data.exception.AuthenticationException
+import fr.legrand.daifen.application.data.values.BuildingType
+import fr.legrand.daifen.application.data.values.KnowledgeType
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.HttpException
@@ -18,6 +21,8 @@ private const val PIGEON_DETAIL_CONVERSATION_START_SEPARATOR = '>'
 private val PIGEON_DETAIL_CONVERSATION_START_REGEX = Regex(">+")
 private val PIGEON_DETAIL_CONVERSATION_REGEX = Regex(">.*?\\s+(?=>)")
 private val EMITTER_ID_REGEX = Regex("[0-9]+")
+private val BUILDING_REGEX = Regex("(?<=Construction de).+(?=x[0-9]+)")
+private val BUILDING_COUNT_REGEX = Regex("(?<=x)[0-9]+")
 
 class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
 
@@ -25,12 +30,6 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
     override fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>> =
         apiService.getPigeonList(page).map {
             it.pigeonRemoteList
-        }.onErrorResumeNext {
-            return@onErrorResumeNext if (it is UninitializedPropertyAccessException) {
-                Single.just(emptyList())
-            } else {
-                Single.error(it)
-            }
         }.addRedirectCheck()
 
     override fun getPigeon(id: Int): Single<PigeonRemoteEntity> =
@@ -78,8 +77,23 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
             }
         }
 
-    override fun getOrders(): Single<OrderResponseRemoteEntity> =
-        apiService.getOrders().addRedirectCheck()
+    override fun getOrders(): Single<OrderRemoteEntity> =
+        apiService.getOrders().map {
+            OrderRemoteEntity().apply {
+                knowledge = it.currentKnowledge?.trim()?.let { KnowledgeType.fromValue(it) }
+                if (it.buildingsDisabledWithKnowledge == null && it.buildingsDisabledWithoutKnowledge == null) {
+                    buildings =
+                        (it.buildingsWithKnowledge + it.buildingsWithoutKnowledge).mapNotNull {
+                            val buildingType = BuildingType.fromValue(BUILDING_REGEX.find(it)?.value?.trim() ?: "")
+                            val buildingCount =
+                                BUILDING_COUNT_REGEX.find(it)?.value?.trim()?.toInt() ?: 0
+                            buildingType?.let {
+                                BuildingRemoteEntity(it, buildingCount)
+                            } ?: return@mapNotNull null
+                        }
+                }
+            }
+        }.addRedirectCheck()
 
 
     override fun login(username: String, password: String): Completable =

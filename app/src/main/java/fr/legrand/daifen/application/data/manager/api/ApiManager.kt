@@ -1,6 +1,7 @@
 package fr.legrand.daifen.application.data.manager.api
 
-import fr.legrand.daifen.application.data.entity.remote.OrderResponseRemoteEntity
+import fr.legrand.daifen.application.data.entity.remote.OrderRemoteEntity
+import fr.legrand.daifen.application.data.entity.remote.OrderResponse
 import fr.legrand.daifen.application.data.entity.remote.PigeonRemoteEntity
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -9,5 +10,5 @@ interface ApiManager {
     fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>>
     fun login(username: String, password: String): Completable
     fun getPigeon(id: Int): Single<PigeonRemoteEntity>
-    fun getOrders(): Single<OrderResponseRemoteEntity>
+    fun getOrders(): Single<OrderRemoteEntity>
 }
