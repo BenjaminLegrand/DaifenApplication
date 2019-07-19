@@ -7,4 +7,11 @@
         android:icon="@drawable/ic_pigeon"
         android:title="@string/pigeon_title"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/ordersFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_orders"
+        android:title="@string/orders_title"
+        app:showAsAction="ifRoom" />
 </menu>

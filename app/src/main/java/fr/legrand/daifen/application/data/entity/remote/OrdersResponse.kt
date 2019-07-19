@@ -2,7 +2,7 @@ package fr.legrand.daifen.application.data.entity.remote
 
 import pl.droidsonroids.jspoon.annotation.Selector
 
-data class OrderResponse(
+data class OrdersResponse(
     @Selector("#connaissance b")
     var currentKnowledge: String? = null,
     @Selector("#contenu div > h2:nth-child(1) + #connaissance + p:not(#connaissance)")

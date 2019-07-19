@@ -2,7 +2,7 @@ package fr.legrand.daifen.application.data.entity.remote
 
 import fr.legrand.daifen.application.data.values.KnowledgeType
 
-data class OrderRemoteEntity(
+data class OrdersRemoteEntity(
     var knowledge: KnowledgeType? = null,
     var buildings: List<BuildingRemoteEntity> = emptyList(),
     var troops: List<TroopRemoteEntity> = emptyList(),

@@ -16,7 +16,7 @@ import timber.log.Timber
 private const val START_PIGEON_PAGE = 0
 private const val PIGEON_LIMIT_PAGE = 500
 
-class ContentRepository(
+class PigeonRepository(
     private val sharedPrefsManager: SharedPrefsManager,
     private val apiManager: ApiManager,
     private val storageManager: StorageManager,

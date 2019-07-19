@@ -1,7 +1,7 @@
 package fr.legrand.daifen.application.presentation.ui.pigeon.detail
 
 import androidx.lifecycle.MutableLiveData
-import fr.legrand.daifen.application.data.repository.ContentRepository
+import fr.legrand.daifen.application.data.repository.PigeonRepository
 import fr.legrand.daifen.application.presentation.base.SingleLiveEvent
 import fr.legrand.daifen.application.presentation.base.StateViewModel
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.item.PigeonViewDataWrapper
@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class PigeonDetailFragmentViewModel(private val contentRepository: ContentRepository) :
+class PigeonDetailFragmentViewModel(private val pigeonRepository: PigeonRepository) :
     StateViewModel<PigeonDetailFragmentViewState>() {
     override val currentViewState =
         PigeonDetailFragmentViewState()
@@ -26,7 +26,7 @@ class PigeonDetailFragmentViewModel(private val contentRepository: ContentReposi
 
     fun getPigeon(id: Int) {
         viewState.update { loading = true }
-        contentRepository.getPigeon(id).subscribeOn(Schedulers.io()).subscribeBy(
+        pigeonRepository.getPigeon(id).subscribeOn(Schedulers.io()).subscribeBy(
             onError = {
                 errorEvent.postValue(it)
                 viewState.update { loading = false }

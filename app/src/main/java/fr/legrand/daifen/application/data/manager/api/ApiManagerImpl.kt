@@ -2,7 +2,7 @@ package fr.legrand.daifen.application.data.manager.api
 
 import fr.legrand.daifen.application.BuildConfig
 import fr.legrand.daifen.application.data.entity.remote.BuildingRemoteEntity
-import fr.legrand.daifen.application.data.entity.remote.OrderRemoteEntity
+import fr.legrand.daifen.application.data.entity.remote.OrdersRemoteEntity
 import fr.legrand.daifen.application.data.entity.remote.PigeonRemoteEntity
 import fr.legrand.daifen.application.data.exception.AuthenticationException
 import fr.legrand.daifen.application.data.values.BuildingType
@@ -77,9 +77,9 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
             }
         }
 
-    override fun getOrders(): Single<OrderRemoteEntity> =
-        apiService.getOrders().map {
-            OrderRemoteEntity().apply {
+    override fun getCurrentRoundOrders(): Single<OrdersRemoteEntity> =
+        apiService.getCurrentRoundOrders().map {
+            OrdersRemoteEntity().apply {
                 knowledge = it.currentKnowledge?.trim()?.let { KnowledgeType.fromValue(it) }
                 if (it.buildingsDisabledWithKnowledge == null && it.buildingsDisabledWithoutKnowledge == null) {
                     buildings =

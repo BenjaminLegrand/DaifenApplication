@@ -27,4 +27,8 @@
             android:name="pigeonId"
             app:argType="integer" />
     </activity>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="fr.legrand.daifen.application.presentation.ui.order.OrdersFragment"
+        android:label="OrdersFragment"/>
 </navigation>
