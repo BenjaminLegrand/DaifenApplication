@@ -152,7 +152,11 @@ data class TroopViewDataWrapper(
         TroopType.LION -> context.resources.getQuantityString(R.plurals.troop_lion, count)
     }
 
-    fun getTroopText(context: Context): String =
-        context.getString(R.string.troop_text_format, getTroopTypeCountText(context))
+    fun getTroopText(context: Context, currentRound: Boolean): String =
+        if (currentRound) {
+            context.getString(R.string.troop_text_format_current, getTroopTypeCountText(context))
+        } else {
+            context.getString(R.string.troop_text_format, getTroopTypeCountText(context))
+        }
 
 }

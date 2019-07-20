@@ -9,9 +9,16 @@ data class SupportViewDataWrapper(
 ) {
     val troops = support.troops.map { TroopViewDataWrapper(it.key, it.value) }
 
-    fun getSupportText(context: Context): String =
-        context.getString(
-            R.string.support_text_format,
-            support.target,
-            troops.joinToString { it.getTroopTypeCountText(context) })
+    fun getSupportText(context: Context, currentRound: Boolean): String =
+        if (currentRound) {
+            context.getString(
+                R.string.support_text_format_current,
+                support.target,
+                troops.joinToString { it.getTroopTypeCountText(context) })
+        } else {
+            context.getString(
+                R.string.support_text_format,
+                support.target,
+                troops.joinToString { it.getTroopTypeCountText(context) })
+        }
 }

@@ -9,9 +9,15 @@ data class AttackViewDataWrapper(
 ) {
     val troops = attack.troops.map { TroopViewDataWrapper(it.key, it.value) }
 
-    fun getAttackText(context: Context): String =
+    fun getAttackText(context: Context, currentRound: Boolean): String = if (currentRound) {
+        context.getString(
+            R.string.attack_text_format_current,
+            attack.target,
+            troops.joinToString { it.getTroopTypeCountText(context) })
+    } else {
         context.getString(
             R.string.attack_text_format,
             attack.target,
             troops.joinToString { it.getTroopTypeCountText(context) })
+    }
 }

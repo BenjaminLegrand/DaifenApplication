@@ -31,11 +31,12 @@ class OrdersFragmentViewModel(
     }
 
     fun getRoundOrders(round: Int) {
+        if (round == 0 || round > maxRound) {
+            return
+        }
         currentRound = round
         viewState.update {
             loading = true
-            displayLeftArrow = currentRound > 1
-            displayRightArrow = currentRound < maxRound
         }
         ordersRepository.getRoundOrders(round).subscribeOn(Schedulers.io())
             .subscribeBy(
@@ -43,12 +44,16 @@ class OrdersFragmentViewModel(
                     errorEvent.postValue(it)
                     viewState.update {
                         loading = false
+                        displayLeftArrow = currentRound > 1
+                        displayRightArrow = currentRound < maxRound
                     }
                 },
                 onSuccess = {
-                    orders.postValue(OrdersViewDataWrapper(it))
+                    orders.postValue(OrdersViewDataWrapper(it, currentRound == maxRound))
                     viewState.update {
                         loading = false
+                        displayLeftArrow = currentRound > 1
+                        displayRightArrow = currentRound < maxRound
                     }
                 }
             ).addToComposite(disposable)
@@ -69,7 +74,7 @@ class OrdersFragmentViewModel(
                 onSuccess = {
                     maxRound = it.round
                     currentRound = it.round
-                    orders.postValue(OrdersViewDataWrapper(it))
+                    orders.postValue(OrdersViewDataWrapper(it, currentRound == maxRound))
                     viewState.update {
                         loading = false
                         displayLeftArrow = true

@@ -10,7 +10,18 @@ data class GiftViewDataWrapper(
 
     private val troop = TroopViewDataWrapper(gift.troopType, gift.count)
 
-    fun getGiftText(context: Context): String =
-        context.getString(R.string.gift_text_format, troop.getTroopTypeCountText(context), gift.target)
+    fun getGiftText(context: Context, currentRound: Boolean): String = if (currentRound) {
+        context.getString(
+            R.string.gift_text_format_current,
+            troop.getTroopTypeCountText(context),
+            gift.target
+        )
+    } else {
+        context.getString(
+            R.string.gift_text_format,
+            troop.getTroopTypeCountText(context),
+            gift.target
+        )
+    }
 
 }

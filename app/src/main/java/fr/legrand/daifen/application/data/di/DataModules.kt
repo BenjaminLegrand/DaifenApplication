@@ -34,7 +34,7 @@ val managerModule = module {
     single<StorageManager> { StorageManagerImpl(get()) }
 }
 val repositoryModule = module {
-    single { AuthRepository(get(), get()) }
+    single { AuthRepository(get(), get(), get()) }
     single { PigeonRepository(get(), get(), get(), get(), get()) }
     single { OrdersRepository(get(), get()) }
 }

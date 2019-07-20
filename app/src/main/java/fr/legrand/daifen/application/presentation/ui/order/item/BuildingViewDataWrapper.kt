@@ -129,6 +129,13 @@ data class BuildingViewDataWrapper(
         return "$count $type"
     }
 
-    fun getBuildingText(context: Context): String =
-        context.getString(R.string.building_text_format, getBuildingTypeCountText(context))
+    fun getBuildingText(context: Context, currentRound: Boolean): String =
+        if (currentRound) {
+            context.getString(
+                R.string.building_text_format_current,
+                getBuildingTypeCountText(context)
+            )
+        } else {
+            context.getString(R.string.building_text_format, getBuildingTypeCountText(context))
+        }
 }
