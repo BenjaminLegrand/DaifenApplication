@@ -1,6 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/fragment_orders_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/orders_title" />
+
+    <ImageView
+        android:id="@+id/fragment_orders_round_left_arrow"
+        android:layout_width="@dimen/orders_round_arrow_size"
+        android:layout_height="0dp"
+        android:padding="@dimen/base_padding"
+        android:src="@drawable/ic_orders_round_left_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_orders_round"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/fragment_orders_round"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_orders_round" />
+
+    <TextView
+        android:id="@+id/fragment_orders_round"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:gravity="center"
+        android:padding="@dimen/base_padding"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintEnd_toStartOf="@id/fragment_orders_round_right_arrow"
+        app:layout_constraintStart_toEndOf="@id/fragment_orders_round_left_arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Tour 14" />
+
+    <ImageView
+        android:id="@+id/fragment_orders_round_right_arrow"
+        android:layout_width="@dimen/orders_round_arrow_size"
+        android:layout_height="0dp"
+        android:padding="@dimen/base_padding"
+        android:src="@drawable/ic_orders_round_right_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_orders_round"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_orders_round"
+        app:layout_constraintTop_toTopOf="@id/fragment_orders_round" />
+
+    <TextView
+        android:id="@+id/fragment_orders_knowledge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        app:layout_constraintBottom_toTopOf="@id/fragment_orders_buildings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_orders_round" />
+
+    <TextView
+        android:id="@+id/fragment_orders_buildings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_orders_knowledge" />
+
+    <TextView
+        android:id="@+id/fragment_orders_troops"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_orders_buildings" />
+
+    <TextView
+        android:id="@+id/fragment_orders_gifts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_orders_troops" />
+
+    <TextView
+        android:id="@+id/fragment_orders_special_troops"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_orders_gifts" />
+
+    <TextView
+        android:id="@+id/fragment_orders_attacks"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_orders_special_troops" />
+
+    <TextView
+        android:id="@+id/fragment_orders_supports"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_orders_attacks" />
 </androidx.constraintlayout.widget.ConstraintLayout>

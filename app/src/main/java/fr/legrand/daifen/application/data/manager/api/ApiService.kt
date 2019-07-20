@@ -23,5 +23,5 @@ interface ApiService {
     fun getPlayer(@Path("id") id: Int): Single<PlayerResponse>
 
     @GET("royaume/confirmation.php")
-    fun getCurrentRoundOrders(): Single<OrdersResponse>
+    fun getRoundOrders(@Query("tourvisu") round: Int): Single<OrdersResponse>
 }

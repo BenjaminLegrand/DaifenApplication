@@ -15,4 +15,5 @@
     <dimen name="pigeon_detail_content_separator_size">1dp</dimen>
     <dimen name="min_clickable_size">48dp</dimen>
     <dimen name="toggle_icon_padding">12dp</dimen>
+    <dimen name="orders_round_arrow_size">48dp</dimen>
 </resources>

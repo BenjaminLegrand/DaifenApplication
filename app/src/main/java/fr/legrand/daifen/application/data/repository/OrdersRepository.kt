@@ -8,10 +8,15 @@ import io.reactivex.Single
 class OrdersRepository(
     private val apiManager: ApiManager,
     private val orderRemoteEntityDataMapper: OrderRemoteEntityDataMapper
-    ) {
+) {
 
     fun getCurrentRoundOrders(): Single<Orders> =
         apiManager.getCurrentRoundOrders().map {
+            orderRemoteEntityDataMapper.transform(it)
+        }
+
+    fun getRoundOrders(round: Int): Single<Orders> =
+        apiManager.getRoundOrders(round).map {
             orderRemoteEntityDataMapper.transform(it)
         }
 }

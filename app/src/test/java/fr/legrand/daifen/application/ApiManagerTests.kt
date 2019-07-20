@@ -65,7 +65,7 @@ class ApiManagerTests : KoinTest {
         obs.assertNoErrors()
         obs.assertComplete()
 
-        val ordersObs = apiManager.getCurrentRoundOrders().test()
+        val ordersObs = apiManager.getRoundOrders(round).test()
         ordersObs.assertNoErrors()
     }
 

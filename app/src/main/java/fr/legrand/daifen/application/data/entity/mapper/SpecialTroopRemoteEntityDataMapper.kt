@@ -19,8 +19,10 @@ class SpecialTroopRemoteEntityDataMapper {
     fun transform(remote: SpecialTroopRemoteEntity): SpecialTroop {
         try {
             return SpecialTroop(
-                remote.specialTroopType,
-                remote.specialTroopAction
+                remote.troopType,
+                remote.specialTroopAction,
+                remote.target,
+                remote.showTarget
             )
         } catch (e: Exception) {
             throw MappingException()

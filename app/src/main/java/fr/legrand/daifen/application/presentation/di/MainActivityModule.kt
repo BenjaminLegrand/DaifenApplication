@@ -4,6 +4,7 @@ import androidx.navigation.findNavController
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavActivity
 import fr.legrand.daifen.application.presentation.ui.main.MainActivity
 import fr.legrand.daifen.application.presentation.ui.main.navigator.MainNavigator
+import fr.legrand.daifen.application.presentation.ui.order.navigator.OrdersFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.navigator.PigeonListFragmentNavigatorListener
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
@@ -17,6 +18,13 @@ val mainActivityModule = module {
         }
 
         scoped<PigeonListFragmentNavigatorListener> { (activity: BaseNavActivity) ->
+            get<MainNavigator>(parameters = {
+                parametersOf(
+                        activity
+                )
+            })
+        }
+        scoped<OrdersFragmentNavigatorListener> { (activity: BaseNavActivity) ->
             get<MainNavigator>(parameters = {
                 parametersOf(
                         activity

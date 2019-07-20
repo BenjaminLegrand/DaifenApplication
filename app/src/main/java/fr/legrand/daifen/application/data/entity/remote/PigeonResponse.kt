@@ -3,7 +3,7 @@ package fr.legrand.daifen.application.data.entity.remote
 import pl.droidsonroids.jspoon.annotation.Selector
 
 data class PigeonResponse(
-    @Selector("#main p")
+    @Selector("#main > p")
     var pigeonConversationData: List<String> = emptyList(),
     @Selector("#main .fiche")
     var emitter: String = "",

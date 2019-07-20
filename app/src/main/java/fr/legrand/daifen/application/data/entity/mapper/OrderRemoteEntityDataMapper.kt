@@ -16,6 +16,7 @@ class OrderRemoteEntityDataMapper(
     fun transform(remote: OrdersRemoteEntity): Orders {
         try {
             return Orders(
+                remote.round,
                 remote.knowledge,
                 buildingRemoteEntityDataMapper.transform(remote.buildings),
                 troopRemoteEntityDataMapper.transform(remote.troops),

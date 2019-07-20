@@ -15,11 +15,26 @@ class NotificationComponentImpl(
     private val context: Context,
     private val notificationManager: NotificationManager
 ) : NotificationComponent {
+    override fun displayAuthErrorNotification() {
+        notificationManager.notify(
+            NEW_PIGEON_NOTIFICATION_ID, getBaseNotificationBuilder()
+                .setContentText(context.getString(R.string.notification_auth_error))
+                .setStyle(
+                    NotificationCompat.BigTextStyle()
+                        .bigText(context.getString(R.string.notification_auth_error))
+                )
+                .build()
+        )
+    }
 
     override fun displayNewPigeonNotification() {
         notificationManager.notify(
             NEW_PIGEON_NOTIFICATION_ID, getBaseNotificationBuilder()
                 .setContentText(context.getString(R.string.new_pigeon_received))
+                .setStyle(
+                    NotificationCompat.BigTextStyle()
+                        .bigText(context.getString(R.string.new_pigeon_received))
+                )
                 .build()
         )
     }
