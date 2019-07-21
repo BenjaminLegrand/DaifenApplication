@@ -16,4 +16,7 @@ interface RoomManager {
 
     @Query("DELETE FROM pigeondbentity")
     fun clearPigeonList()
+
+    @Query("UPDATE pigeondbentity SET unread = 0 WHERE id = :id")
+    fun setPigeonRead(id: Int)
 }

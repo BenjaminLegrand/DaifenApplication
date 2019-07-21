@@ -20,5 +20,9 @@ class StorageManagerImpl constructor(context: Context) : StorageManager {
        roomManager.clearPigeonList()
     }
 
+    override fun setPigeonRead(id: Int) {
+        roomManager.setPigeonRead(id)
+    }
+
 
 }

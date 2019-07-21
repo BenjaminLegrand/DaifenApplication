@@ -13,5 +13,6 @@ data class PigeonDBEntity(
     var date: Date = Date(),
     val emitterImage: String = "",
     val content: String = "",
-    val history: List<String> = emptyList()
+    val history: List<String> = emptyList(),
+    val unread: Boolean = true
 )

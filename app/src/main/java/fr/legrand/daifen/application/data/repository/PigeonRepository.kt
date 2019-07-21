@@ -1,5 +1,6 @@
 package fr.legrand.daifen.application.data.repository
 
+import android.util.Log
 import fr.legrand.daifen.application.data.entity.mapper.PigeonDBEntityDataMapper
 import fr.legrand.daifen.application.data.entity.mapper.PigeonRemoteEntityDataMapper
 import fr.legrand.daifen.application.data.entity.model.Pigeon
@@ -23,6 +24,12 @@ class PigeonRepository(
     private val pigeonDBEntityDataMapper: PigeonDBEntityDataMapper,
     private val pigeonRemoteEntityDataMapper: PigeonRemoteEntityDataMapper
 ) {
+
+    fun getLocalPigeonList(): Single<List<Pigeon>> = Single.defer {
+        Log.i("TAG", "LOCAL")
+        Single.just(pigeonDBEntityDataMapper.transformEntity(storageManager.getAllPigeons()))
+    }
+
     fun getPigeonList(): Single<List<Pigeon>> = Single.defer {
         val currentPigeons =
             pigeonDBEntityDataMapper.transformEntity(storageManager.getAllPigeons())
@@ -45,8 +52,6 @@ class PigeonRepository(
                 Completable.error(it)
             }
         }.toSingle {
-            //TODO do this with scraping
-            pigeonList.forEach { it.unread = true }
             storageManager.savePigeonList(pigeonDBEntityDataMapper.transformModel(pigeonList))
             pigeonList + currentPigeons
         }
@@ -63,10 +68,22 @@ class PigeonRepository(
             if (it is AuthenticationException) sharedPrefsManager.resetAuthCookie()
         }
 
-    fun getPigeon(id: Int): Single<Pigeon> = apiManager.getPigeon(id).map {
-        pigeonRemoteEntityDataMapper.transform(it)
-    }.doOnError {
-        Timber.e(it)
-        if (it is AuthenticationException) sharedPrefsManager.resetAuthCookie()
+    fun getPigeon(id: Int): Single<Pigeon> = Single.defer {
+        apiManager.getPigeon(id).map {
+            storageManager.setPigeonRead(id)
+            pigeonRemoteEntityDataMapper.transform(it)
+        }.doOnError {
+            Timber.e(it)
+            if (it is AuthenticationException) sharedPrefsManager.resetAuthCookie()
+        }
+
+    }
+
+    fun getPigeonUpdateAuthErrorReceived() = Single.defer {
+        Single.just(sharedPrefsManager.getPigeonUpdateAuthErrorReceived())
+    }
+
+    fun onPigeonUpdateAuthErrorReceived() {
+        sharedPrefsManager.onPigeonUpdateAuthErrorReceived()
     }
 }

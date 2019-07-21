@@ -7,4 +7,5 @@ interface StorageManager {
 
     fun savePigeonList(pigeonList: List<PigeonDBEntity>)
     fun resetPigeonList()
+    fun setPigeonRead(id: Int)
 }
