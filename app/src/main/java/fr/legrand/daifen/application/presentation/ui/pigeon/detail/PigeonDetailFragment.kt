@@ -8,8 +8,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
-import androidx.transition.AutoTransition
-import androidx.transition.TransitionManager
 import com.bumptech.glide.Glide
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
@@ -29,8 +27,8 @@ class PigeonDetailFragment : BaseNavFragment<PigeonDetailFragmentNavigatorListen
     private val args by navArgs<PigeonDetailFragmentArgs>()
     private val viewModel: PigeonDetailFragmentViewModel by viewModel()
 
-    lateinit var rotateExpandAnimator: ObjectAnimator
-    lateinit var rotateCollapseAnimator: ObjectAnimator
+    private lateinit var rotateExpandAnimator: ObjectAnimator
+    private lateinit var rotateCollapseAnimator: ObjectAnimator
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

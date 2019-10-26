@@ -9,6 +9,8 @@ data class PigeonRemoteEntity(
     var emitter: String = "",
     @Selector("td:nth-child(2) a")
     var subject: String = "",
+    @Selector("td:nth-child(2) img", attr = "alt")
+    var unread: String? = null,
     @Selector("td:nth-child(3)")
     var date: String = "",
     var emitterImage: String = "",

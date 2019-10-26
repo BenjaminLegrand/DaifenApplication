@@ -5,6 +5,8 @@ import androidx.room.Room
 import fr.legrand.daifen.application.data.entity.db.PigeonDBEntity
 
 class StorageManagerImpl constructor(context: Context) : StorageManager {
+
+
     private val roomManager: RoomManager =
         Room.databaseBuilder(context, AppDatabase::class.java, "database").build().roomManager()
 
@@ -12,6 +14,14 @@ class StorageManagerImpl constructor(context: Context) : StorageManager {
 
     override fun savePigeonList(pigeonList: List<PigeonDBEntity>) {
         roomManager.savePigeonList(pigeonList)
+    }
+
+    override fun resetPigeonList() {
+       roomManager.clearPigeonList()
+    }
+
+    override fun setPigeonRead(id: Int) {
+        roomManager.setPigeonRead(id)
     }
 
 

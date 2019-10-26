@@ -30,7 +30,8 @@ class PigeonRemoteEntityDataMapper {
                 SimpleDateFormat(REMOTE_DATE_FORMAT, Locale.getDefault()).parse(remote.date),
                 remote.emitterImage,
                 remote.content,
-                remote.history
+                remote.history,
+                remote.unread != null
             )
         } catch (e: Exception) {
             throw MappingException()

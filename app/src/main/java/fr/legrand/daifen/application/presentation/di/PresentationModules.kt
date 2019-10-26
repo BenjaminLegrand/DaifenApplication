@@ -1,6 +1,7 @@
 package fr.legrand.daifen.application.presentation.di
 
 import fr.legrand.daifen.application.presentation.ui.login.LoginFragmentViewModel
+import fr.legrand.daifen.application.presentation.ui.order.OrdersFragmentViewModel
 import fr.legrand.daifen.application.presentation.ui.pigeon.detail.PigeonDetailFragmentViewModel
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.PigeonListFragmentViewModel
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.ui.PigeonListAdapter
@@ -25,6 +26,7 @@ private val viewModelModule = module {
             get()
         )
     }
+    viewModel { OrdersFragmentViewModel(get()) }
 }
 
 private val adapterModule = module {

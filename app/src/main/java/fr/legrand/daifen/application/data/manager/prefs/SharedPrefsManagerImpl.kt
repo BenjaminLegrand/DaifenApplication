@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import androidx.core.content.edit
 
 private const val AUTH_COOKIE_KEY = "AUTH_COOKIE_KEY"
+private const val PIGEON_UPDATE_AUTH_ERROR_RECEIVED_KEY = "PIGEON_UPDATE_AUTH_ERROR_RECEIVED_KEY"
 private val DEFAULT_AUTH_COOKIE = null
 
 class SharedPrefsManagerImpl
@@ -18,6 +19,13 @@ constructor(context: Context) : SharedPrefsManager {
     override fun setAuthCookie(authCookie: String) {
         sharedPreferences.edit {
             putString(AUTH_COOKIE_KEY, authCookie)
+            putBoolean(PIGEON_UPDATE_AUTH_ERROR_RECEIVED_KEY, false)
+        }
+    }
+
+    override fun onPigeonUpdateAuthErrorReceived() {
+        sharedPreferences.edit {
+            putBoolean(PIGEON_UPDATE_AUTH_ERROR_RECEIVED_KEY, true)
         }
     }
 
@@ -29,4 +37,7 @@ constructor(context: Context) : SharedPrefsManager {
             putString(AUTH_COOKIE_KEY, DEFAULT_AUTH_COOKIE)
         }
     }
+
+    override fun getPigeonUpdateAuthErrorReceived() =
+        sharedPreferences.getBoolean(PIGEON_UPDATE_AUTH_ERROR_RECEIVED_KEY, false)
 }

@@ -9,8 +9,7 @@ private const val PIGEON_CHECK_TIMER = 15L //in min
 
 class BackgroundComponentImpl(
     private val workManager: WorkManager
-) :
-    BackgroundComponent {
+) : BackgroundComponent {
 
     override fun init() {
         startPigeonChecker()

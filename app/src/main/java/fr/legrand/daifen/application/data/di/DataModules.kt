@@ -9,8 +9,7 @@ import fr.legrand.daifen.application.data.component.background.BackgroundCompone
 import fr.legrand.daifen.application.data.component.background.BackgroundComponentImpl
 import fr.legrand.daifen.application.data.component.notification.NotificationComponent
 import fr.legrand.daifen.application.data.component.notification.NotificationComponentImpl
-import fr.legrand.daifen.application.data.entity.mapper.PigeonDBEntityDataMapper
-import fr.legrand.daifen.application.data.entity.mapper.PigeonRemoteEntityDataMapper
+import fr.legrand.daifen.application.data.entity.mapper.*
 import fr.legrand.daifen.application.data.manager.api.ApiManager
 import fr.legrand.daifen.application.data.manager.api.ApiManagerImpl
 import fr.legrand.daifen.application.data.manager.api.ApiService
@@ -20,7 +19,8 @@ import fr.legrand.daifen.application.data.manager.prefs.SharedPrefsManagerImpl
 import fr.legrand.daifen.application.data.manager.storage.StorageManager
 import fr.legrand.daifen.application.data.manager.storage.StorageManagerImpl
 import fr.legrand.daifen.application.data.repository.AuthRepository
-import fr.legrand.daifen.application.data.repository.ContentRepository
+import fr.legrand.daifen.application.data.repository.OrdersRepository
+import fr.legrand.daifen.application.data.repository.PigeonRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -34,13 +34,22 @@ val managerModule = module {
     single<StorageManager> { StorageManagerImpl(get()) }
 }
 val repositoryModule = module {
-    single { AuthRepository(get(), get()) }
-    single { ContentRepository(get(), get(), get(), get(), get()) }
+    single { AuthRepository(get(), get(), get()) }
+    single { PigeonRepository(get(), get(), get(), get(), get()) }
+    single { OrdersRepository(get(), get()) }
 }
 
 val mapperModule = module {
     single { PigeonRemoteEntityDataMapper() }
     single { PigeonDBEntityDataMapper() }
+
+    single { AttackRemoteEntityDataMapper() }
+    single { BuildingRemoteEntityDataMapper() }
+    single { GiftRemoteEntityDataMapper() }
+    single { SpecialTroopRemoteEntityDataMapper() }
+    single { SupportRemoteEntityDataMapper() }
+    single { TroopRemoteEntityDataMapper() }
+    single { OrderRemoteEntityDataMapper(get(), get(), get(), get(), get(), get()) }
 }
 
 val networkModule = module {

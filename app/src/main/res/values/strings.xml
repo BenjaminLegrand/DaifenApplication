@@ -8,4 +8,98 @@
     <string name="piegon_date_format">\'Reçu le \'dd/MM/yy\' à \'HH\':\'mm</string>
     <string name="pigeon_history_card_title">Anciens messages</string>
     <string name="new_pigeon_received">Votre pigeonnier se remplit !</string>
+    <string name="notification_auth_error">Veuillez vous reconnecter pour recevoir les mises à jour de pigeons</string>
+    <string name="orders_title">Ordres</string>
+    <string name="orders_round_format">Tour %d</string>
+    <string name="no_knowledge">Aucune connaissance recherchée</string>
+    <string name="orders_knowledge_format">Vous avez recherché la connaissance %s</string>
+    <string name="gift_text_format">Vous avez envoyé %s à %s</string>
+    <string name="attack_text_format">Vous avez attaqué %s avec %s</string>
+    <string name="support_text_format">Vous avez soutenu %s avec %s</string>
+    <string name="troop_text_format">Vous avez entraîné %s</string>
+    <string name="building_text_format">Vous avez construit %s</string>
+    <plurals name="special_troop_explore_text_format">
+        <item quantity="one">%s %s est parti en exploration</item>
+        <item quantity="other">%s %s sont partis en exploration</item>
+    </plurals>
+    <plurals name="special_troop_counter_spy_text_format">
+        <item quantity="one">%s %s a contre-espionné</item>
+        <item quantity="other">%s %s ont contre-espionné</item>
+    </plurals>
+    <plurals name="special_troop_spy_text_format">
+        <item quantity="one">%s %s a espionné %s</item>
+        <item quantity="other">%s %s ont espionné %s</item>
+    </plurals>
+    <plurals name="special_troop_steal_text_format">
+        <item quantity="one">%s %s a volé %s</item>
+        <item quantity="other">%s %s ont volé %s</item>
+    </plurals>
+    <plurals name="special_troop_sabotage_text_format">
+        <item quantity="one">%s %s a saboté %s</item>
+        <item quantity="other">%s %s ont saboté %s</item>
+    </plurals>
+    <plurals name="special_troop_murder_text_format">
+        <item quantity="one">%s %s a assassiné des unités de %s</item>
+        <item quantity="other">%s %s ont assassiné des unités de %s</item>
+    </plurals>
+    <plurals name="special_troop_show_text_format">
+        <item quantity="one">%s %s a indiqué l\'emplacement de %s à %s</item>
+        <item quantity="other">%s %s ont indiqué l\'emplacement de %s à %s</item>
+    </plurals>
+    <plurals name="special_troop_give_text_format">
+        <item quantity="one">%s %s a donné des ressources à %s</item>
+        <item quantity="other">%s %s ont donné des ressources à %s</item>
+    </plurals>
+
+    <string name="orders_knowledge_format_current">Vous allez rechercher la connaissance %s</string>
+    <string name="gift_text_format_current">Vous allez envoyer %s à %s</string>
+    <string name="attack_text_format_current">Vous allez attaquer %s avec %s</string>
+    <string name="support_text_format_current">Vous allez soutenir %s avec %s</string>
+    <string name="troop_text_format_current">Vous allez entraîner %s</string>
+    <string name="building_text_format_current">Vous allez construire %s</string>
+    <plurals name="special_troop_explore_text_format_current">
+        <item quantity="one">%s %s va partir en exploration</item>
+        <item quantity="other">%s %s vont partir en exploration</item>
+    </plurals>
+    <plurals name="special_troop_counter_spy_text_format_current">
+        <item quantity="one">%s %s va contre-espionner</item>
+        <item quantity="other">%s %s vont contre-espionner</item>
+    </plurals>
+    <plurals name="special_troop_spy_text_format_current">
+        <item quantity="one">%s %s va espionner %s</item>
+        <item quantity="other">%s %s vont espionner %s</item>
+    </plurals>
+    <plurals name="special_troop_steal_text_format_current">
+        <item quantity="one">%s %s va voler %s</item>
+        <item quantity="other">%s %s vont voler %s</item>
+    </plurals>
+    <plurals name="special_troop_sabotage_text_format_current">
+        <item quantity="one">%s %s va saboter %s</item>
+        <item quantity="other">%s %s vont saboter %s</item>
+    </plurals>
+    <plurals name="special_troop_murder_text_format_current">
+        <item quantity="one">%s %s va assassiner des unités de %s</item>
+        <item quantity="other">%s %s va assassiner des unités de %s</item>
+    </plurals>
+    <plurals name="special_troop_show_text_format_current">
+        <item quantity="one">%s %s va indiquer l\'emplacement de %s à %s</item>
+        <item quantity="other">%s %s vont indiquer l\'emplacement de %s à %s</item>
+    </plurals>
+    <plurals name="special_troop_give_text_format_current">
+        <item quantity="one">%s %s va donner des ressources à %s</item>
+        <item quantity="other">%s %s vont donner des ressources à %s</item>
+    </plurals>
+    <string name="knowledge_title">Connaissance</string>
+    <string name="buildings_title">Bâtiments</string>
+    <string name="troops_title">Troupes</string>
+    <string name="gifts_title">Dons</string>
+    <string name="special_troops_title">Troupes spéciales</string>
+    <string name="attacks_title">Attaques</string>
+    <string name="supports_title">Supports</string>
+    <string name="no_building">Aucun bâtiment construit</string>
+    <string name="no_troops">Aucune troupe entraînée</string>
+    <string name="no_gifts">Aucun don effectué</string>
+    <string name="no_special_troops">Aucune action programmée</string>
+    <string name="no_attacks">Aucune attaque programmée</string>
+    <string name="no_supports">Aucun soutien à envoyer</string>
 </resources>

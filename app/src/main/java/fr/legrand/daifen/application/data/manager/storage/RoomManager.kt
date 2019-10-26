@@ -13,4 +13,10 @@ interface RoomManager {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun savePigeonList(pigeonList: List<PigeonDBEntity>)
+
+    @Query("DELETE FROM pigeondbentity")
+    fun clearPigeonList()
+
+    @Query("UPDATE pigeondbentity SET unread = 0 WHERE id = :id")
+    fun setPigeonRead(id: Int)
 }

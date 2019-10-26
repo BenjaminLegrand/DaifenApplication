@@ -31,7 +31,10 @@ class PigeonListFragment : BaseNavFragment<PigeonListFragmentNavigatorListener>(
 
         fragment_pigeon_list_recycler.adapter = pigeonListAdapter
         fragment_pigeon_list_recycler.layoutManager = LinearLayoutManager(requireContext())
-        pigeonListAdapter.onItemClickListener = navigatorListener::displayPigeonDetails
+        pigeonListAdapter.onItemClickListener = {
+            viewModel.onPigeonClicked(it)
+            navigatorListener.displayPigeonDetails(it)
+        }
         fragment_pigeon_list_swipe_refresh.setOnRefreshListener { viewModel.getPigeonList() }
 
         viewModel.viewState.observeSafe(this) {

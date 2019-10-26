@@ -43,7 +43,7 @@ object Versions {
      */
     const val JUNIT = "4.12"
     const val ROBOLECTRIC = "4.0.2"
-    const val TEST_RUNNER = "1.1.0"
+    const val TEST_KTX = "1.0.0"
     const val ASSERTJ = "3.11.1"
 }
 
@@ -80,7 +80,7 @@ object Libraries {
      */
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
     const val ROBOLETRIC = "org.robolectric:robolectric:${Versions.ROBOLECTRIC}"
-    const val TEST_RUNNER = "androidx.test:runner:${Versions.TEST_RUNNER}"
+    const val TEST_KTX = "androidx.test:core:${Versions.TEST_KTX}"
     const val KOIN_TEST = "org.koin:koin-test:${Versions.KOIN}"
     const val ASSERTJ = "org.assertj:assertj-core:${Versions.ASSERTJ}"
 
