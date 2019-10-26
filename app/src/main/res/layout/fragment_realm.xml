@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_background_color"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/fragment_realm_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <!--Title is only a whitespace to prevent default title to appear on screen start up-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/fragment_realm_collapsible_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:textColor="@color/white"
+            app:collapsedTitleTextAppearance="@style/CollapsedToolbarTitle"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="bottom|center_horizontal"
+            app:expandedTitleTextAppearance="@style/ExpandedToolbarTitle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:scrimAnimationDuration="@integer/collapsible_toolbar_duration"
+            app:title=" ">
+
+            <ImageView
+                android:id="@+id/fragment_realm_player_image"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/realm_player_image_size"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/realm_player_image_top_margin"
+                android:layout_marginBottom="@dimen/realm_player_image_bottom_margin"
+                app:layout_collapseMode="pin"
+                tools:src="@drawable/daifen_login_logo" />
+
+            <ProgressBar
+                android:id="@+id/fragment_realm_progress"
+                android:layout_width="@dimen/default_progress_size"
+                android:layout_height="@dimen/default_progress_size"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/fragment_realm_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_realm_root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/fragment_realm_player_rank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/double_base_margin"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_collapseMode="pin"
+                app:layout_constraintBottom_toTopOf="@id/fragment_realm_player_points"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="# 12" />
+
+            <TextView
+                android:id="@+id/fragment_realm_player_points"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_margin"
+                android:layout_marginBottom="@dimen/double_base_margin"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_collapseMode="pin"
+                app:layout_constraintBottom_toTopOf="@id/fragment_realm_buildings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_realm_player_rank"
+                tools:text="758 points" />
+
+            <LinearLayout
+                android:id="@+id/fragment_realm_buildings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/fragment_realm_troops"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_realm_player_points" />
+
+            <LinearLayout
+                android:id="@+id/fragment_realm_troops"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/fragment_realm_knowledges"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_realm_buildings" />
+
+            <LinearLayout
+                android:id="@+id/fragment_realm_knowledges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/fragment_realm_discovered_players"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_realm_troops" />
+
+            <LinearLayout
+                android:id="@+id/fragment_realm_discovered_players"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_realm_knowledges" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

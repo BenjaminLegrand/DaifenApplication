@@ -6,6 +6,7 @@ import fr.legrand.daifen.application.presentation.ui.main.MainActivity
 import fr.legrand.daifen.application.presentation.ui.main.navigator.MainNavigator
 import fr.legrand.daifen.application.presentation.ui.order.navigator.OrdersFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.navigator.PigeonListFragmentNavigatorListener
+import fr.legrand.daifen.application.presentation.ui.realm.navigator.RealmFragmentNavigatorListener
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -25,6 +26,13 @@ val mainActivityModule = module {
             })
         }
         scoped<OrdersFragmentNavigatorListener> { (activity: BaseNavActivity) ->
+            get<MainNavigator>(parameters = {
+                parametersOf(
+                        activity
+                )
+            })
+        }
+        scoped<RealmFragmentNavigatorListener> { (activity: BaseNavActivity) ->
             get<MainNavigator>(parameters = {
                 parametersOf(
                         activity

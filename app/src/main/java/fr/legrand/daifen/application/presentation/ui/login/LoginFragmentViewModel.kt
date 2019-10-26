@@ -29,6 +29,7 @@ class LoginFragmentViewModel(private val authRepository: AuthRepository) : State
                     viewState.update { loading = false }
                 },
                 onComplete = {
+                    viewState.update { loading = false }
                     loginSuccess.call()
                 }
         ).addToComposite(disposable)

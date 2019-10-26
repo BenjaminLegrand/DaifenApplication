@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/base_background_color"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/base_background_color">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/fragment_pigeon_detail_app_bar"
@@ -18,8 +18,8 @@
             android:id="@+id/fragment_pigeon_detail_collapsible_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
             android:textColor="@color/white"
+            android:fitsSystemWindows="true"
             app:collapsedTitleTextAppearance="@style/CollapsedToolbarTitle"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="bottom|center_horizontal"
@@ -34,8 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/pigeon_detail_emitter_image_size"
                 android:layout_gravity="center"
-                android:layout_marginTop="?attr/actionBarSize"
-                android:layout_marginBottom="?attr/actionBarSize"
+                android:layout_marginTop="@dimen/realm_player_image_top_margin"
+                android:layout_marginBottom="@dimen/pigeon_emitter_image_bottom_margin"
                 app:layout_collapseMode="pin" />
 
             <ProgressBar
@@ -100,8 +100,8 @@
                 android:fontFamily="sans-serif-medium"
                 android:paddingStart="@dimen/double_base_padding"
                 android:paddingTop="@dimen/base_padding"
-                android:paddingBottom="@dimen/base_padding"
                 android:paddingEnd="@dimen/double_base_padding"
+                android:paddingBottom="@dimen/base_padding"
                 app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_content_separator"
                 app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_date"
                 tools:text="On s'est fait attaquer !" />

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.pigeon.detail.navigator.PigeonDetailFragmentNavigatorListener
@@ -53,6 +54,7 @@ class PigeonDetailFragment : BaseNavFragment<PigeonDetailFragmentNavigatorListen
             fragment_pigeon_detail_content.text = it.getContent()
             Glide.with(this).load(it.getEmitterImageUrl())
                 .error(Glide.with(this).load(R.drawable.daifen_login_logo))
+                .apply(RequestOptions.circleCropTransform())
                 .into(fragment_pigeon_detail_emitter_image)
 
             with(it.getHistory()) {

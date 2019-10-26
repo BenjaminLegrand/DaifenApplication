@@ -1,6 +1,5 @@
 package fr.legrand.daifen.application.data.repository
 
-import android.util.Log
 import fr.legrand.daifen.application.data.entity.mapper.PigeonDBEntityDataMapper
 import fr.legrand.daifen.application.data.entity.mapper.PigeonRemoteEntityDataMapper
 import fr.legrand.daifen.application.data.entity.model.Pigeon
@@ -24,11 +23,6 @@ class PigeonRepository(
     private val pigeonDBEntityDataMapper: PigeonDBEntityDataMapper,
     private val pigeonRemoteEntityDataMapper: PigeonRemoteEntityDataMapper
 ) {
-
-    fun getLocalPigeonList(): Single<List<Pigeon>> = Single.defer {
-        Log.i("TAG", "LOCAL")
-        Single.just(pigeonDBEntityDataMapper.transformEntity(storageManager.getAllPigeons()))
-    }
 
     fun getPigeonList(): Single<List<Pigeon>> = Single.defer {
         val currentPigeons =

@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/main_activity_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_activity_graph"
     app:startDestination="@id/pigeonListFragment">
 
-    <fragment
-        android:id="@+id/pigeonListFragment"
-        android:name="fr.legrand.daifen.application.presentation.ui.pigeon.list.PigeonListFragment"
-        android:label="PigeonListFragment" >
-        <action
-            android:id="@+id/action_pigeonListFragment_to_loginActivity"
-            app:destination="@id/loginActivity" />
-        <action
-            android:id="@+id/action_pigeonListFragment_to_pigeonDetailActivity"
-            app:destination="@id/pigeonDetailActivity" />
-    </fragment>
     <activity
         android:id="@+id/loginActivity"
         android:name="fr.legrand.daifen.application.presentation.ui.login.LoginActivity"
@@ -22,13 +11,28 @@
     <activity
         android:id="@+id/pigeonDetailActivity"
         android:name="fr.legrand.daifen.application.presentation.ui.pigeon.detail.PigeonDetailActivity"
-        android:label="PigeonDetailActivity" >
+        android:label="PigeonDetailActivity">
         <argument
             android:name="pigeonId"
             app:argType="integer" />
     </activity>
     <fragment
+        android:id="@+id/pigeonListFragment"
+        android:name="fr.legrand.daifen.application.presentation.ui.pigeon.list.PigeonListFragment"
+        android:label="PigeonListFragment">
+        <action
+            android:id="@+id/action_pigeonListFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+        <action
+            android:id="@+id/action_pigeonListFragment_to_pigeonDetailActivity"
+            app:destination="@id/pigeonDetailActivity" />
+    </fragment>
+    <fragment
         android:id="@+id/ordersFragment"
         android:name="fr.legrand.daifen.application.presentation.ui.order.OrdersFragment"
-        android:label="OrdersFragment"/>
+        android:label="OrdersFragment" />
+    <fragment
+        android:id="@+id/realmFragment"
+        android:name="fr.legrand.daifen.application.presentation.ui.realm.RealmFragment"
+        android:label="RealmFragment" />
 </navigation>

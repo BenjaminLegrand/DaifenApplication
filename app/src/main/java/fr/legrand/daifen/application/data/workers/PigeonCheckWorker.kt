@@ -21,7 +21,7 @@ class PigeonCheckWorker(appContext: Context, workerParams: WorkerParameters) :
 
     override fun createWork(): Single<Result> =
         pigeonRepository.getPigeonList().subscribeOn(Schedulers.io()).map {
-            if (it.any { !it.unread }) {
+            if (it.any { it.unread }) {
                 notificationComponent.displayNewPigeonNotification()
             }
             Result.success()

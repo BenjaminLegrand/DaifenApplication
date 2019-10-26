@@ -5,6 +5,7 @@ import fr.legrand.daifen.application.presentation.ui.order.OrdersFragmentViewMod
 import fr.legrand.daifen.application.presentation.ui.pigeon.detail.PigeonDetailFragmentViewModel
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.PigeonListFragmentViewModel
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.ui.PigeonListAdapter
+import fr.legrand.daifen.application.presentation.ui.realm.RealmFragmentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -27,6 +28,7 @@ private val viewModelModule = module {
         )
     }
     viewModel { OrdersFragmentViewModel(get()) }
+    viewModel { RealmFragmentViewModel(get()) }
 }
 
 private val adapterModule = module {

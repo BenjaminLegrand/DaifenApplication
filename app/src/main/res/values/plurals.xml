@@ -3,136 +3,136 @@
 
     <!--BUILDINGS-->
     <plurals name="building_mine">
-        <item quantity="one">mine</item>
-        <item quantity="other">mines</item>
+        <item quantity="one">%d mine</item>
+        <item quantity="other">%d mines</item>
     </plurals>
     <plurals name="building_quarry">
-        <item quantity="one">carrière</item>
-        <item quantity="other">carrières</item>
+        <item quantity="one">%d carrière</item>
+        <item quantity="other">%d carrières</item>
     </plurals>
     <plurals name="building_barricades">
-        <item quantity="one">barricade</item>
-        <item quantity="other">barricades</item>
+        <item quantity="one">%d barricade</item>
+        <item quantity="other">%d barricades</item>
     </plurals>
     <plurals name="building_market">
-        <item quantity="one">marché</item>
-        <item quantity="other">marchés</item>
+        <item quantity="one">%d  %dmarché</item>
+        <item quantity="other">%d marchés</item>
     </plurals>
     <plurals name="building_watch_tower">
-        <item quantity="one">tour de guet</item>
-        <item quantity="other">tours de guet</item>
+        <item quantity="one">%d  %dtour de guet</item>
+        <item quantity="other">%d tours de guet</item>
     </plurals>
     <plurals name="building_barrack">
-        <item quantity="one">caserne</item>
-        <item quantity="other">casernes</item>
+        <item quantity="one">%d caserne</item>
+        <item quantity="other">%d casernes</item>
     </plurals>
     <plurals name="building_temple">
-        <item quantity="one">temple</item>
-        <item quantity="other">temples</item>
+        <item quantity="one">%d temple</item>
+        <item quantity="other">%d temples</item>
     </plurals>
     <plurals name="building_library">
-        <item quantity="one">bibliothèque</item>
-        <item quantity="other">bibliothèques</item>
+        <item quantity="one">%d bibliothèque</item>
+        <item quantity="other">%d bibliothèques</item>
     </plurals>
     <plurals name="building_guard_tower">
-        <item quantity="one">tour de garde</item>
-        <item quantity="other">tours de garde</item>
+        <item quantity="one">%d tour de garde</item>
+        <item quantity="other">%d tours de garde</item>
     </plurals>
     <plurals name="building_telhin">
-        <item quantity="one">telhin</item>
-        <item quantity="other">telhins</item>
+        <item quantity="one">%d telhin</item>
+        <item quantity="other">%d telhins</item>
     </plurals>
     <plurals name="building_melanduhin">
-        <item quantity="one">melanduhin</item>
-        <item quantity="other">melanduhins</item>
+        <item quantity="one">%d melanduhin</item>
+        <item quantity="other">%d melanduhins</item>
     </plurals>
     <plurals name="building_wall">
-        <item quantity="one">mur</item>
-        <item quantity="other">murs</item>
+        <item quantity="one">%d mur</item>
+        <item quantity="other">%d murs</item>
     </plurals>
     <plurals name="building_sacrifice">
-        <item quantity="one">sacrifice</item>
-        <item quantity="other">sacrifices</item>
+        <item quantity="one">%d sacrifice</item>
+        <item quantity="other">%d sacrifices</item>
     </plurals>
     <plurals name="building_ourte">
-        <item quantity="one">ourte</item>
-        <item quantity="other">ourtes</item>
+        <item quantity="one">%d ourte</item>
+        <item quantity="other">%d ourtes</item>
     </plurals>
     <plurals name="building_kaban">
-        <item quantity="one">ka\'ban</item>
-        <item quantity="other">ka\'bans</item>
+        <item quantity="one">%d ka\'ban</item>
+        <item quantity="other">%d ka\'bans</item>
     </plurals>
     <plurals name="building_mill">
-        <item quantity="one">moulin</item>
-        <item quantity="other">moulins</item>
+        <item quantity="one">%d moulin</item>
+        <item quantity="other">%d moulins</item>
     </plurals>
     <plurals name="building_church">
-        <item quantity="one">église</item>
-        <item quantity="other">églises</item>
+        <item quantity="one">%d église</item>
+        <item quantity="other">%d églises</item>
     </plurals>
     <plurals name="building_dungeon">
-        <item quantity="one">donjon</item>
-        <item quantity="other">donjons</item>
+        <item quantity="one">%d donjon</item>
+        <item quantity="other">%d donjons</item>
     </plurals>
     <plurals name="building_tavern">
-        <item quantity="one">taverne</item>
-        <item quantity="other">tavernes</item>
+        <item quantity="one">%d taverne</item>
+        <item quantity="other">%d tavernes</item>
     </plurals>
     <plurals name="building_trap">
-        <item quantity="one">piège</item>
-        <item quantity="other">pièges</item>
+        <item quantity="one">%d piège</item>
+        <item quantity="other">%d pièges</item>
     </plurals>
     <plurals name="building_forge">
-        <item quantity="one">forge</item>
-        <item quantity="other">forges</item>
+        <item quantity="one">%d forge</item>
+        <item quantity="other">%d forges</item>
     </plurals>
     <plurals name="building_workshop">
-        <item quantity="one">atelier</item>
-        <item quantity="other">ateliers</item>
+        <item quantity="one">%d atelier</item>
+        <item quantity="other">%d ateliers</item>
     </plurals>
     <plurals name="building_graveyard">
-        <item quantity="one">cimetière</item>
-        <item quantity="other">cimetières</item>
+        <item quantity="one">%d cimetière</item>
+        <item quantity="other">%d cimetières</item>
     </plurals>
     <plurals name="building_manor">
-        <item quantity="one">manoir</item>
-        <item quantity="other">manoirs</item>
+        <item quantity="one">%d manoir</item>
+        <item quantity="other">%d manoirs</item>
     </plurals>
     <plurals name="building_dark_tower">
-        <item quantity="one">tour sombre</item>
-        <item quantity="other">tours sombres</item>
+        <item quantity="one">%d tour sombre</item>
+        <item quantity="other">%d tours sombres</item>
     </plurals>
     <plurals name="building_nest">
-        <item quantity="one">nid</item>
-        <item quantity="other">nids</item>
+        <item quantity="one">%d nid</item>
+        <item quantity="other">%d nids</item>
     </plurals>
     <plurals name="building_camp">
-        <item quantity="one">campement</item>
-        <item quantity="other">campements</item>
+        <item quantity="one">%d campement</item>
+        <item quantity="other">%d campements</item>
     </plurals>
     <plurals name="building_extractor">
-        <item quantity="one">extracteur</item>
-        <item quantity="other">extracteurs</item>
+        <item quantity="one">%d extracteur</item>
+        <item quantity="other">%d extracteurs</item>
     </plurals>
     <plurals name="building_ivory_tower">
-        <item quantity="one">tour d\'ivoire</item>
-        <item quantity="other">tours d\'ivoire</item>
+        <item quantity="one">%d tour d\'ivoire</item>
+        <item quantity="other">%d tours d\'ivoire</item>
     </plurals>
     <plurals name="building_ancestral_room">
-        <item quantity="one">salle ancestrale</item>
-        <item quantity="other">salles ancestrales</item>
+        <item quantity="one">%d salle ancestrale</item>
+        <item quantity="other">%d salles ancestrales</item>
     </plurals>
     <plurals name="building_storm_tower">
-        <item quantity="one">tour des tempêtes</item>
-        <item quantity="other">tours des tempêtes</item>
+        <item quantity="one">%d tour des tempêtes</item>
+        <item quantity="other">%d tours des tempêtes</item>
     </plurals>
     <plurals name="building_spiral_tower">
-        <item quantity="one">salle des spirales</item>
-        <item quantity="other">salles des spirales</item>
+        <item quantity="one">%d salle des spirales</item>
+        <item quantity="other">%d salles des spirales</item>
     </plurals>
     <plurals name="building_runes_room">
-        <item quantity="one">salle des runes</item>
-        <item quantity="other">salles des runes</item>
+        <item quantity="one">%d salle des runes</item>
+        <item quantity="other">%d salles des runes</item>
     </plurals>
 
     <!-- TROOPS -->
@@ -392,4 +392,71 @@
         <item quantity="one">lion</item>
         <item quantity="other">lions</item>
     </plurals>
+
+    <!--  ORDERS SPECIAL TROOPS ACTIONS  -->
+    <plurals name="special_troop_explore_text_format">
+        <item quantity="one">%s %s est parti en exploration</item>
+        <item quantity="other">%s %s sont partis en exploration</item>
+    </plurals>
+    <plurals name="special_troop_counter_spy_text_format">
+        <item quantity="one">%s %s a contre-espionné</item>
+        <item quantity="other">%s %s ont contre-espionné</item>
+    </plurals>
+    <plurals name="special_troop_spy_text_format">
+        <item quantity="one">%s %s a espionné %s</item>
+        <item quantity="other">%s %s ont espionné %s</item>
+    </plurals>
+    <plurals name="special_troop_steal_text_format">
+        <item quantity="one">%s %s a volé %s</item>
+        <item quantity="other">%s %s ont volé %s</item>
+    </plurals>
+    <plurals name="special_troop_sabotage_text_format">
+        <item quantity="one">%s %s a saboté %s</item>
+        <item quantity="other">%s %s ont saboté %s</item>
+    </plurals>
+    <plurals name="special_troop_murder_text_format">
+        <item quantity="one">%s %s a assassiné des unités de %s</item>
+        <item quantity="other">%s %s ont assassiné des unités de %s</item>
+    </plurals>
+    <plurals name="special_troop_show_text_format">
+        <item quantity="one">%s %s a indiqué l\'emplacement de %s à %s</item>
+        <item quantity="other">%s %s ont indiqué l\'emplacement de %s à %s</item>
+    </plurals>
+    <plurals name="special_troop_give_text_format">
+        <item quantity="one">%s %s a donné des ressources à %s</item>
+        <item quantity="other">%s %s ont donné des ressources à %s</item>
+    </plurals>
+    <plurals name="special_troop_explore_text_format_current">
+        <item quantity="one">%s %s va partir en exploration</item>
+        <item quantity="other">%s %s vont partir en exploration</item>
+    </plurals>
+    <plurals name="special_troop_counter_spy_text_format_current">
+        <item quantity="one">%s %s va contre-espionner</item>
+        <item quantity="other">%s %s vont contre-espionner</item>
+    </plurals>
+    <plurals name="special_troop_spy_text_format_current">
+        <item quantity="one">%s %s va espionner %s</item>
+        <item quantity="other">%s %s vont espionner %s</item>
+    </plurals>
+    <plurals name="special_troop_steal_text_format_current">
+        <item quantity="one">%s %s va voler %s</item>
+        <item quantity="other">%s %s vont voler %s</item>
+    </plurals>
+    <plurals name="special_troop_sabotage_text_format_current">
+        <item quantity="one">%s %s va saboter %s</item>
+        <item quantity="other">%s %s vont saboter %s</item>
+    </plurals>
+    <plurals name="special_troop_murder_text_format_current">
+        <item quantity="one">%s %s va assassiner des unités de %s</item>
+        <item quantity="other">%s %s vont assassiner des unités de %s</item>
+    </plurals>
+    <plurals name="special_troop_show_text_format_current">
+        <item quantity="one">%s %s va indiquer l\'emplacement de %s à %s</item>
+        <item quantity="other">%s %s vont indiquer l\'emplacement de %s à %s</item>
+    </plurals>
+    <plurals name="special_troop_give_text_format_current">
+        <item quantity="one">%s %s va donner des ressources à %s</item>
+        <item quantity="other">%s %s vont donner des ressources à %s</item>
+    </plurals>
+
 </resources>
