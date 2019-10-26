@@ -5,9 +5,8 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import fr.legrand.daifen.application.R
 import kotlinx.android.synthetic.main.view_realm_discovered_player_clan_item.view.*
-import kotlinx.android.synthetic.main.view_realm_discovered_player_item.view.*
 
-class RealmDiscoveredPlayerView(
+class RealmDiscoveredPlayerClanView(
     context: Context?,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -20,11 +19,15 @@ class RealmDiscoveredPlayerView(
     constructor(context: Context?) : this(context, null)
 
     init {
-        inflate(getContext(), R.layout.view_realm_discovered_player_item, this)
+        inflate(getContext(), R.layout.view_realm_discovered_player_clan_item, this)
     }
 
-    fun bindItem(item: PlayerViewDataWrapper) {
-        realm_discovered_players_item_name.text = item.getName()
-        realm_discovered_players_item_race.text = item.getRaceSecondaryText(context)
+    fun bindItems(items: List<PlayerViewDataWrapper>, clan: String) {
+        realm_discovered_players_clan_item_clan.text = clan
+        items.forEach {
+            realm_discovered_players_clan_item_players.addView(RealmDiscoveredPlayerView(context).apply {
+                bindItem(it)
+            })
+        }
     }
 }

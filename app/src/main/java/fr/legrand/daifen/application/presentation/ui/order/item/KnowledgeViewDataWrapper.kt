@@ -32,4 +32,6 @@ data class KnowledgeViewDataWrapper(
             KnowledgeType.BROWN_SMOKE -> context.getString(R.string.knowledge_brown_smoke)
             KnowledgeType.PURPLE_SMOKE -> context.getString(R.string.knowledge_purple_smoke)
         }
+
+    fun getKnowledgeRoundText(context: Context): String = context.getString(R.string.realm_knowledge_round_format, knowledge.round)
 }

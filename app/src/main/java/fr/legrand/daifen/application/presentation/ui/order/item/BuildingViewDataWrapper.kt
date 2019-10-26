@@ -186,4 +186,9 @@ data class BuildingViewDataWrapper(
             )
         }
 
+    fun getAttack() = building.attack
+    fun getResistance() = building.resistance
+    fun getGoldIncome() = building.goldIncome
+    fun getIntellectIncome() = building.intellectIncome
+
 }

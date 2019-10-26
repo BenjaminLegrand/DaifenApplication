@@ -282,5 +282,11 @@ data class TroopViewDataWrapper(
             context.getString(R.string.troop_text_format, getTroopTypeCountText(context))
         }
 
+    fun getAttack(): Int = troop.attack
+    fun getDefense(): Int = troop.defense
+    fun getResistance(): Int = troop.resistance
+    fun getGold(): Int = troop.gold
+    fun getIntellect(): Int = troop.intellect
+
 
 }

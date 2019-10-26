@@ -14,9 +14,17 @@ data class RealmViewDataWrapper(
     val buildings = realm.buildings.map { BuildingViewDataWrapper(it) }
     val troops = realm.troops.map { TroopViewDataWrapper(it) }
     val knowledges = realm.knowledges.map { KnowledgeViewDataWrapper(it) }
-    val discoveredPlayers = realm.discoveredPlayers.map { PlayerViewDataWrapper(it) }
+    private val discoveredPlayers = realm.discoveredPlayers.map { PlayerViewDataWrapper(it) }
+
+    private val goldPerRound =
+        buildings.sumBy { it.getGoldIncome() } + troops.sumBy { it.getGold() }
+    private val intellectPerRound =
+        buildings.sumBy { it.getIntellectIncome() } + troops.sumBy { it.getIntellect() }
 
     fun getPlayerName() = realm.playerName
+
+    fun getGroupedDiscoveredPlayers(context: Context) =
+        discoveredPlayers.groupBy { it.getClan(context) }.toSortedMap()
 
     fun getRankText(context: Context): String = context.getString(
         R.string.realm_rank_format,
@@ -29,4 +37,20 @@ data class RealmViewDataWrapper(
     )
 
     fun getPlayerImageUrl(): String = realm.playerImage
+
+    fun getGold(): String = realm.gold.toString()
+
+    fun getGoldPerRound(context: Context): String = if (goldPerRound < 0) {
+        context.getString(R.string.per_round_negative_format, goldPerRound)
+    } else {
+        context.getString(R.string.per_round_positive_format, goldPerRound)
+    }
+
+    fun getIntellect(): String = realm.intellect.toString()
+
+    fun getIntellectPerRound(context: Context): String = if (intellectPerRound < 0) {
+        context.getString(R.string.per_round_negative_format, intellectPerRound)
+    } else {
+        context.getString(R.string.per_round_positive_format, intellectPerRound)
+    }
 }

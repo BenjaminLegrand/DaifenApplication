@@ -7,29 +7,123 @@
 
     <TextView
         android:id="@+id/realm_troop_item_type"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/base_margin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:gravity="center"
+        android:paddingBottom="@dimen/base_padding"
         android:textColor="@android:color/primary_text_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/end_guideline"
-        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        android:textSize="@dimen/realm_items_text_size"
+        app:layout_constraintBottom_toTopOf="@id/realm_troop_item_attack_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Guerrier" />
 
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/start_guideline"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/realm_troop_item_attack_label"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/double_base_margin" />
+        android:gravity="center"
+        android:text="@string/realm_attack_label"
+        app:layout_constraintEnd_toStartOf="@+id/realm_troop_item_defense_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_type" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/end_guideline"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/realm_troop_item_defense_label"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/double_base_margin" />
+        android:gravity="center"
+        android:text="@string/realm_defense_label"
+        app:layout_constraintEnd_toStartOf="@+id/realm_troop_item_resistance_label"
+        app:layout_constraintStart_toEndOf="@id/realm_troop_item_attack_label"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_type" />
+
+
+    <TextView
+        android:id="@+id/realm_troop_item_resistance_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/realm_resistance_label"
+        app:layout_constraintEnd_toStartOf="@+id/realm_troop_item_gold_label"
+        app:layout_constraintStart_toEndOf="@+id/realm_troop_item_defense_label"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_type" />
+
+    <TextView
+        android:id="@+id/realm_troop_item_gold_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/realm_gold_label"
+        app:layout_constraintEnd_toStartOf="@+id/realm_troop_item_intellect_label"
+        app:layout_constraintStart_toEndOf="@+id/realm_troop_item_resistance_label"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_type" />
+
+    <TextView
+        android:id="@+id/realm_troop_item_intellect_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/realm_intellect_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/realm_troop_item_gold_label"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_type" />
+
+    <TextView
+        android:id="@+id/realm_troop_item_attack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="@id/realm_troop_item_attack_label"
+        app:layout_constraintStart_toStartOf="@id/realm_troop_item_attack_label"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_attack_label"
+        tools:text="+5" />
+
+    <TextView
+        android:id="@+id/realm_troop_item_defense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="@id/realm_troop_item_defense_label"
+        app:layout_constraintStart_toStartOf="@id/realm_troop_item_defense_label"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_attack_label"
+        tools:text="+5" />
+
+    <TextView
+        android:id="@+id/realm_troop_item_resistance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="@id/realm_troop_item_resistance_label"
+        app:layout_constraintStart_toStartOf="@id/realm_troop_item_resistance_label"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_resistance_label"
+        tools:text="+5" />
+
+    <TextView
+        android:id="@+id/realm_troop_item_gold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="@id/realm_troop_item_gold_label"
+        app:layout_constraintStart_toStartOf="@id/realm_troop_item_gold_label"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_gold_label"
+        tools:text="+5" />
+
+    <TextView
+        android:id="@+id/realm_troop_item_intellect"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="@id/realm_troop_item_intellect_label"
+        app:layout_constraintStart_toStartOf="@id/realm_troop_item_intellect_label"
+        app:layout_constraintTop_toBottomOf="@id/realm_troop_item_intellect_label"
+        tools:text="+5" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

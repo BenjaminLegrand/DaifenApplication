@@ -6,10 +6,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
-import fr.legrand.daifen.application.presentation.ui.realm.item.RealmBuildingView
-import fr.legrand.daifen.application.presentation.ui.realm.item.RealmDiscoveredPlayerView
+import fr.legrand.daifen.application.presentation.ui.realm.item.RealmDiscoveredPlayerClanView
 import fr.legrand.daifen.application.presentation.ui.realm.item.RealmKnowledgeView
-import fr.legrand.daifen.application.presentation.ui.realm.item.RealmTroopView
 import fr.legrand.daifen.application.presentation.ui.realm.navigator.RealmFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.utils.observeSafe
 import kotlinx.android.synthetic.main.fragment_realm.*
@@ -43,26 +41,24 @@ class RealmFragment : BaseNavFragment<RealmFragmentNavigatorListener>() {
             fragment_realm_player_points.text = realm.getPointsText(requireContext())
             fragment_realm_collapsible_toolbar.title = realm.getPlayerName()
 
-            realm.buildings.forEach {
-                fragment_realm_buildings.addView(RealmBuildingView(context).apply {
-                    bindItem(it)
-                })
-            }
+            fragment_realm_player_gold.text = realm.getGold()
+            fragment_realm_player_gold_per_round.text = realm.getGoldPerRound(requireContext())
 
-            realm.troops.forEach {
-                fragment_realm_troops.addView(RealmTroopView(context).apply {
-                    bindItem(it)
+            fragment_realm_player_intellect.text = realm.getIntellect()
+            fragment_realm_player_intellect_per_round.text =
+                realm.getIntellectPerRound(requireContext())
+
+            fragment_realm_buildings.bindItems(realm.buildings)
+            fragment_realm_troops.bindItems(realm.troops)
+
+            realm.getGroupedDiscoveredPlayers(requireContext()).forEach {
+                fragment_realm_discovered_players_clans.addView(RealmDiscoveredPlayerClanView(context).apply {
+                    bindItems(it.value, it.key)
                 })
             }
 
             realm.knowledges.forEach {
                 fragment_realm_knowledges.addView(RealmKnowledgeView(context).apply {
-                    bindItem(it)
-                })
-            }
-
-            realm.discoveredPlayers.forEach {
-                fragment_realm_discovered_players.addView(RealmDiscoveredPlayerView(context).apply {
                     bindItem(it)
                 })
             }
