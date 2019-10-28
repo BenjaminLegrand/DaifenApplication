@@ -82,7 +82,7 @@
     <string name="realm_intellect_label">INT</string>
     <string name="realm_min_max_text_format">%d à %d</string>
     <string name="realm_share_title_stats_format">%s - %s</string>
-    <string name="realm_share_troops_stats_format">ATK : %s / PV : %s</string>
+    <string name="realm_share_troops_stats_format">ATQ : %s / PV : %s</string>
     <string name="realm_negative_value_format">%d</string>
     <string name="realm_positive_value_format">+%d</string>
     <string name="realm_knowledge_round_format">(Tour %d)</string>
