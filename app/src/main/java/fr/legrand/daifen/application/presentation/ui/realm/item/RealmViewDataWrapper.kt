@@ -10,6 +10,7 @@ import fr.legrand.daifen.application.presentation.ui.order.item.TroopViewDataWra
 private const val SHARE_DATA_SEPARATOR = "\n\n"
 private const val SHARE_DATA_ITEM_SEPARATOR = "\n\t\t"
 private const val SHARE_DATA_SPACE = "  "
+private const val SHARE_DATA_CLAN_SEPARATOR = " - "
 private const val MARKDOWN_BOLD = "**"
 
 data class RealmViewDataWrapper(
@@ -71,7 +72,7 @@ data class RealmViewDataWrapper(
                 discoveredPlayers.joinToString(SHARE_DATA_ITEM_SEPARATOR) {
                     it.getName() + SHARE_DATA_SPACE + it.getRaceSecondaryText(
                         context
-                    )
+                    ) + SHARE_DATA_CLAN_SEPARATOR + it.getClan(context)
                 }
 
     private fun getTroopsAttackStat(context: Context): String {
