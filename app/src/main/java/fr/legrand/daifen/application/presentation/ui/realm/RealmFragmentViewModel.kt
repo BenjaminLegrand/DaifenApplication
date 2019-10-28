@@ -1,5 +1,6 @@
 package fr.legrand.daifen.application.presentation.ui.realm
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import fr.legrand.daifen.application.data.repository.RealmRepository
 import fr.legrand.daifen.application.presentation.base.SingleLiveEvent
@@ -18,6 +19,9 @@ class RealmFragmentViewModel(
     private val disposable = CompositeDisposable()
     val errorEvent = SingleLiveEvent<Throwable>()
     val realm = MutableLiveData<RealmViewDataWrapper>()
+    val realmShareData = MutableLiveData<String>()
+
+    private var currentRealm: RealmViewDataWrapper? = null
 
     init {
         getRealm()
@@ -40,11 +44,18 @@ class RealmFragmentViewModel(
                     }
                 },
                 onSuccess = {
-                    realm.postValue(RealmViewDataWrapper(it))
+                    currentRealm = RealmViewDataWrapper(it)
+                    realm.postValue(currentRealm)
                     viewState.update {
                         loading = false
                     }
                 }
             ).addToComposite(disposable)
+    }
+
+    fun requestShareRealm(context : Context) {
+        currentRealm?.let {
+            realmShareData.postValue(it.getShareData(context))
+        }
     }
 }

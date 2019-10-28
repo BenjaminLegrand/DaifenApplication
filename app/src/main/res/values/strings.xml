@@ -76,17 +76,20 @@
     <string name="realm_player_gold_label">Or</string>
     <string name="realm_player_intellect_label">Intellect</string>
     <string name="realm_attack_label">ATQ</string>
-    <string name="realm_defense_label">DEF</string>
+    <string name="realm_hp_label">PV</string>
     <string name="realm_resistance_label">RES</string>
     <string name="realm_gold_label">OR</string>
     <string name="realm_intellect_label">INT</string>
+    <string name="realm_min_max_text_format">%d à %d</string>
+    <string name="realm_share_title_stats_format">%s - %s</string>
+    <string name="realm_share_troops_stats_format">ATK : %s / PV : %s</string>
     <string name="realm_negative_value_format">%d</string>
     <string name="realm_positive_value_format">+%d</string>
     <string name="realm_knowledge_round_format">(Tour %d)</string>
     <string name="realm_buildings_label">Bâtiments</string>
     <string name="realm_troops_label">Troupes</string>
     <string name="realm_knowledges_label">Connaissances</string>
-    <string name="realm_discovered_players_label">Royaumes découverts</string>
+    <string name="realm_discovered_players_title">Royaumes découverts</string>
     <string name="per_round_positive_format">(+%d par tour)</string>
     <string name="per_round_negative_format">(%d par tour)</string>
     <string name="player_race_secondary_format">(%s)</string>
@@ -98,4 +101,5 @@
     <string name="race_elf">Elfe</string>
     <string name="race_orc">Orc</string>
     <string name="race_primotaure">Primotaure</string>
+    <string name="share_realm">Partager mon royaume</string>
 </resources>

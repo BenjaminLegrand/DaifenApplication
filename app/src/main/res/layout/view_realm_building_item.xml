@@ -35,29 +35,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/realm_resistance_label"
-        app:layout_constraintEnd_toStartOf="@+id/realm_building_item_gold_label"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/realm_building_item_attack_label"
         app:layout_constraintTop_toBottomOf="@id/realm_building_item_type" />
 
-    <TextView
-        android:id="@+id/realm_building_item_gold_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/realm_gold_label"
-        app:layout_constraintEnd_toStartOf="@+id/realm_building_item_intellect_label"
-        app:layout_constraintStart_toEndOf="@+id/realm_building_item_resistance_label"
-        app:layout_constraintTop_toBottomOf="@id/realm_building_item_type" />
-
-    <TextView
-        android:id="@+id/realm_building_item_intellect_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/realm_intellect_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/realm_building_item_gold_label"
-        app:layout_constraintTop_toBottomOf="@id/realm_building_item_type" />
 
     <TextView
         android:id="@+id/realm_building_item_attack"
@@ -80,27 +61,5 @@
         app:layout_constraintStart_toStartOf="@id/realm_building_item_resistance_label"
         app:layout_constraintTop_toBottomOf="@id/realm_building_item_resistance_label"
         tools:text="+4445" />
-
-    <TextView
-        android:id="@+id/realm_building_item_gold"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintEnd_toEndOf="@id/realm_building_item_gold_label"
-        app:layout_constraintStart_toStartOf="@id/realm_building_item_gold_label"
-        app:layout_constraintTop_toBottomOf="@id/realm_building_item_gold_label"
-        tools:text="+5" />
-
-    <TextView
-        android:id="@+id/realm_building_item_intellect"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintEnd_toEndOf="@id/realm_building_item_intellect_label"
-        app:layout_constraintStart_toStartOf="@id/realm_building_item_intellect_label"
-        app:layout_constraintTop_toBottomOf="@id/realm_building_item_intellect_label"
-        tools:text="+5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

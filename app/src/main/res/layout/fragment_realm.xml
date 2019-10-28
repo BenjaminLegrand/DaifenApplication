@@ -262,7 +262,7 @@
                 android:layout_marginEnd="@dimen/base_margin"
                 android:layout_marginBottom="@dimen/base_half_margin"
                 android:background="@color/white"
-                app:layout_constraintBottom_toTopOf="@id/realm_knowledges_card"
+                app:layout_constraintBottom_toTopOf="@id/realm_discovered_players_card"
                 app:layout_constraintTop_toBottomOf="@id/realm_buildings_card">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -303,6 +303,54 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/realm_discovered_players_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_half_margin"
+                android:layout_marginEnd="@dimen/base_margin"
+                android:layout_marginBottom="@dimen/base_half_margin"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/realm_knowledges_card"
+                app:layout_constraintTop_toBottomOf="@id/realm_troops_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/base_padding">
+
+                    <TextView
+                        android:id="@+id/fragment_realm_discovered_players_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:text="@string/realm_discovered_players_title"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        app:layout_constraintBottom_toTopOf="@id/realm_discovered_players_card_separator"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/realm_discovered_players_card_separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_separator_height"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:background="@color/base_separator_color"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_discovered_players_clans"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_discovered_players_label" />
+
+                    <LinearLayout
+                        android:id="@+id/fragment_realm_discovered_players_clans"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/realm_discovered_players_card_separator" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/realm_knowledges_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -311,8 +359,8 @@
                 android:layout_marginEnd="@dimen/base_margin"
                 android:layout_marginBottom="@dimen/base_half_margin"
                 android:background="@color/white"
-                app:layout_constraintBottom_toTopOf="@id/realm_discovered_players_card"
-                app:layout_constraintTop_toBottomOf="@id/realm_troops_card">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/realm_discovered_players_card">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -350,54 +398,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/realm_discovered_players_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/base_margin"
-                android:layout_marginTop="@dimen/base_half_margin"
-                android:layout_marginEnd="@dimen/base_margin"
-                android:layout_marginBottom="@dimen/base_half_margin"
-                android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/realm_knowledges_card">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/base_padding">
-
-                    <TextView
-                        android:id="@+id/fragment_realm_discovered_players_label"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/base_half_margin"
-                        android:text="@string/realm_discovered_players_label"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        app:layout_constraintBottom_toTopOf="@id/realm_discovered_players_card_separator"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/realm_discovered_players_card_separator"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/base_separator_height"
-                        android:layout_marginBottom="@dimen/base_half_margin"
-                        android:background="@color/base_separator_color"
-                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_discovered_players_clans"
-                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_discovered_players_label" />
-
-                    <LinearLayout
-                        android:id="@+id/fragment_realm_discovered_players_clans"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/realm_discovered_players_card_separator" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
 

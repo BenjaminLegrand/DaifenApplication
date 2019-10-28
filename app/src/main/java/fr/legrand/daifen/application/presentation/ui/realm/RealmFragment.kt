@@ -1,7 +1,11 @@
 package fr.legrand.daifen.application.presentation.ui.realm
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import fr.legrand.daifen.application.R
@@ -23,12 +27,20 @@ class RealmFragment : BaseNavFragment<RealmFragmentNavigatorListener>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
+
+        (activity as AppCompatActivity).setSupportActionBar(fragment_realm_toolbar)
+
         viewModel.errorEvent.observeSafe(this) {
 
         }
 
         viewModel.viewState.observeSafe(this) {
 
+        }
+
+        viewModel.realmShareData.observeSafe(this) {
+            navigatorListener.shareRealm(it)
         }
 
         viewModel.realm.observeSafe(this) { realm ->
@@ -52,9 +64,12 @@ class RealmFragment : BaseNavFragment<RealmFragmentNavigatorListener>() {
             fragment_realm_troops.bindItems(realm.troops)
 
             realm.getGroupedDiscoveredPlayers(requireContext()).forEach {
-                fragment_realm_discovered_players_clans.addView(RealmDiscoveredPlayerClanView(context).apply {
-                    bindItems(it.value, it.key)
-                })
+                fragment_realm_discovered_players_clans.addView(
+                    RealmDiscoveredPlayerClanView(
+                        context
+                    ).apply {
+                        bindItems(it.value, it.key)
+                    })
             }
 
             realm.knowledges.forEach {
@@ -63,5 +78,18 @@ class RealmFragment : BaseNavFragment<RealmFragmentNavigatorListener>() {
                 })
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_realm, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_realm_share -> {
+                viewModel.requestShareRealm(requireContext())
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

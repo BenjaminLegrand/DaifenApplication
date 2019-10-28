@@ -5,9 +5,8 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.presentation.ui.order.item.BuildingViewDataWrapper
+import fr.legrand.daifen.application.presentation.ui.realm.item.RealmViewDataWrapper.Companion.MAX_DICE_VALUE
 import kotlinx.android.synthetic.main.view_realm_building_item.view.*
-
-private const val BUILDING_SEPARATOR = " / "
 
 class RealmBuildingView(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     ConstraintLayout(context, attrs, defStyleAttr) {
@@ -27,32 +26,14 @@ class RealmBuildingView(context: Context?, attrs: AttributeSet? = null, defStyle
                 it.getBuildingTypeCountText(context)
             }
 
-        val totalAttack = items.sumBy { it.getAttack() }
-        realm_building_item_attack.text = if (totalAttack < 0) {
-            context.getString(R.string.realm_negative_value_format, totalAttack)
-        } else {
-            context.getString(R.string.realm_positive_value_format, totalAttack)
-        }
+        val minAttack = items.sumBy { it.getAttack() }
+        val maxAttack = items.sumBy { MAX_DICE_VALUE * it.getAttack() }
+        realm_building_item_attack.text =
+            context.getString(R.string.realm_min_max_text_format, minAttack, maxAttack)
 
-        val totalResistance = items.sumBy { it.getResistance() }
-        realm_building_item_resistance.text = if (totalResistance < 0) {
-            context.getString(R.string.realm_negative_value_format, totalResistance)
-        } else {
-            context.getString(R.string.realm_positive_value_format, totalResistance)
-        }
-
-        val totalGold = items.sumBy { it.getGoldIncome() }
-        realm_building_item_gold.text = if (totalGold < 0) {
-            context.getString(R.string.realm_negative_value_format, totalGold)
-        } else {
-            context.getString(R.string.realm_positive_value_format, totalGold)
-        }
-
-        val totalIntellect = items.sumBy { it.getIntellectIncome() }
-        realm_building_item_intellect.text = if (totalIntellect < 0) {
-            context.getString(R.string.realm_negative_value_format, totalIntellect)
-        } else {
-            context.getString(R.string.realm_positive_value_format, totalIntellect)
-        }
+        val minRes = items.sumBy { it.getResistance() }
+        val maxRes = items.sumBy { MAX_DICE_VALUE * it.getResistance() }
+        realm_building_item_resistance.text =
+            context.getString(R.string.realm_min_max_text_format, minRes, maxRes)
     }
 }

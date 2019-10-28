@@ -7,6 +7,11 @@ import fr.legrand.daifen.application.presentation.ui.order.item.BuildingViewData
 import fr.legrand.daifen.application.presentation.ui.order.item.KnowledgeViewDataWrapper
 import fr.legrand.daifen.application.presentation.ui.order.item.TroopViewDataWrapper
 
+private const val SHARE_DATA_SEPARATOR = "\n\n"
+private const val SHARE_DATA_ITEM_SEPARATOR = "\n\t\t"
+private const val SHARE_DATA_SPACE = "  "
+private const val MARKDOWN_BOLD = "**"
+
 data class RealmViewDataWrapper(
     private val realm: Realm
 ) {
@@ -53,4 +58,45 @@ data class RealmViewDataWrapper(
     } else {
         context.getString(R.string.per_round_positive_format, intellectPerRound)
     }
+
+
+    fun getShareData(context: Context): String =
+        context.getString(
+            R.string.realm_share_title_stats_format,
+            context.getString(R.string.troops_title),
+            getTroopsStatsForShare(context)
+        ).toMarkdownBold() + SHARE_DATA_ITEM_SEPARATOR +
+                troops.joinToString(SHARE_DATA_ITEM_SEPARATOR) { it.getTroopTypeCountText(context) } + SHARE_DATA_SEPARATOR +
+                context.getString(R.string.realm_discovered_players_title).toMarkdownBold() + SHARE_DATA_ITEM_SEPARATOR +
+                discoveredPlayers.joinToString(SHARE_DATA_ITEM_SEPARATOR) {
+                    it.getName() + SHARE_DATA_SPACE + it.getRaceSecondaryText(
+                        context
+                    )
+                }
+
+    private fun getTroopsAttackStat(context: Context): String {
+        val minTroopAttack = troops.sumBy { it.getAttack() }
+        val maxTroopAttack = troops.sumBy { MAX_DICE_VALUE * it.getAttack() }
+        return context.getString(R.string.realm_min_max_text_format, minTroopAttack, maxTroopAttack)
+    }
+
+    private fun getTroopsHpStat(context: Context): String {
+        val minTroopHp = troops.sumBy { it.getDefense() + it.getResistance() }
+        val maxTroopHp = troops.sumBy { MAX_DICE_VALUE * it.getDefense() + it.getResistance() }
+        return context.getString(R.string.realm_min_max_text_format, minTroopHp, maxTroopHp)
+    }
+
+    private fun getTroopsStatsForShare(context: Context): String = context.getString(
+        R.string.realm_share_troops_stats_format,
+        getTroopsAttackStat(context), getTroopsHpStat(context)
+    )
+
+    companion object {
+        const val MAX_DICE_VALUE = 3
+    }
+
+    private fun String.toMarkdownBold(): String {
+        return MARKDOWN_BOLD + this + MARKDOWN_BOLD
+    }
 }
+
