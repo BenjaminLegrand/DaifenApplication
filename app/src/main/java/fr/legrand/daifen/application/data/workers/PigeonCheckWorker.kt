@@ -24,6 +24,7 @@ class PigeonCheckWorker(appContext: Context, workerParams: WorkerParameters) :
             if (it.any { it.unread }) {
                 notificationComponent.displayNewPigeonNotification()
             }
+            resetPigeonUpdateAuthErrorReceived()
             Result.success()
         }.doOnError {
             if (it is AuthenticationException) {
@@ -38,10 +39,28 @@ class PigeonCheckWorker(appContext: Context, workerParams: WorkerParameters) :
                 onError = {},
                 onSuccess = {
                     if (!it) {
-                        pigeonRepository.onPigeonUpdateAuthErrorReceived()
+                        onPigeonUpdateAuthErrorReceived()
                         notificationComponent.displayAuthErrorNotification()
                     }
                 }
+            )
+    }
+
+    @SuppressLint("CheckResult")
+    private fun onPigeonUpdateAuthErrorReceived() {
+        pigeonRepository.onPigeonUpdateAuthErrorReceived().subscribeOn(Schedulers.io())
+            .subscribeBy(
+                onError = {},
+                onComplete = {}
+            )
+    }
+
+    @SuppressLint("CheckResult")
+    private fun resetPigeonUpdateAuthErrorReceived() {
+        pigeonRepository.resetPigeonUpdateAuthErrorReceived().subscribeOn(Schedulers.io())
+            .subscribeBy(
+                onError = {},
+                onComplete = {}
             )
     }
 

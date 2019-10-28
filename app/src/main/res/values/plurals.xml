@@ -15,11 +15,11 @@
         <item quantity="other">%d barricades</item>
     </plurals>
     <plurals name="building_market">
-        <item quantity="one">%d  %dmarché</item>
+        <item quantity="one">%d marché</item>
         <item quantity="other">%d marchés</item>
     </plurals>
     <plurals name="building_watch_tower">
-        <item quantity="one">%d  %dtour de guet</item>
+        <item quantity="one">%d tour de guet</item>
         <item quantity="other">%d tours de guet</item>
     </plurals>
     <plurals name="building_barrack">

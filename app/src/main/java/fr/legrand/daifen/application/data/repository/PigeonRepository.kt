@@ -77,7 +77,15 @@ class PigeonRepository(
         Single.just(sharedPrefsManager.getPigeonUpdateAuthErrorReceived())
     }
 
-    fun onPigeonUpdateAuthErrorReceived() {
+    fun onPigeonUpdateAuthErrorReceived(): Completable {
         sharedPrefsManager.onPigeonUpdateAuthErrorReceived()
+        return Completable.complete()
     }
+
+    fun resetPigeonUpdateAuthErrorReceived(): Completable {
+        sharedPrefsManager.resetPigeonUpdateAuthErrorReceived()
+        return Completable.complete()
+    }
+
+
 }

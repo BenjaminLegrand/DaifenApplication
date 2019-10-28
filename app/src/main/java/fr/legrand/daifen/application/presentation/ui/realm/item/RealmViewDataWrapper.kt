@@ -8,7 +8,7 @@ import fr.legrand.daifen.application.presentation.ui.order.item.KnowledgeViewDat
 import fr.legrand.daifen.application.presentation.ui.order.item.TroopViewDataWrapper
 
 private const val SHARE_DATA_SEPARATOR = "\n\n"
-private const val SHARE_DATA_ITEM_SEPARATOR = "\n\t"
+private const val SHARE_DATA_ITEM_SEPARATOR = "\n\t\t"
 private const val SHARE_DATA_SPACE = "  "
 private const val MARKDOWN_BOLD = "**"
 
