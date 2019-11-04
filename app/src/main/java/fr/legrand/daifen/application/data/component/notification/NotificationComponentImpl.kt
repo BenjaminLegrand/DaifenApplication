@@ -2,10 +2,13 @@ package fr.legrand.daifen.application.data.component.notification
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import fr.legrand.daifen.application.R
+import fr.legrand.daifen.application.presentation.ui.main.MainActivity
 
 private const val NEW_PIGEON_NOTIFICATION_ID = 1054
 private const val CHANNEL_ID = "DAIFEN_CHANNEL_ID"
@@ -34,6 +37,16 @@ class NotificationComponentImpl(
                 .setStyle(
                     NotificationCompat.BigTextStyle()
                         .bigText(context.getString(R.string.new_pigeon_received))
+                ).setContentIntent(
+                    PendingIntent.getActivity(
+                        context,
+                        0,
+                        Intent(
+                            context,
+                            MainActivity::class.java
+                        ).apply { Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP },
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                    )
                 )
                 .build()
         )

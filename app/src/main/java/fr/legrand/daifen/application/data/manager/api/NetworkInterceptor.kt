@@ -1,6 +1,7 @@
 package fr.legrand.daifen.application.data.manager.api
 
 import com.google.gson.Gson
+import fr.legrand.daifen.application.data.exception.AuthenticationException
 import fr.legrand.daifen.application.data.manager.prefs.SharedPrefsManager
 import fr.legrand.daifen.application.data.utils.fromJson
 import okhttp3.Interceptor
@@ -13,7 +14,10 @@ private val COOKIE_ITEM_SEPARATOR_REGEX = Regex("[;,]\\s*")
 private const val COOKIE_ITEM_SEPARATOR = "; "
 private val COOKIE_IDENTIFIERS = arrayOf("s", "id", "SERVERID31394", "pass")
 
-class NetworkInterceptor(private val sharedPrefsManager: SharedPrefsManager, private val gson: Gson) : Interceptor {
+class NetworkInterceptor(
+    private val sharedPrefsManager: SharedPrefsManager,
+    private val gson: Gson
+) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = sharedPrefsManager.getAuthCookie()?.let {

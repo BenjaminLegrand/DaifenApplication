@@ -16,5 +16,6 @@ data class PigeonRemoteEntity(
     var emitterImage: String = "",
     var emitterId: Int = 0,
     var content: String = "",
+    var receivers: List<String> = emptyList(),
     var history: List<String> = emptyList()
 )

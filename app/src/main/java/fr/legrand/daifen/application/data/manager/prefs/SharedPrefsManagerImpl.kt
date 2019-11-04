@@ -12,14 +12,12 @@ private val DEFAULT_AUTH_COOKIE = null
 class SharedPrefsManagerImpl
 constructor(context: Context) : SharedPrefsManager {
 
-
     private val sharedPreferences: SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun setAuthCookie(authCookie: String) {
         sharedPreferences.edit {
             putString(AUTH_COOKIE_KEY, authCookie)
-            putBoolean(PIGEON_UPDATE_AUTH_ERROR_RECEIVED_KEY, false)
         }
     }
 
@@ -40,4 +38,10 @@ constructor(context: Context) : SharedPrefsManager {
 
     override fun getPigeonUpdateAuthErrorReceived() =
         sharedPreferences.getBoolean(PIGEON_UPDATE_AUTH_ERROR_RECEIVED_KEY, false)
+
+    override fun resetPigeonUpdateAuthErrorReceived() {
+        sharedPreferences.edit {
+            putBoolean(PIGEON_UPDATE_AUTH_ERROR_RECEIVED_KEY, false)
+        }
+    }
 }

@@ -5,5 +5,6 @@ interface SharedPrefsManager {
     fun getAuthCookie() : String?
     fun resetAuthCookie()
     fun onPigeonUpdateAuthErrorReceived()
+    fun resetPigeonUpdateAuthErrorReceived()
     fun getPigeonUpdateAuthErrorReceived(): Boolean
 }

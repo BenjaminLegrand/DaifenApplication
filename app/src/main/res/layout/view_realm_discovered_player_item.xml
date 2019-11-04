@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/base_margin">
+
+    <TextView
+        android:id="@+id/realm_discovered_players_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="@dimen/realm_items_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/realm_discovered_players_item_race"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="PlayerName" />
+
+    <TextView
+        android:id="@+id/realm_discovered_players_item_race"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/base_margin"
+        android:gravity="center"
+        android:textSize="@dimen/realm_items_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/realm_discovered_players_item_name"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="(Nain)" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

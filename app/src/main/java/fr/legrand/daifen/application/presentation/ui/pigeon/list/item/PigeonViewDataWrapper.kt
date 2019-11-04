@@ -6,6 +6,8 @@ import fr.legrand.daifen.application.data.entity.model.Pigeon
 import java.text.SimpleDateFormat
 import java.util.*
 
+private const val RECEIVERS_SEPARATOR = " / "
+
 class PigeonViewDataWrapper(private val pigeon: Pigeon) {
     fun getEmitter() = pigeon.emitter
     fun getSubject() = pigeon.subject
@@ -20,4 +22,5 @@ class PigeonViewDataWrapper(private val pigeon: Pigeon) {
     fun isUnread() = pigeon.unread
     fun getEmitterImageUrl() = pigeon.emitterImage
     fun getContent() = pigeon.content
+    fun getReceivers(): String = pigeon.receivers.joinToString(RECEIVERS_SEPARATOR)
 }

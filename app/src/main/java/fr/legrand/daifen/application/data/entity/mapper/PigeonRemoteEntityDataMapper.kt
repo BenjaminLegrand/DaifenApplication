@@ -26,6 +26,7 @@ class PigeonRemoteEntityDataMapper {
                 REMOTE_ID_REGEX.find(remote.id)?.value?.toInt()
                     ?: remote.id.toInt(),
                 remote.emitter,
+                remote.receivers,
                 remote.subject,
                 SimpleDateFormat(REMOTE_DATE_FORMAT, Locale.getDefault()).parse(remote.date),
                 remote.emitterImage,

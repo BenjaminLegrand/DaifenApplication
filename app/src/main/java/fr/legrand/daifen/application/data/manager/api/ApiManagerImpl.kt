@@ -15,12 +15,19 @@ import retrofit2.HttpException
 private const val HTTP_REDIRECT_CODE = 302
 private const val MEMORIZE_FORM_VALUE = "on"
 
+private const val PIGEON_DETAIL_RECEIVERS_SEPARATOR = ","
+private const val PIGEON_DETAIL_RECEIVERS_PREFIX = "Pour :"
 private const val PIGEON_DETAIL_DATE_REGEX = "le "
 private const val PIGEON_DETAIL_CONVERSATION_LINE_SEPARATOR = "\n"
 private const val PIGEON_DETAIL_CONVERSATION_START_SEPARATOR = '>'
 private val PIGEON_DETAIL_CONVERSATION_START_REGEX = Regex(">+")
 private val PIGEON_DETAIL_CONVERSATION_REGEX = Regex(">.*?(?=\\s+>|\\s*$)")
 private val EMITTER_ID_REGEX = Regex("[0-9]+")
+private const val IMAGE_URL_SEPARATOR = '/'
+private const val IMAGE_URL_EXTENSION_SEPARATOR = '.'
+private const val IMAGE_JPG_EXTENSION = "jpg"
+private const val IMAGE_LOW_RES_FOLDER = "faces"
+private const val IMAGE_HIGH_RES_FOLDER = "fiches"
 
 private const val CURRENT_ROUND_VALUE = 0
 private val BUILDING_REGEX = Regex("(?<=Construction de).+(?=x[0-9]+)")
@@ -47,6 +54,25 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
     override fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>> =
         apiService.getPigeonList(page).map {
             it.pigeonRemoteList
+        }.addRedirectCheck()
+
+    override fun getRealm(): Single<RealmRemoteEntity> =
+        apiService.getRealm().map {
+            RealmRemoteEntity(
+                playerName = it.playerName,
+                playerImage = "${BuildConfig.BASE_URL}${it.playerImage.dropWhile { it == IMAGE_URL_SEPARATOR }
+                    .dropLastWhile { it != IMAGE_URL_EXTENSION_SEPARATOR }.plus(IMAGE_JPG_EXTENSION).replace(
+                        IMAGE_LOW_RES_FOLDER, IMAGE_HIGH_RES_FOLDER
+                    )}",
+                rank = it.rank.takeWhile { it.isDigit() }.toInt(),
+                points = it.points.toInt(),
+                gold = it.gold.toInt(),
+                intellect = it.intellect.toInt(),
+                buildings = it.buildings,
+                troops = it.troops,
+                knowledges = it.knowledges,
+                discoveredPlayers = it.discoveredPlayers
+            )
         }.addRedirectCheck()
 
     override fun getPigeon(id: Int): Single<PigeonRemoteEntity> =
@@ -87,6 +113,8 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
                 this.id = id.toString()
                 this.emitter = it.emitter
                 this.emitterId = EMITTER_ID_REGEX.find(it.emitterId)?.value?.toInt() ?: 0
+                this.receivers = it.receivers.removePrefix(PIGEON_DETAIL_RECEIVERS_PREFIX)
+                    .split(PIGEON_DETAIL_RECEIVERS_SEPARATOR).onEach { it.trim() }
                 this.subject = it.subject
                 this.date = date
                 this.content = lastMessage
@@ -94,7 +122,8 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
             }
         }.flatMap { pigeon ->
             apiService.getPlayer(pigeon.emitterId).map {
-                pigeon.emitterImage = "${BuildConfig.BASE_URL}${it.image}"
+                pigeon.emitterImage =
+                    "${BuildConfig.BASE_URL}${it.image.dropWhile { it == IMAGE_URL_SEPARATOR }}"
                 pigeon
             }
         }

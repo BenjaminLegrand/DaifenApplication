@@ -65,8 +65,19 @@ class ApiManagerTests : KoinTest {
         obs.assertNoErrors()
         obs.assertComplete()
 
-        val ordersObs = apiManager.getRoundOrders(round).test()
+        val ordersObs = apiManager.getRoundOrders(1).test()
         ordersObs.assertNoErrors()
+    }
+
+    @Test
+    fun `check login and get realm`() {
+        val obs =
+            apiManager.login(BuildConfig.DAIFEN_TEST_LOGIN, BuildConfig.DAIFEN_TEST_PASSWORD).test()
+        obs.assertNoErrors()
+        obs.assertComplete()
+
+        val realmObs = apiManager.getRealm().test()
+        realmObs.assertNoErrors()
     }
 
 

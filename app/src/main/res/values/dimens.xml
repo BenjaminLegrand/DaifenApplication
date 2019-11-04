@@ -13,7 +13,14 @@
     <dimen name="pigeon_emitter_text_size">16sp</dimen>
     <dimen name="pigeon_detail_emitter_image_size">120dp</dimen>
     <dimen name="pigeon_detail_content_separator_size">1dp</dimen>
+    <dimen name="pigeon_emitter_image_bottom_margin">62dp</dimen>
+    <dimen name="pigeon_emitter_image_top_margin">48dp</dimen>
     <dimen name="min_clickable_size">48dp</dimen>
     <dimen name="toggle_icon_padding">12dp</dimen>
     <dimen name="orders_round_arrow_size">48dp</dimen>
+
+    <dimen name="realm_player_image_size">120dp</dimen>
+    <dimen name="realm_player_image_bottom_margin">62dp</dimen>
+    <dimen name="realm_player_image_top_margin">48dp</dimen>
+    <dimen name="realm_items_text_size">13sp</dimen>
 </resources>

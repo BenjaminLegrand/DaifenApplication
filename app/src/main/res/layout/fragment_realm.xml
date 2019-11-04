@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_background_color"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/fragment_realm_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <!--Title is only a whitespace to prevent default title to appear on screen start up-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/fragment_realm_collapsible_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:textColor="@color/white"
+            app:collapsedTitleTextAppearance="@style/CollapsedToolbarTitle"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="bottom|center_horizontal"
+            app:expandedTitleTextAppearance="@style/ExpandedToolbarTitle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:scrimAnimationDuration="@integer/collapsible_toolbar_duration"
+            app:title=" ">
+
+            <ImageView
+                android:id="@+id/fragment_realm_player_image"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/realm_player_image_size"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/realm_player_image_top_margin"
+                android:layout_marginBottom="@dimen/realm_player_image_bottom_margin"
+                app:layout_collapseMode="pin"
+                tools:src="@drawable/daifen_login_logo" />
+
+            <ProgressBar
+                android:id="@+id/fragment_realm_progress"
+                android:layout_width="@dimen/default_progress_size"
+                android:layout_height="@dimen/default_progress_size"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/fragment_realm_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_realm_root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/realm_header_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_margin"
+                android:layout_marginEnd="@dimen/base_margin"
+                android:layout_marginBottom="@dimen/base_half_margin"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/realm_buildings_card"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/base_padding">
+
+                    <TextView
+                        android:id="@+id/fragment_realm_player_rank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_player_points"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="#11 du continent" />
+
+                    <TextView
+                        android:id="@+id/fragment_realm_player_points"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        app:layout_constraintBottom_toTopOf="@id/realm_header_card_separator"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_player_rank"
+                        tools:text="758 points" />
+
+                    <View
+                        android:id="@+id/realm_header_card_separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_separator_height"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:background="@color/base_separator_color"
+                        app:layout_constraintBottom_toTopOf="@id/gold_intellect_top_barrier"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_player_points" />
+
+                    <TextView
+                        android:id="@+id/fragment_realm_player_gold_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/realm_player_gold_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_player_gold"
+                        app:layout_constraintEnd_toStartOf="@id/fragment_realm_player_intellect_label"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fragment_realm_player_gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_half_margin"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        app:layout_constraintEnd_toStartOf="@id/fragment_realm_player_gold_per_round"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="@id/fragment_realm_player_gold_label"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_player_gold_label"
+                        tools:text="120" />
+
+                    <TextView
+                        android:id="@+id/fragment_realm_player_gold_per_round"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/base_margin"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_realm_player_gold"
+                        app:layout_constraintEnd_toEndOf="@id/fragment_realm_player_gold_label"
+                        app:layout_constraintStart_toEndOf="@id/fragment_realm_player_gold"
+                        app:layout_constraintTop_toTopOf="@id/fragment_realm_player_gold"
+                        tools:text="(+4 / tour)" />
+
+
+                    <TextView
+                        android:id="@+id/fragment_realm_player_intellect_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/realm_player_intellect_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_player_intellect"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/fragment_realm_player_gold_label" />
+
+                    <TextView
+                        android:id="@+id/fragment_realm_player_intellect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_half_margin"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        app:layout_constraintEnd_toStartOf="@id/fragment_realm_player_intellect_per_round"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="@id/fragment_realm_player_intellect_label"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_player_intellect_label"
+                        tools:text="12" />
+
+                    <TextView
+                        android:id="@+id/fragment_realm_player_intellect_per_round"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/base_margin"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_realm_player_intellect"
+                        app:layout_constraintEnd_toEndOf="@id/fragment_realm_player_intellect_label"
+                        app:layout_constraintStart_toEndOf="@id/fragment_realm_player_intellect"
+                        app:layout_constraintTop_toTopOf="@id/fragment_realm_player_intellect"
+                        tools:text="(+5 par tour)" />
+
+                    <androidx.constraintlayout.widget.Barrier
+                        android:id="@+id/gold_intellect_top_barrier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:barrierDirection="top"
+                        app:constraint_referenced_ids="fragment_realm_player_intellect_label,fragment_realm_player_gold_label" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/realm_buildings_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_half_margin"
+                android:layout_marginEnd="@dimen/base_margin"
+                android:layout_marginBottom="@dimen/base_half_margin"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/realm_troops_card"
+                app:layout_constraintTop_toBottomOf="@id/realm_header_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/base_padding">
+
+                    <TextView
+                        android:id="@+id/fragment_realm_buildings_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:text="@string/realm_buildings_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        app:layout_constraintBottom_toTopOf="@id/realm_buildings_card_separator"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/realm_buildings_card_separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_separator_height"
+                        android:layout_marginBottom="@dimen/base_margin"
+                        android:background="@color/base_separator_color"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_buildings"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_buildings_label" />
+
+                    <fr.legrand.daifen.application.presentation.ui.realm.item.RealmBuildingView
+                        android:id="@+id/fragment_realm_buildings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/realm_buildings_card_separator" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/realm_troops_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_half_margin"
+                android:layout_marginEnd="@dimen/base_margin"
+                android:layout_marginBottom="@dimen/base_half_margin"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/realm_discovered_players_card"
+                app:layout_constraintTop_toBottomOf="@id/realm_buildings_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/base_padding">
+
+                    <TextView
+                        android:id="@+id/fragment_realm_troops_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:text="@string/realm_troops_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        app:layout_constraintBottom_toTopOf="@id/realm_troops_card_separator"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/realm_troops_card_separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_separator_height"
+                        android:layout_marginBottom="@dimen/base_margin"
+                        android:background="@color/base_separator_color"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_troops"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_troops_label" />
+
+                    <fr.legrand.daifen.application.presentation.ui.realm.item.RealmTroopView
+                        android:id="@+id/fragment_realm_troops"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/realm_troops_card_separator" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/realm_discovered_players_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_half_margin"
+                android:layout_marginEnd="@dimen/base_margin"
+                android:layout_marginBottom="@dimen/base_half_margin"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/realm_knowledges_card"
+                app:layout_constraintTop_toBottomOf="@id/realm_troops_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/base_padding">
+
+                    <TextView
+                        android:id="@+id/fragment_realm_discovered_players_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:text="@string/realm_discovered_players_title"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        app:layout_constraintBottom_toTopOf="@id/realm_discovered_players_card_separator"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/realm_discovered_players_card_separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_separator_height"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:background="@color/base_separator_color"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_discovered_players_clans"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_discovered_players_label" />
+
+                    <LinearLayout
+                        android:id="@+id/fragment_realm_discovered_players_clans"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/realm_discovered_players_card_separator" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/realm_knowledges_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_half_margin"
+                android:layout_marginEnd="@dimen/base_margin"
+                android:layout_marginBottom="@dimen/base_half_margin"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/realm_discovered_players_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/base_padding">
+
+                    <TextView
+                        android:id="@+id/fragment_realm_knowledges_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:text="@string/realm_knowledges_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        app:layout_constraintBottom_toTopOf="@id/realm_knowledges_card_separator"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/realm_knowledges_card_separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_separator_height"
+                        android:layout_marginBottom="@dimen/base_margin"
+                        android:background="@color/base_separator_color"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_knowledges"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_realm_knowledges_label" />
+
+                    <LinearLayout
+                        android:id="@+id/fragment_realm_knowledges"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/realm_knowledges_card_separator" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

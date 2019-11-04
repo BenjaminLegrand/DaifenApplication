@@ -1,5 +1,6 @@
 package fr.legrand.daifen.application.data.entity.mapper
 
+import fr.legrand.daifen.application.data.entity.model.Knowledge
 import fr.legrand.daifen.application.data.entity.model.Orders
 import fr.legrand.daifen.application.data.entity.remote.OrdersRemoteEntity
 import fr.legrand.daifen.application.data.exception.MappingException
@@ -17,7 +18,7 @@ class OrderRemoteEntityDataMapper(
         try {
             return Orders(
                 remote.round,
-                remote.knowledge,
+                remote.knowledge?.let { Knowledge(it, remote.round) },
                 buildingRemoteEntityDataMapper.transform(remote.buildings),
                 troopRemoteEntityDataMapper.transform(remote.troops),
                 giftRemoteEntityDataMapper.transform(remote.gifts),

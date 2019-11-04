@@ -21,6 +21,7 @@ import fr.legrand.daifen.application.data.manager.storage.StorageManagerImpl
 import fr.legrand.daifen.application.data.repository.AuthRepository
 import fr.legrand.daifen.application.data.repository.OrdersRepository
 import fr.legrand.daifen.application.data.repository.PigeonRepository
+import fr.legrand.daifen.application.data.repository.RealmRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -37,6 +38,7 @@ val repositoryModule = module {
     single { AuthRepository(get(), get(), get()) }
     single { PigeonRepository(get(), get(), get(), get(), get()) }
     single { OrdersRepository(get(), get()) }
+    single { RealmRepository(get(), get()) }
 }
 
 val mapperModule = module {
@@ -50,6 +52,11 @@ val mapperModule = module {
     single { SupportRemoteEntityDataMapper() }
     single { TroopRemoteEntityDataMapper() }
     single { OrderRemoteEntityDataMapper(get(), get(), get(), get(), get(), get()) }
+    single { RealmRemoteEntityDataMapper(get(), get(), get(), get()) }
+    single { RealmBuildingRemoteEntityDataMapper() }
+    single { RealmTroopRemoteEntityDataMapper() }
+    single { RealmKnowledgeRemoteEntityDataMapper() }
+    single { RealmPlayerRemoteEntityDataMapper() }
 }
 
 val networkModule = module {

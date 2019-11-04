@@ -9,6 +9,7 @@ data class PigeonDBEntity(
     @PrimaryKey
     var id: Int = 0,
     var emitter: String = "",
+    var receivers : List<String> = emptyList(),
     var subject: String = "",
     var date: Date = Date(),
     val emitterImage: String = "",

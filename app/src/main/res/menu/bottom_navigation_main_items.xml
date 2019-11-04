@@ -14,4 +14,11 @@
         android:icon="@drawable/ic_orders"
         android:title="@string/orders_title"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/realmFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_realm"
+        android:title="@string/realm_title"
+        app:showAsAction="ifRoom" />
 </menu>

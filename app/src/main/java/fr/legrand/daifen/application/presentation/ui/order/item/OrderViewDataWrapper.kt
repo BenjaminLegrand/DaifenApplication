@@ -13,10 +13,10 @@ data class OrdersViewDataWrapper(
 
 
     private val buildingList =
-        orders.buildings.map { BuildingViewDataWrapper(it.buildingType, it.count) }
+        orders.buildings.map { BuildingViewDataWrapper(it) }
 
     private val troopList =
-        orders.troops.map { TroopViewDataWrapper(it.troopType, it.count) }
+        orders.troops.map { TroopViewDataWrapper(it) }
 
     private val specialTroopList =
         orders.specialTroops.groupingBy { it }.eachCount()
@@ -31,16 +31,21 @@ data class OrdersViewDataWrapper(
     private val supportList =
         orders.supports.map { SupportViewDataWrapper(it) }
 
+    private val knowledge = orders.knowledge?.let { KnowledgeViewDataWrapper(it) }
+
     fun getRoundText(context: Context): String =
         context.getString(R.string.orders_round_format, orders.round)
 
     fun getRound() = orders.round
 
-    fun getKnowledgeText(context: Context): String = orders.knowledge?.let {
+    fun getKnowledgeText(context: Context): String = knowledge?.let {
         if (currentRound) {
-            context.getString(R.string.orders_knowledge_format_current, it.value)
+            context.getString(
+                R.string.orders_knowledge_format_current,
+                it.getKnowledgeTypeText(context)
+            )
         } else {
-            context.getString(R.string.orders_knowledge_format, it.value)
+            context.getString(R.string.orders_knowledge_format, it.getKnowledgeTypeText(context))
         }
     } ?: context.getString(R.string.no_knowledge)
 

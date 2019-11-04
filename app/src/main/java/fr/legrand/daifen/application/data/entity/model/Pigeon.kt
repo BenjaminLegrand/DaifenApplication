@@ -5,6 +5,7 @@ import java.util.*
 data class Pigeon(
     val id: Int,
     val emitter: String,
+    val receivers: List<String>,
     val subject: String,
     val date: Date,
     val emitterImage: String = "",

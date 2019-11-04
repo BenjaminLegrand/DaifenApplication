@@ -1,9 +1,6 @@
 package fr.legrand.daifen.application.data.manager.api
 
-import fr.legrand.daifen.application.data.entity.remote.OrdersResponse
-import fr.legrand.daifen.application.data.entity.remote.PigeonListResponse
-import fr.legrand.daifen.application.data.entity.remote.PigeonResponse
-import fr.legrand.daifen.application.data.entity.remote.PlayerResponse
+import fr.legrand.daifen.application.data.entity.remote.*
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.*
@@ -24,4 +21,7 @@ interface ApiService {
 
     @GET("royaume/confirmation.php")
     fun getRoundOrders(@Query("tourvisu") round: Int): Single<OrdersResponse>
+
+    @GET("royaume/index.php")
+    fun getRealm(): Single<RealmResponse>
 }
