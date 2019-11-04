@@ -29,11 +29,11 @@ class RealmBuildingView(context: Context?, attrs: AttributeSet? = null, defStyle
         val minAttack = items.sumBy { it.getAttack() }
         val maxAttack = items.sumBy { MAX_DICE_VALUE * it.getAttack() }
         realm_building_item_attack.text =
-            context.getString(R.string.realm_min_max_text_format, minAttack, maxAttack)
+            context.getString(R.string.realm_min_max_text_format, minAttack, maxAttack, (minAttack + maxAttack) / 2)
 
         val minRes = items.sumBy { it.getResistance() }
         val maxRes = items.sumBy { MAX_DICE_VALUE * it.getResistance() }
         realm_building_item_resistance.text =
-            context.getString(R.string.realm_min_max_text_format, minRes, maxRes)
+            context.getString(R.string.realm_min_max_text_format, minRes, maxRes, (minRes + maxRes) / 2)
     }
 }

@@ -29,11 +29,16 @@ class RealmTroopView(context: Context?, attrs: AttributeSet? = null, defStyleAtt
         val minAttack = items.sumBy { it.getAttack() }
         val maxAttack = items.sumBy { MAX_DICE_VALUE * it.getAttack() }
         realm_troop_item_attack.text =
-            context.getString(R.string.realm_min_max_text_format, minAttack, maxAttack)
+            context.getString(
+                R.string.realm_min_max_text_format,
+                minAttack,
+                maxAttack,
+                (minAttack + maxAttack) / 2
+            )
 
         val minHp = items.sumBy { it.getDefense() + it.getResistance() }
         val maxHp = items.sumBy { MAX_DICE_VALUE * it.getDefense() + it.getResistance() }
         realm_troop_item_hp.text =
-            context.getString(R.string.realm_min_max_text_format, minHp, maxHp)
+            context.getString(R.string.realm_min_max_text_format, minHp, maxHp, (minHp + maxHp) / 2)
     }
 }

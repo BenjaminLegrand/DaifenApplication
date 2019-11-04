@@ -30,6 +30,7 @@ class PigeonDBEntityDataMapper {
             return PigeonDBEntity(
                 model.id,
                 model.emitter,
+                model.receivers,
                 model.subject,
                 model.date,
                 model.emitterImage,
@@ -47,6 +48,7 @@ class PigeonDBEntityDataMapper {
             return Pigeon(
                 db.id,
                 db.emitter,
+                db.receivers,
                 db.subject,
                 db.date,
                 db.emitterImage,

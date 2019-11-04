@@ -56,6 +56,7 @@ class PigeonDetailFragment : BaseNavFragment<PigeonDetailFragmentNavigatorListen
                 .error(Glide.with(this).load(R.drawable.daifen_login_logo))
                 .apply(RequestOptions.circleCropTransform())
                 .into(fragment_pigeon_detail_emitter_image)
+            fragment_pigeon_detail_receivers.text = it.getReceivers()
 
             with(it.getHistory()) {
                 if (isEmpty()) {

@@ -1,6 +1,5 @@
 package fr.legrand.daifen.application.data.manager.api
 
-import android.util.Log
 import fr.legrand.daifen.application.BuildConfig
 import fr.legrand.daifen.application.data.entity.remote.*
 import fr.legrand.daifen.application.data.exception.AuthenticationException
@@ -16,6 +15,8 @@ import retrofit2.HttpException
 private const val HTTP_REDIRECT_CODE = 302
 private const val MEMORIZE_FORM_VALUE = "on"
 
+private const val PIGEON_DETAIL_RECEIVERS_SEPARATOR = ","
+private const val PIGEON_DETAIL_RECEIVERS_PREFIX = "Pour :"
 private const val PIGEON_DETAIL_DATE_REGEX = "le "
 private const val PIGEON_DETAIL_CONVERSATION_LINE_SEPARATOR = "\n"
 private const val PIGEON_DETAIL_CONVERSATION_START_SEPARATOR = '>'
@@ -112,6 +113,8 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
                 this.id = id.toString()
                 this.emitter = it.emitter
                 this.emitterId = EMITTER_ID_REGEX.find(it.emitterId)?.value?.toInt() ?: 0
+                this.receivers = it.receivers.removePrefix(PIGEON_DETAIL_RECEIVERS_PREFIX)
+                    .split(PIGEON_DETAIL_RECEIVERS_SEPARATOR).onEach { it.trim() }
                 this.subject = it.subject
                 this.date = date
                 this.content = lastMessage

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@color/base_background_color">
+    android:background="@color/base_background_color"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/fragment_pigeon_detail_app_bar"
@@ -18,8 +18,8 @@
             android:id="@+id/fragment_pigeon_detail_collapsible_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/white"
             android:fitsSystemWindows="true"
+            android:textColor="@color/white"
             app:collapsedTitleTextAppearance="@style/CollapsedToolbarTitle"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="bottom|center_horizontal"
@@ -73,7 +73,10 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center"
-                android:padding="@dimen/base_padding"
+                android:paddingStart="@dimen/base_padding"
+                android:paddingTop="@dimen/base_padding"
+                android:paddingEnd="@dimen/base_padding"
+                android:paddingBottom="@dimen/base_half_padding"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_date"
                 app:layout_constraintTop_toTopOf="parent"
@@ -86,11 +89,29 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center"
-                android:padding="@dimen/base_padding"
+                android:paddingStart="@dimen/base_padding"
+                android:paddingTop="@dimen/base_half_padding"
+                android:paddingEnd="@dimen/base_padding"
+                android:paddingBottom="@dimen/base_half_padding"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_content"
+                app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_receivers"
                 app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_subject"
                 tools:text="Reçu le 15/06/2019 à 17h44" />
+
+            <TextView
+                android:id="@+id/fragment_pigeon_detail_receivers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingStart="@dimen/base_padding"
+                android:paddingTop="@dimen/base_half_padding"
+                android:paddingEnd="@dimen/base_padding"
+                android:paddingBottom="@dimen/base_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_content"
+                app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_date"
+                tools:text="Player1 / Player2" />
 
             <TextView
                 android:id="@+id/fragment_pigeon_detail_content"
@@ -103,7 +124,7 @@
                 android:paddingEnd="@dimen/double_base_padding"
                 android:paddingBottom="@dimen/base_padding"
                 app:layout_constraintBottom_toTopOf="@id/fragment_pigeon_detail_content_separator"
-                app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_date"
+                app:layout_constraintTop_toBottomOf="@id/fragment_pigeon_detail_receivers"
                 tools:text="On s'est fait attaquer !" />
 
             <View
