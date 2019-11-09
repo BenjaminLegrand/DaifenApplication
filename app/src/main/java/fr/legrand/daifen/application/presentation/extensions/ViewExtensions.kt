@@ -1,4 +1,4 @@
-package fr.legrand.daifen.application.presentation.utils
+package fr.legrand.daifen.application.presentation.extensions
 
 import android.view.View
 

@@ -2,14 +2,12 @@ package fr.legrand.daifen.application.data.manager.api
 
 import fr.legrand.daifen.application.BuildConfig
 import fr.legrand.daifen.application.data.entity.remote.*
-import fr.legrand.daifen.application.data.exception.AuthenticationException
 import fr.legrand.daifen.application.data.values.BuildingType
 import fr.legrand.daifen.application.data.values.KnowledgeType
 import fr.legrand.daifen.application.data.values.SpecialTroopActionType
 import fr.legrand.daifen.application.data.values.TroopType
 import io.reactivex.Completable
 import io.reactivex.Single
-import retrofit2.HttpException
 
 
 private const val HTTP_REDIRECT_CODE = 302
@@ -54,7 +52,11 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
     override fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>> =
         apiService.getPigeonList(page).map {
             it.pigeonRemoteList
-        }.addRedirectCheck()
+        }
+
+    override fun checkUserInGame(): Single<Boolean> =
+        apiService.getIndex().map { it.newGameAvailable.isEmpty() }
+
 
     override fun getRealm(): Single<RealmRemoteEntity> =
         apiService.getRealm().map {
@@ -73,7 +75,7 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
                 knowledges = it.knowledges,
                 discoveredPlayers = it.discoveredPlayers
             )
-        }.addRedirectCheck()
+        }
 
     override fun getPigeon(id: Int): Single<PigeonRemoteEntity> =
         apiService.getPigeon(id).map {
@@ -122,8 +124,11 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
             }
         }.flatMap { pigeon ->
             apiService.getPlayer(pigeon.emitterId).map {
-                pigeon.emitterImage =
-                    "${BuildConfig.BASE_URL}${it.image.dropWhile { it == IMAGE_URL_SEPARATOR }}"
+                pigeon.emitterPlayer = PlayerRemoteEntity(
+                    id = pigeon.emitterId,
+                    image = "${BuildConfig.BASE_URL}${it.image.dropWhile { it == IMAGE_URL_SEPARATOR }}",
+                    name = it.name
+                )
                 pigeon
             }
         }
@@ -257,11 +262,11 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
                 }
 
             }
-        }.addRedirectCheck()
+        }
 
 
     override fun login(username: String, password: String): Completable =
-        apiService.login(username, password, MEMORIZE_FORM_VALUE).addRedirectCheck().ignoreElement()
+        apiService.login(username, password, MEMORIZE_FORM_VALUE).ignoreElement()
 
     private fun MutableList<AttackRemoteEntity>.addAttack(
         target: String,
@@ -291,15 +296,5 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
                 )
             }, target)
         )
-    }
-
-    private fun <T> Single<T>.addRedirectCheck(): Single<T> {
-        return onErrorResumeNext {
-            if (it is HttpException && it.code() == HTTP_REDIRECT_CODE) {
-                Single.error(AuthenticationException())
-            } else {
-                Single.error(it)
-            }
-        }
     }
 }

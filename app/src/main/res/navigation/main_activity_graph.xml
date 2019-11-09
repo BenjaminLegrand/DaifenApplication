@@ -35,4 +35,8 @@
         android:id="@+id/realmFragment"
         android:name="fr.legrand.daifen.application.presentation.ui.realm.RealmFragment"
         android:label="RealmFragment" />
+    <fragment
+        android:id="@+id/fightListFragment"
+        android:name="fr.legrand.daifen.application.presentation.ui.fight.list.FightListFragment"
+        android:label="FightListFragment" />
 </navigation>

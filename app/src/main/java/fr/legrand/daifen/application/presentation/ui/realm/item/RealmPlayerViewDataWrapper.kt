@@ -2,23 +2,23 @@ package fr.legrand.daifen.application.presentation.ui.realm.item
 
 import android.content.Context
 import fr.legrand.daifen.application.R
-import fr.legrand.daifen.application.data.entity.model.Player
+import fr.legrand.daifen.application.data.entity.model.RealmPlayer
 import fr.legrand.daifen.application.data.values.RaceType
 
-data class PlayerViewDataWrapper(
-    private val player: Player
+data class RealmPlayerViewDataWrapper(
+    private val realmPlayer: RealmPlayer
 ) {
-    fun getName() = player.name
+    fun getName() = realmPlayer.name
 
-    fun getClan(context: Context): String = if (player.clan.isBlank()) {
+    fun getClan(context: Context): String = if (realmPlayer.clan.isBlank()) {
         context.getString(R.string.no_clan)
     } else {
-        player.clan
+        realmPlayer.clan
     }
 
     fun getRaceSecondaryText(context: Context): String = context.getString(
         R.string.player_race_secondary_format,
-        when (player.race) {
+        when (realmPlayer.race) {
             RaceType.DWARF -> context.getString(R.string.race_dwarf)
             RaceType.UNDEAD -> context.getString(R.string.race_undead)
             RaceType.HUMAN -> context.getString(R.string.race_human)

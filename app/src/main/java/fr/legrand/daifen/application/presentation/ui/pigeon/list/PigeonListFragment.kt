@@ -9,7 +9,7 @@ import fr.legrand.daifen.application.data.exception.AuthenticationException
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.navigator.PigeonListFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.ui.PigeonListAdapter
-import fr.legrand.daifen.application.presentation.utils.observeSafe
+import fr.legrand.daifen.application.presentation.extensions.observeSafe
 import kotlinx.android.synthetic.main.fragment_pigeon_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel

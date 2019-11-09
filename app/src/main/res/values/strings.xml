@@ -5,6 +5,7 @@
     <string name="pigeon_title">Pigeons</string>
     <string name="orders_title">Ordres</string>
     <string name="realm_title">Royaume</string>
+    <string name="fight_title">Combats</string>
 
     <!-- Login -->
     <string name="connect">Connexion</string>
@@ -102,4 +103,8 @@
     <string name="race_orc">Orc</string>
     <string name="race_primotaure">Primotaure</string>
     <string name="share_realm">Partager mon royaume</string>
+
+    <!-- Errors -->
+    <string name="error_authentication_text">Identifiants incorrects</string>
+    <string name="error_default_text">Une erreur s\'est produite</string>
 </resources>

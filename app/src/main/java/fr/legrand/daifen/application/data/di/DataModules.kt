@@ -42,8 +42,10 @@ val repositoryModule = module {
 }
 
 val mapperModule = module {
-    single { PigeonRemoteEntityDataMapper() }
+    single { PigeonRemoteEntityDataMapper(get()) }
     single { PigeonDBEntityDataMapper() }
+
+    single { PlayerRemoteEntityDataMapper() }
 
     single { AttackRemoteEntityDataMapper() }
     single { BuildingRemoteEntityDataMapper() }

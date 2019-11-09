@@ -10,5 +10,5 @@ data class Realm(
     val buildings: List<Building>,
     val troops: List<Troop>,
     val knowledges: List<Knowledge>,
-    val discoveredPlayers: List<Player>
+    val discoveredRealmPlayers: List<RealmPlayer>
 )

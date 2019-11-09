@@ -10,7 +10,8 @@ class LoginNavigator(
     private val baseActivity: BaseActivity
 ) : LoginFragmentNavigatorListener {
 
-    override fun displayMainActivity() {
-        navController.navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity())
+    override fun displayMainActivity(userInGame : Boolean) {
+        navController.navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity(userInGame))
+        baseActivity.finish()
     }
 }

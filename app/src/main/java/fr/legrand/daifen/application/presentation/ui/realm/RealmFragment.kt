@@ -13,7 +13,7 @@ import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.realm.item.RealmDiscoveredPlayerClanView
 import fr.legrand.daifen.application.presentation.ui.realm.item.RealmKnowledgeView
 import fr.legrand.daifen.application.presentation.ui.realm.navigator.RealmFragmentNavigatorListener
-import fr.legrand.daifen.application.presentation.utils.observeSafe
+import fr.legrand.daifen.application.presentation.extensions.observeSafe
 import kotlinx.android.synthetic.main.fragment_realm.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

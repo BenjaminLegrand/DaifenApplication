@@ -13,6 +13,9 @@ private const val COOKIE_DATA_SEPARATOR = "="
 private val COOKIE_ITEM_SEPARATOR_REGEX = Regex("[;,]\\s*")
 private const val COOKIE_ITEM_SEPARATOR = "; "
 private val COOKIE_IDENTIFIERS = arrayOf("s", "id", "SERVERID31394", "pass")
+private const val HTTP_REDIRECT_CODE = 302
+private const val LOCATION_HEADER = "location"
+private const val LOCATION_HEADER_LOGIN_VALUE = "/jeu/identification.php"
 
 class NetworkInterceptor(
     private val sharedPrefsManager: SharedPrefsManager,
@@ -30,6 +33,10 @@ class NetworkInterceptor(
         } ?: chain.request()
 
         val response = chain.proceed(request)
+
+        if(response.code() == HTTP_REDIRECT_CODE && response.header(LOCATION_HEADER) == LOCATION_HEADER_LOGIN_VALUE){
+            throw AuthenticationException()
+        }
 
         val authCookieMap = sharedPrefsManager.getAuthCookie()?.let {
             gson.fromJson<MutableMap<String, String>>(it)

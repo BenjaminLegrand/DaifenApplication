@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.presentation.ui.order.item.BuildingViewDataWrapper
-import fr.legrand.daifen.application.presentation.ui.realm.item.RealmViewDataWrapper.Companion.MAX_DICE_VALUE
+import fr.legrand.daifen.application.presentation.utils.BuildingUtils
 import kotlinx.android.synthetic.main.view_realm_building_item.view.*
 
 class RealmBuildingView(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
@@ -26,14 +26,24 @@ class RealmBuildingView(context: Context?, attrs: AttributeSet? = null, defStyle
                 it.getBuildingTypeCountText(context)
             }
 
-        val minAttack = items.sumBy { it.getAttack() }
-        val maxAttack = items.sumBy { MAX_DICE_VALUE * it.getAttack() }
+        val minAttack = BuildingUtils.getMinAttack(items)
+        val maxAttack = BuildingUtils.getMaxAttack(items)
         realm_building_item_attack.text =
-            context.getString(R.string.realm_min_max_text_format, minAttack, maxAttack, (minAttack + maxAttack) / 2)
+            context.getString(
+                R.string.realm_min_max_text_format,
+                minAttack,
+                maxAttack,
+                (minAttack + maxAttack) / 2
+            )
 
-        val minRes = items.sumBy { it.getResistance() }
-        val maxRes = items.sumBy { MAX_DICE_VALUE * it.getResistance() }
+        val minRes = BuildingUtils.getMinResistance(items)
+        val maxRes = BuildingUtils.getMaxResistance(items)
         realm_building_item_resistance.text =
-            context.getString(R.string.realm_min_max_text_format, minRes, maxRes, (minRes + maxRes) / 2)
+            context.getString(
+                R.string.realm_min_max_text_format,
+                minRes,
+                maxRes,
+                (minRes + maxRes) / 2
+            )
     }
 }

@@ -8,7 +8,8 @@ import java.util.*
 data class PigeonDBEntity(
     @PrimaryKey
     var id: Int = 0,
-    var emitter: String = "",
+    var emitterName: String = "",
+    var emitterId: Int = 0,
     var receivers : List<String> = emptyList(),
     var subject: String = "",
     var date: Date = Date(),

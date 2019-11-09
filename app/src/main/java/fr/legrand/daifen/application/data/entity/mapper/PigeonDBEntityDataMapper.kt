@@ -2,6 +2,7 @@ package fr.legrand.daifen.application.data.entity.mapper
 
 import fr.legrand.daifen.application.data.entity.db.PigeonDBEntity
 import fr.legrand.daifen.application.data.entity.model.Pigeon
+import fr.legrand.daifen.application.data.entity.model.Player
 import fr.legrand.daifen.application.data.exception.MappingException
 
 class PigeonDBEntityDataMapper {
@@ -29,11 +30,12 @@ class PigeonDBEntityDataMapper {
         try {
             return PigeonDBEntity(
                 model.id,
-                model.emitter,
+                model.emitter.name,
+                model.emitter.id,
                 model.receivers,
                 model.subject,
                 model.date,
-                model.emitterImage,
+                model.emitter.imageUrl,
                 model.content,
                 model.history,
                 model.unread
@@ -47,11 +49,10 @@ class PigeonDBEntityDataMapper {
         try {
             return Pigeon(
                 db.id,
-                db.emitter,
+                Player(db.emitterId, db.emitterName, db.emitterImage),
                 db.receivers,
                 db.subject,
                 db.date,
-                db.emitterImage,
                 db.content,
                 db.history,
                 db.unread

@@ -21,4 +21,11 @@
         android:icon="@drawable/ic_realm"
         android:title="@string/realm_title"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/fightListFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_fight"
+        android:title="@string/fight_title"
+        app:showAsAction="ifRoom" />
 </menu>
