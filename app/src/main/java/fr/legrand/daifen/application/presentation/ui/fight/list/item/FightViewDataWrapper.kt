@@ -3,6 +3,7 @@ package fr.legrand.daifen.application.presentation.ui.fight.list.item
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.data.entity.model.Fight
 import fr.legrand.daifen.application.data.values.FightType
+import fr.legrand.daifen.application.presentation.ui.order.item.TroopViewDataWrapper
 import fr.legrand.daifen.application.presentation.ui.player.item.PlayerViewDataWrapper
 
 data class FightViewDataWrapper(
@@ -11,6 +12,10 @@ data class FightViewDataWrapper(
 
     val attackers = fight.attackers.map { PlayerViewDataWrapper(it) }
     val defenders = fight.defenders.map { PlayerViewDataWrapper(it) }
+    val attackersTroops = fight.attackersTroops.map { TroopViewDataWrapper(it) }
+    val defendersTroops = fight.defendersTroops.map { TroopViewDataWrapper(it) }
+    val attackersLosses = fight.attackersLosses.map { TroopViewDataWrapper(it) }
+    val defendersLosses = fight.defendersLosses.map { TroopViewDataWrapper(it) }
 
     fun getId() = fight.id
     fun getAttackersNamesText() = attackers.joinToString { it.getName() }

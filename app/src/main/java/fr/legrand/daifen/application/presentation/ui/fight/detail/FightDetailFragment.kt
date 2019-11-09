@@ -8,6 +8,7 @@ import fr.legrand.daifen.application.presentation.extensions.observeSafe
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.fight.detail.item.FightDetailAttackerView
 import fr.legrand.daifen.application.presentation.ui.fight.detail.item.FightDetailDefenderView
+import fr.legrand.daifen.application.presentation.ui.fight.detail.item.FightDetailTroopView
 import fr.legrand.daifen.application.presentation.ui.fight.detail.navigator.FightDetailFragmentNavigatorListener
 import kotlinx.android.synthetic.main.fragment_fight_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,20 +32,37 @@ class FightDetailFragment : BaseNavFragment<FightDetailFragmentNavigatorListener
         viewModel.fight.observeSafe(this) {
             it.attackers.forEach {
                 fragment_fight_detail_attackers_layout.addView(
-                    FightDetailAttackerView(
-                        requireContext()
-                    ).apply {
-                        bindItem(it)
-                    })
+                    FightDetailAttackerView(requireContext()).apply { bindItem(it) }
+                )
             }
 
             it.defenders.forEach {
                 fragment_fight_detail_defenders_layout.addView(
-                    FightDetailDefenderView(
-                        requireContext()
-                    ).apply {
-                        bindItem(it)
-                    })
+                    FightDetailDefenderView(requireContext()).apply { bindItem(it) })
+            }
+
+            it.attackersTroops.forEach {
+                fragment_fight_detail_attackers_troops_layout.addView(
+                    FightDetailTroopView(requireContext()).apply { bindItem(it) }
+                )
+            }
+
+            it.defendersTroops.forEach {
+                fragment_fight_detail_defenders_troops_layout.addView(
+                    FightDetailTroopView(requireContext()).apply { bindItem(it) }
+                )
+            }
+
+            it.attackersLosses.forEach {
+                fragment_fight_detail_attackers_losses_layout.addView(
+                    FightDetailTroopView(requireContext()).apply { bindItem(it) }
+                )
+            }
+
+            it.defendersLosses.forEach {
+                fragment_fight_detail_defenders_losses_layout.addView(
+                    FightDetailTroopView(requireContext()).apply { bindItem(it) }
+                )
             }
         }
 

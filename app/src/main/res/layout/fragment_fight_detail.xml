@@ -9,9 +9,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/players_barrier"
         app:layout_constraintEnd_toStartOf="@id/fragment_fight_detail_versus_separator"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/fragment_fight_detail_versus_separator"
@@ -29,9 +31,70 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/players_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/fragment_fight_detail_versus_separator"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/fragment_fight_detail_troops_separator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_separator_height"
+        android:layout_marginTop="@dimen/base_margin"
+        android:background="@color/base_separator_color"
+        app:layout_constraintTop_toBottomOf="@id/players_barrier" />
+
+    <LinearLayout
+        android:id="@+id/fragment_fight_detail_attackers_troops_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/troops_barrier"
+        app:layout_constraintEnd_toStartOf="@id/fragment_fight_detail_defenders_troops_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_fight_detail_troops_separator" />
+
+    <LinearLayout
+        android:id="@+id/fragment_fight_detail_defenders_troops_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/troops_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_fight_detail_attackers_troops_layout"
+        app:layout_constraintTop_toBottomOf="@id/fragment_fight_detail_troops_separator" />
+
+    <View
+        android:id="@+id/fragment_fight_detail_losses_separator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_separator_height"
+        android:layout_marginTop="@dimen/base_margin"
+        android:background="@color/base_separator_color"
+        app:layout_constraintTop_toBottomOf="@id/troops_barrier" />
+
+    <LinearLayout
+        android:id="@+id/fragment_fight_detail_attackers_losses_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/losses_barrier"
+        app:layout_constraintEnd_toStartOf="@id/fragment_fight_detail_defenders_losses_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_fight_detail_losses_separator" />
+
+    <LinearLayout
+        android:id="@+id/fragment_fight_detail_defenders_losses_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/losses_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_fight_detail_attackers_losses_layout"
+        app:layout_constraintTop_toBottomOf="@id/fragment_fight_detail_losses_separator" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/players_barrier"
@@ -39,5 +102,19 @@
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="fragment_fight_detail_attackers_layout,fragment_fight_detail_defenders_layout" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/troops_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="fragment_fight_detail_attackers_troops_layout,fragment_fight_detail_defenders_troops_layout" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/losses_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="fragment_fight_detail_attackers_losses_layout,fragment_fight_detail_defenders_losses_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
