@@ -2,6 +2,7 @@ package fr.legrand.daifen.application.presentation.di
 
 import androidx.navigation.findNavController
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavActivity
+import fr.legrand.daifen.application.presentation.ui.fight.list.navigator.FightListFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.ui.main.MainActivity
 import fr.legrand.daifen.application.presentation.ui.main.navigator.MainNavigator
 import fr.legrand.daifen.application.presentation.ui.order.navigator.OrdersFragmentNavigatorListener
@@ -21,29 +22,35 @@ val mainActivityModule = module {
         scoped<PigeonListFragmentNavigatorListener> { (activity: BaseNavActivity) ->
             get<MainNavigator>(parameters = {
                 parametersOf(
-                        activity
+                    activity
                 )
             })
         }
         scoped<OrdersFragmentNavigatorListener> { (activity: BaseNavActivity) ->
             get<MainNavigator>(parameters = {
                 parametersOf(
-                        activity
+                    activity
                 )
             })
         }
         scoped<RealmFragmentNavigatorListener> { (activity: BaseNavActivity) ->
             get<MainNavigator>(parameters = {
                 parametersOf(
-                        activity
+                    activity
                 )
             })
         }
-
+        scoped<FightListFragmentNavigatorListener> { (activity: BaseNavActivity) ->
+            get<MainNavigator>(parameters = {
+                parametersOf(
+                    activity
+                )
+            })
+        }
         scoped { (activity: BaseNavActivity) ->
             MainNavigator(
-                    get(parameters = { parametersOf(activity) }),
-                    activity
+                get(parameters = { parametersOf(activity) }),
+                activity
             )
         }
     }

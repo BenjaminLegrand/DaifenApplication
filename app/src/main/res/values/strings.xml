@@ -107,4 +107,5 @@
     <!-- Errors -->
     <string name="error_authentication_text">Identifiants incorrects</string>
     <string name="error_default_text">Une erreur s\'est produite</string>
+    <string name="fight_versus_text">VS</string>
 </resources>

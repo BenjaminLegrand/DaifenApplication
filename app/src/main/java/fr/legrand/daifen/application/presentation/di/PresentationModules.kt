@@ -3,6 +3,7 @@ package fr.legrand.daifen.application.presentation.di
 import fr.legrand.daifen.application.presentation.component.error.ErrorComponent
 import fr.legrand.daifen.application.presentation.component.error.ErrorComponentImpl
 import fr.legrand.daifen.application.presentation.ui.fight.list.FightListFragmentViewModel
+import fr.legrand.daifen.application.presentation.ui.fight.list.ui.FightListAdapter
 import fr.legrand.daifen.application.presentation.ui.login.LoginFragmentViewModel
 import fr.legrand.daifen.application.presentation.ui.order.OrdersFragmentViewModel
 import fr.legrand.daifen.application.presentation.ui.pigeon.detail.PigeonDetailFragmentViewModel
@@ -33,6 +34,7 @@ private val componentModule = module {
 
 private val adapterModule = module {
     factory { PigeonListAdapter() }
+    factory { FightListAdapter() }
 }
 
 val presentationModules = activityModules + viewModelModule + adapterModule + componentModule

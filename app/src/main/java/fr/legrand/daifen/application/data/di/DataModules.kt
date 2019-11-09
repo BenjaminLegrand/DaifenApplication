@@ -18,10 +18,7 @@ import fr.legrand.daifen.application.data.manager.prefs.SharedPrefsManager
 import fr.legrand.daifen.application.data.manager.prefs.SharedPrefsManagerImpl
 import fr.legrand.daifen.application.data.manager.storage.StorageManager
 import fr.legrand.daifen.application.data.manager.storage.StorageManagerImpl
-import fr.legrand.daifen.application.data.repository.AuthRepository
-import fr.legrand.daifen.application.data.repository.OrdersRepository
-import fr.legrand.daifen.application.data.repository.PigeonRepository
-import fr.legrand.daifen.application.data.repository.RealmRepository
+import fr.legrand.daifen.application.data.repository.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -39,6 +36,7 @@ val repositoryModule = module {
     single { PigeonRepository(get(), get(), get(), get(), get()) }
     single { OrdersRepository(get(), get()) }
     single { RealmRepository(get(), get()) }
+    single { FightRepository(get()) }
 }
 
 val mapperModule = module {
