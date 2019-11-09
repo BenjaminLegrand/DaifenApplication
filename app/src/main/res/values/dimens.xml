@@ -23,4 +23,6 @@
     <dimen name="realm_player_image_bottom_margin">62dp</dimen>
     <dimen name="realm_player_image_top_margin">48dp</dimen>
     <dimen name="realm_items_text_size">13sp</dimen>
+
+    <dimen name="fight_detail_player_image_size">42dp</dimen>
 </resources>

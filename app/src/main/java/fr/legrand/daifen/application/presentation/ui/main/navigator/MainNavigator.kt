@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import androidx.navigation.NavController
 import fr.legrand.daifen.application.presentation.ui.base.BaseActivity
+import fr.legrand.daifen.application.presentation.ui.fight.list.FightListFragmentDirections
 import fr.legrand.daifen.application.presentation.ui.fight.list.navigator.FightListFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.ui.order.navigator.OrdersFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.ui.pigeon.list.PigeonListFragmentDirections
@@ -21,7 +22,11 @@ class MainNavigator(
 
 
     override fun displayFightDetail(id: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        navController.navigate(
+            FightListFragmentDirections.actionFightListFragmentToFightDetailActivity(
+                id
+            )
+        )
     }
 
     override fun shareRealm(realmData: String) {

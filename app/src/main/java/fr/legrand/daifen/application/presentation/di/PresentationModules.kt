@@ -2,6 +2,7 @@ package fr.legrand.daifen.application.presentation.di
 
 import fr.legrand.daifen.application.presentation.component.error.ErrorComponent
 import fr.legrand.daifen.application.presentation.component.error.ErrorComponentImpl
+import fr.legrand.daifen.application.presentation.ui.fight.detail.FightDetailFragmentViewModel
 import fr.legrand.daifen.application.presentation.ui.fight.list.FightListFragmentViewModel
 import fr.legrand.daifen.application.presentation.ui.fight.list.ui.FightListAdapter
 import fr.legrand.daifen.application.presentation.ui.login.LoginFragmentViewModel
@@ -16,7 +17,8 @@ import org.koin.dsl.module
 private val activityModules = arrayOf(
     mainActivityModule,
     loginActivityModule,
-    pigeonDetailActivityModule
+    pigeonDetailActivityModule,
+    fightDetailActivityModule
 )
 
 private val viewModelModule = module {
@@ -24,6 +26,7 @@ private val viewModelModule = module {
     viewModel { PigeonListFragmentViewModel(get()) }
     viewModel { PigeonDetailFragmentViewModel(get()) }
     viewModel { FightListFragmentViewModel(get()) }
+    viewModel { FightDetailFragmentViewModel(get()) }
     viewModel { OrdersFragmentViewModel(get()) }
     viewModel { RealmFragmentViewModel(get()) }
 }

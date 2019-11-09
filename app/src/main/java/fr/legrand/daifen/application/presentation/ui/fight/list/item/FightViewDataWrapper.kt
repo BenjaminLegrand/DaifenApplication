@@ -9,8 +9,8 @@ data class FightViewDataWrapper(
     private val fight: Fight
 ) {
 
-    private val attackers = fight.attackers.map { PlayerViewDataWrapper(it) }
-    private val defenders = fight.defenders.map { PlayerViewDataWrapper(it) }
+    val attackers = fight.attackers.map { PlayerViewDataWrapper(it) }
+    val defenders = fight.defenders.map { PlayerViewDataWrapper(it) }
 
     fun getId() = fight.id
     fun getAttackersNamesText() = attackers.joinToString { it.getName() }

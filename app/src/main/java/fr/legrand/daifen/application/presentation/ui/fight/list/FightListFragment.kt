@@ -28,6 +28,8 @@ class FightListFragment : BaseNavFragment<FightListFragmentNavigatorListener>() 
         fragment_fight_list_recycler.adapter = adapter
         adapter.onItemClickListener = navigatorListener::displayFightDetail
 
+        fragment_fight_list_swipe_refresh.setOnRefreshListener { viewModel.retrieveFightList() }
+
 
         viewModel.viewState.observeSafe(this) {
             fragment_fight_list_swipe_refresh.isRefreshing = it.loading

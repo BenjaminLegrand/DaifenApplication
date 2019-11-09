@@ -1,4 +1,4 @@
-package fr.legrand.daifen.application.presentation.ui.fight.list
+package fr.legrand.daifen.application.presentation.ui.fight.detail
 
 import androidx.lifecycle.MutableLiveData
 import fr.legrand.daifen.application.data.repository.FightRepository
@@ -9,32 +9,24 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class FightListFragmentViewModel(
+class FightDetailFragmentViewModel(
     private val fightRepository: FightRepository
-) : StateViewModel<FightListViewState>() {
-    override val currentViewState = FightListViewState()
+) : StateViewModel<FightDetailViewState>() {
+    override val currentViewState = FightDetailViewState()
 
     private val disposable = CompositeDisposable()
-    val fightList = MutableLiveData<List<FightViewDataWrapper>>()
-
-    init {
-        retrieveFightList()
-    }
+    val fight = MutableLiveData<FightViewDataWrapper>()
 
     override fun onCleared() {
         disposable.clear()
     }
 
-    fun retrieveFightList() {
-        viewState.update { loading = true }
-        fightRepository.retrieveFightList().subscribeOn(Schedulers.io())
+    fun retrieveFight(id: Int) {
+        fightRepository.retrieveFight(id).subscribeOn(Schedulers.io())
             .subscribeBy(
                 onSuccess = {
-                    fightList.postValue(it.map { FightViewDataWrapper(it) })
-                    viewState.update { loading = false }
-                }, onError = {
-                    viewState.update { loading = false }
-                }
+                    fight.postValue(FightViewDataWrapper(it))
+                }, onError = {}
             ).addToComposite(disposable)
     }
 

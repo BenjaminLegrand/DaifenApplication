@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fight_detail_activity_graph"
+    app:startDestination="@id/fightDetailFragment">
+
+
+    <fragment
+        android:id="@+id/fightDetailFragment"
+        android:name="fr.legrand.daifen.application.presentation.ui.fight.detail.FightDetailFragment"
+        android:label="FightDetailFragment" >
+        <argument
+            android:name="fightId"
+            app:argType="integer" />
+    </fragment>
+</navigation>

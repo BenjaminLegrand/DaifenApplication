@@ -114,4 +114,42 @@ class FightRepository(
             )
         )
     }
+
+    fun retrieveFight(id: Int): Single<Fight> {
+        return Single.just(
+            Fight(
+                1,
+                FightType.ATTACK,
+                listOf(
+                    Player(
+                        1,
+                        "Attacker1",
+                        "http://geekfitlifestyle.com/wp-content/uploads/2019/04/kermit_rain_meme_geekfitlifestyle.jpg"
+                    ),
+                    Player(
+                        2,
+                        "Attacker2",
+                        "https://i.kym-cdn.com/photos/images/newsfeed/001/398/111/d5a"
+                    )
+                ),
+                listOf(
+                    Player(
+                        1,
+                        "Defender1",
+                        "http://geekfitlifestyle.com/wp-content/uploads/2019/04/kermit_rain_meme_geekfitlifestyle.jpg"
+                    ),
+                    Player(
+                        2,
+                        "Defender2",
+                        "https://i.kym-cdn.com/photos/images/newsfeed/001/398/111/d5a"
+                    )
+                ),
+                listOf(),
+                listOf(),
+                listOf(),
+                listOf(),
+                listOf()
+            )
+        )
+    }
 }
