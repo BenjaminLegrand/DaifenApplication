@@ -108,4 +108,25 @@
     <string name="error_authentication_text">Identifiants incorrects</string>
     <string name="error_default_text">Une erreur s\'est produite</string>
     <string name="fight_versus_text">VS</string>
+    <string name="fight_detail_losses_label">Unités perdues</string>
+    <string name="fight_detail_troops_label">Troupes</string>
+    <string name="fight_detail_remaining_label">Unités restantes</string>
+    <string name="fight_detail_no_troops_label">Aucune troupe</string>
+    <string name="fight_detail_no_losses_label">Aucunes pertes</string>
+    <string name="fight_detail_no_remaining_label">Aucune unité restante</string>
+    <string name="attackers_title">Attaquants</string>
+    <string name="defenders_title">Défenseurs</string>
+
+    <!-- Winner texts -->
+    <string name="fight_no_winner_1">Pas de vainqueur !</string>
+    <string name="fight_no_winner_2">Chacun repart chez soi !</string>
+    <string name="fight_no_winner_3">Ce n\'est que partie remise !</string>
+    <string name="fight_defenders_winner_1">La défense a remporté le combat !</string>
+    <string name="fight_defenders_winner_2">L\'attaque a été annihilée !</string>
+    <string name="fight_attackers_winner_1">L\'attaque a remporté le combat !</string>
+    <string name="fight_attackers_winner_2">La défense a été détruite !</string>
+    <string name="fight_detail_title">Récapitulatif</string>
+    <string name="fight_attack_text_format">ATQ : %d à %d (~%d)</string>
+    <string name="fight_hp_text_format">PV : %d à %d (~%d)</string>
+    <string name="fight_stats_text_format">%s\n%s</string>
 </resources>

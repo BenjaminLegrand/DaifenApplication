@@ -9,6 +9,8 @@
     <dimen name="base_half_padding">4dp</dimen>
     <dimen name="default_progress_size">100dp</dimen>
 
+    <dimen name="card_title_text_size">18sp</dimen>
+
     <dimen name="login_logo_size">150dp</dimen>
     <dimen name="pigeon_emitter_text_size">16sp</dimen>
     <dimen name="pigeon_detail_emitter_image_size">120dp</dimen>
@@ -25,4 +27,5 @@
     <dimen name="realm_items_text_size">13sp</dimen>
 
     <dimen name="fight_detail_player_image_size">42dp</dimen>
+    <dimen name="fight_detail_att_def_label_text_size">16sp</dimen>
 </resources>

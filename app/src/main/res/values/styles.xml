@@ -28,5 +28,4 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
-    <dimen name="card_title_text_size">18sp</dimen>
 </resources>

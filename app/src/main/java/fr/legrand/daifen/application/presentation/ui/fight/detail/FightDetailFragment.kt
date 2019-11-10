@@ -8,6 +8,7 @@ import fr.legrand.daifen.application.presentation.extensions.observeSafe
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.fight.detail.item.FightDetailAttackerView
 import fr.legrand.daifen.application.presentation.ui.fight.detail.item.FightDetailDefenderView
+import fr.legrand.daifen.application.presentation.ui.fight.detail.item.FightDetailNoTroopView
 import fr.legrand.daifen.application.presentation.ui.fight.detail.item.FightDetailTroopView
 import fr.legrand.daifen.application.presentation.ui.fight.detail.navigator.FightDetailFragmentNavigatorListener
 import kotlinx.android.synthetic.main.fragment_fight_detail.*
@@ -41,29 +42,29 @@ class FightDetailFragment : BaseNavFragment<FightDetailFragmentNavigatorListener
                     FightDetailDefenderView(requireContext()).apply { bindItem(it) })
             }
 
-            it.attackersTroops.forEach {
-                fragment_fight_detail_attackers_troops_layout.addView(
-                    FightDetailTroopView(requireContext()).apply { bindItem(it) }
-                )
+            val layoutsMap = mapOf(
+                Pair(it.attackersTroops, R.string.fight_detail_no_troops_label) to fragment_fight_detail_attackers_troops_layout,
+                Pair(it.defendersTroops, R.string.fight_detail_no_troops_label) to fragment_fight_detail_defenders_troops_layout,
+                Pair(it.attackersLosses, R.string.fight_detail_no_losses_label) to fragment_fight_detail_attackers_losses_layout,
+                Pair(it.defendersLosses, R.string.fight_detail_no_losses_label) to fragment_fight_detail_defenders_losses_layout,
+                Pair(it.attackersRemaining, R.string.fight_detail_no_remaining_label) to fragment_fight_detail_attackers_remaining_layout,
+                Pair(it.defendersRemaining, R.string.fight_detail_no_remaining_label) to fragment_fight_detail_defenders_remaining_layout
+            )
+
+            layoutsMap.forEach {entry ->
+                if(entry.key.first.isEmpty()){
+                    entry.value.addView(FightDetailNoTroopView(requireContext()).apply { bindItem(requireContext().getString(entry.key.second)) })
+                }else{
+                    entry.key.first.forEach {
+                        entry.value.addView(FightDetailTroopView(requireContext()).apply { bindItem(it) })
+                    }
+                }
             }
 
-            it.defendersTroops.forEach {
-                fragment_fight_detail_defenders_troops_layout.addView(
-                    FightDetailTroopView(requireContext()).apply { bindItem(it) }
-                )
-            }
+            fragment_fight_detail_winner_text.text = it.getWinnerText(requireContext())
 
-            it.attackersLosses.forEach {
-                fragment_fight_detail_attackers_losses_layout.addView(
-                    FightDetailTroopView(requireContext()).apply { bindItem(it) }
-                )
-            }
-
-            it.defendersLosses.forEach {
-                fragment_fight_detail_defenders_losses_layout.addView(
-                    FightDetailTroopView(requireContext()).apply { bindItem(it) }
-                )
-            }
+            fragment_fight_detail_attackers_troops_stats.text = it.getAttackersTroopsStats(requireContext())
+            fragment_fight_detail_defenders_troops_stats.text = it.getDefendersTroopsStats(requireContext())
         }
 
         viewModel.retrieveFight(args.fightId)
