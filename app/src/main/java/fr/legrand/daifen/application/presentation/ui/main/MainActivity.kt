@@ -22,8 +22,7 @@ class MainActivity : BaseNavActivity() {
             bottom_navigation.inflateMenu(R.menu.bottom_navigation_in_game_items)
         } else {
             //Load only pigeons tab
-            //TODO reset
-            bottom_navigation.inflateMenu(R.menu.bottom_navigation_in_game_items)
+            bottom_navigation.inflateMenu(R.menu.bottom_navigation_out_game_items)
         }
 
         bottom_navigation.setupWithNavController(navController)
