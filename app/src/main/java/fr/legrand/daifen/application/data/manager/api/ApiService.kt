@@ -27,4 +27,10 @@ interface ApiService {
 
     @GET("index.php")
     fun getIndex(): Single<IndexResponse>
+
+    @GET("royaume/combats.php")
+    fun retrieveFightList(): Single<FightListResponse>
+
+    @GET("royaume/combats.php")
+    fun retrieveFight(@Query("id") id: Int): Single<FightResponse>
 }

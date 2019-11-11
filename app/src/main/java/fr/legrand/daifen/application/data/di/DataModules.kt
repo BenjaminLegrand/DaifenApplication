@@ -36,7 +36,7 @@ val repositoryModule = module {
     single { PigeonRepository(get(), get(), get(), get(), get()) }
     single { OrdersRepository(get(), get()) }
     single { RealmRepository(get(), get()) }
-    single { FightRepository(get()) }
+    single { FightRepository(get(), get()) }
 }
 
 val mapperModule = module {
@@ -44,6 +44,7 @@ val mapperModule = module {
     single { PigeonDBEntityDataMapper() }
 
     single { PlayerRemoteEntityDataMapper() }
+    single { FightRemoteEntityDataMapper() }
 
     single { AttackRemoteEntityDataMapper() }
     single { BuildingRemoteEntityDataMapper() }

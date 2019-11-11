@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.legrand.daifen.application.R
+import fr.legrand.daifen.application.presentation.extensions.hide
 import fr.legrand.daifen.application.presentation.extensions.observeSafe
+import fr.legrand.daifen.application.presentation.extensions.show
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.fight.list.navigator.FightListFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.ui.fight.list.ui.FightListAdapter
@@ -33,6 +35,13 @@ class FightListFragment : BaseNavFragment<FightListFragmentNavigatorListener>() 
 
         viewModel.viewState.observeSafe(this) {
             fragment_fight_list_swipe_refresh.isRefreshing = it.loading
+            if (it.displayPlaceholder) {
+                fragment_fight_list_recycler.hide()
+                fragment_fight_list_placeholder.show()
+            } else {
+                fragment_fight_list_recycler.show()
+                fragment_fight_list_placeholder.hide()
+            }
         }
 
         viewModel.fightList.observeSafe(this) {

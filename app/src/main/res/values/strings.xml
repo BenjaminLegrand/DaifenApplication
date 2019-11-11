@@ -18,6 +18,7 @@
     <string name="pigeon_history_card_title">Anciens messages</string>
     <string name="new_pigeon_received">Votre pigeonnier se remplit !</string>
     <string name="notification_auth_error">Veuillez vous reconnecter pour recevoir les mises à jour de pigeons</string>
+    <string name="no_pigeon_available">Aucun pigeon disponible</string>
 
     <!--  Orders -->
     <string name="orders_round_format">Tour %d</string>
@@ -103,6 +104,7 @@
     <string name="race_orc">Orc</string>
     <string name="race_primotaure">Primotaure</string>
     <string name="share_realm">Partager mon royaume</string>
+    <string name="no_discovered_players">Aucun royaume découvert</string>
 
     <!-- Errors -->
     <string name="error_authentication_text">Identifiants incorrects</string>
@@ -129,4 +131,6 @@
     <string name="fight_attack_text_format">ATQ : %d à %d (~%d)</string>
     <string name="fight_hp_text_format">PV : %d à %d (~%d)</string>
     <string name="fight_stats_text_format">%s\n%s</string>
+    <string name="no_knowledges">Aucune connaissance disponible</string>
+    <string name="no_fight_available">Vous n\'avez participé à aucun combat</string>
 </resources>

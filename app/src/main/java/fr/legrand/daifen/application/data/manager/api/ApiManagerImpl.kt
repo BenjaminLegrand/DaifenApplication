@@ -2,10 +2,7 @@ package fr.legrand.daifen.application.data.manager.api
 
 import fr.legrand.daifen.application.BuildConfig
 import fr.legrand.daifen.application.data.entity.remote.*
-import fr.legrand.daifen.application.data.values.BuildingType
-import fr.legrand.daifen.application.data.values.KnowledgeType
-import fr.legrand.daifen.application.data.values.SpecialTroopActionType
-import fr.legrand.daifen.application.data.values.TroopType
+import fr.legrand.daifen.application.data.values.*
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -51,7 +48,19 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
 
     override fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>> =
         apiService.getPigeonList(page).map {
-            it.pigeonRemoteList
+            it.pigeonRemoteList.onEach { it.emitterPlayer.name = it.emitter }
+        }
+
+    override fun retrieveFightList(): Single<List<FightRemoteEntity>> =
+        apiService.retrieveFightList().map {
+            it.attacks.onEach { it.type = FightType.ATTACK } +
+                    it.defenses.onEach { it.type = FightType.DEFENSE } +
+                    it.supports.onEach { it.type = FightType.SUPPORT }
+        }
+
+    override fun retrieveFight(id: Int): Single<FightRemoteEntity> =
+        apiService.retrieveFight(id).map {
+            FightRemoteEntity(id = it.id)
         }
 
     override fun checkUserInGame(): Single<Boolean> =

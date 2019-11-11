@@ -31,9 +31,16 @@ class FightListFragmentViewModel(
             .subscribeBy(
                 onSuccess = {
                     fightList.postValue(it.map { FightViewDataWrapper(it) })
-                    viewState.update { loading = false }
+                    viewState.update {
+                        loading = false
+                        displayPlaceholder = it.isEmpty()
+                    }
                 }, onError = {
-                    viewState.update { loading = false }
+                    fightList.postValue(emptyList())
+                    viewState.update {
+                        loading = false
+                        displayPlaceholder = true
+                    }
                 }
             ).addToComposite(disposable)
     }
