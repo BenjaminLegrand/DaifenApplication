@@ -109,7 +109,8 @@
     <!-- Errors -->
     <string name="error_authentication_text">Identifiants incorrects</string>
     <string name="error_default_text">Une erreur s\'est produite</string>
-    <string name="fight_versus_text">VS</string>
+
+    <!--    Fight -->
     <string name="fight_detail_losses_label">Unités perdues</string>
     <string name="fight_detail_troops_label">Troupes</string>
     <string name="fight_detail_remaining_label">Unités restantes</string>

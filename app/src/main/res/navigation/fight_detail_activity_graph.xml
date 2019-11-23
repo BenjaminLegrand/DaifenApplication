@@ -10,7 +10,10 @@
         android:name="fr.legrand.daifen.application.presentation.ui.fight.detail.FightDetailFragment"
         android:label="FightDetailFragment" >
         <argument
-            android:name="fightId"
+            android:name="round"
+            app:argType="integer" />
+        <argument
+            android:name="targetId"
             app:argType="integer" />
     </fragment>
 </navigation>

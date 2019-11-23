@@ -9,7 +9,7 @@ import fr.legrand.daifen.application.presentation.ui.fight.list.item.FightViewDa
 class FightListAdapter : RecyclerView.Adapter<FightListViewHolder>() {
     private var itemList: MutableList<FightViewDataWrapper> = mutableListOf()
 
-    var onItemClickListener: (Int) -> Unit = {}
+    var onItemClickListener: (Int, Int) -> Unit = { _, _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FightListViewHolder {
         val fightView = LayoutInflater.from(parent.context)

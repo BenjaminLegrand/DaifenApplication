@@ -48,7 +48,10 @@
         android:name="fr.legrand.daifen.application.presentation.ui.fight.detail.FightDetailActivity"
         android:label="FightDetailActivity" >
         <argument
-            android:name="fightId"
+            android:name="round"
+            app:argType="integer" />
+        <argument
+            android:name="targetId"
             app:argType="integer" />
     </activity>
 </navigation>

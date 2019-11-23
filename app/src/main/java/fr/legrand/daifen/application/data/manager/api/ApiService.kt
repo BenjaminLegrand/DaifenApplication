@@ -31,6 +31,6 @@ interface ApiService {
     @GET("royaume/combats.php")
     fun retrieveFightList(): Single<FightListResponse>
 
-    @GET("royaume/combats.php")
-    fun retrieveFight(@Query("id") id: Int): Single<FightResponse>
+    @GET("royaume/combat.php")
+    fun retrieveFight(@Query("t") round: Int, @Query("id") targetId: Int): Single<FightResponse>
 }

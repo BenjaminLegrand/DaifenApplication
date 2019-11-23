@@ -1,14 +1,19 @@
 package fr.legrand.daifen.application.data.entity.mapper
 
 import fr.legrand.daifen.application.data.entity.model.Fight
+import fr.legrand.daifen.application.data.entity.model.FightDetail
+import fr.legrand.daifen.application.data.entity.remote.FightListItemRemoteEntity
 import fr.legrand.daifen.application.data.entity.remote.FightRemoteEntity
 import fr.legrand.daifen.application.data.exception.MappingException
-import fr.legrand.daifen.application.data.values.FightType
 
-class FightRemoteEntityDataMapper {
+class FightRemoteEntityDataMapper(
+    private val playerRemoteEntityDataMapper: PlayerRemoteEntityDataMapper,
+    private val troopRemoteEntityDataMapper: TroopRemoteEntityDataMapper,
+    private val buildingRemoteEntityDataMapper: BuildingRemoteEntityDataMapper
+) {
 
-    fun transform(remotes: List<FightRemoteEntity>): List<Fight> {
-        return remotes.mapNotNull {
+    fun transform(listItemRemotes: List<FightListItemRemoteEntity>): List<Fight> {
+        return listItemRemotes.mapNotNull {
             try {
                 transform(it)
             } catch (e: MappingException) {
@@ -17,19 +22,29 @@ class FightRemoteEntityDataMapper {
         }
     }
 
-    fun transform(remote: FightRemoteEntity): Fight {
+    fun transform(remote: FightListItemRemoteEntity): Fight {
         try {
             return Fight(
-                remote.id,
+                remote.round,
+                remote.target,
                 remote.type,
-                //TODO
-                emptyList(),
-                emptyList(),
-                emptyList(),
-                emptyList(),
-                emptyList(),
-                emptyList(),
-                emptyList()
+                remote.targetId
+            )
+        } catch (e: Exception) {
+            throw MappingException()
+        }
+    }
+
+    fun transform(remote: FightRemoteEntity): FightDetail {
+        try {
+            return FightDetail(
+                playerRemoteEntityDataMapper.transform(remote.attackers),
+                playerRemoteEntityDataMapper.transform(remote.defenders),
+                troopRemoteEntityDataMapper.transform(remote.attackersTroops),
+                troopRemoteEntityDataMapper.transform(remote.defendersTroops),
+                troopRemoteEntityDataMapper.transform(remote.attackersLosses),
+                troopRemoteEntityDataMapper.transform(remote.defendersLosses),
+                buildingRemoteEntityDataMapper.transform(remote.destroyedBuildings)
             )
         } catch (e: Exception) {
             throw MappingException()

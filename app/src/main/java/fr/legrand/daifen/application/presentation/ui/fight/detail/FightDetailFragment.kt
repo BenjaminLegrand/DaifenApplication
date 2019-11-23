@@ -67,6 +67,6 @@ class FightDetailFragment : BaseNavFragment<FightDetailFragmentNavigatorListener
             fragment_fight_detail_defenders_troops_stats.text = it.getDefendersTroopsStats(requireContext())
         }
 
-        viewModel.retrieveFight(args.fightId)
+        viewModel.retrieveFight(args.round, args.targetId)
     }
 }

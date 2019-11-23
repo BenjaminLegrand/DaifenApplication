@@ -44,7 +44,7 @@ val mapperModule = module {
     single { PigeonDBEntityDataMapper() }
 
     single { PlayerRemoteEntityDataMapper() }
-    single { FightRemoteEntityDataMapper() }
+    single { FightRemoteEntityDataMapper(get(), get(), get()) }
 
     single { AttackRemoteEntityDataMapper() }
     single { BuildingRemoteEntityDataMapper() }

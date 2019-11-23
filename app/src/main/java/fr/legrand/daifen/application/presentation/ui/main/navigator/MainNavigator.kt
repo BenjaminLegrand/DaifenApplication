@@ -21,10 +21,11 @@ class MainNavigator(
     RealmFragmentNavigatorListener, FightListFragmentNavigatorListener {
 
 
-    override fun displayFightDetail(id: Int) {
+    override fun displayFightDetail(round: Int, targetId : Int) {
         navController.navigate(
             FightListFragmentDirections.actionFightListFragmentToFightDetailActivity(
-                id
+                round,
+                targetId
             )
         )
     }

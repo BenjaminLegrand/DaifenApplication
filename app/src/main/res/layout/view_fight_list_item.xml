@@ -6,36 +6,14 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/fight_list_item_attackers_names"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/base_margin"
-        app:layout_constraintBottom_toTopOf="@id/fight_list_item_vs"
-        app:layout_constraintEnd_toStartOf="@id/fight_list_item_type_icon"
-        app:layout_constraintStart_toEndOf="@id/start_guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Player1, Player2" />
-
-    <TextView
-        android:id="@+id/fight_list_item_vs"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/base_margin"
-        android:text="@string/fight_versus_text"
-        app:layout_constraintBottom_toTopOf="@id/fight_list_item_defenders_names"
-        app:layout_constraintEnd_toStartOf="@id/fight_list_item_type_icon"
-        app:layout_constraintStart_toEndOf="@id/start_guideline"
-        app:layout_constraintTop_toBottomOf="@id/fight_list_item_attackers_names" />
-
-    <TextView
-        android:id="@+id/fight_list_item_defenders_names"
+        android:id="@+id/fight_list_item_defender_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/base_margin"
         app:layout_constraintBottom_toTopOf="@id/fight_list_item_separator"
         app:layout_constraintEnd_toStartOf="@id/fight_list_item_type_icon"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
-        app:layout_constraintTop_toBottomOf="@id/fight_list_item_vs"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Player1, Player2" />
 
 
@@ -45,7 +23,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/fight_list_item_attack_type_direction"
-        app:layout_constraintStart_toEndOf="@id/fight_list_item_attackers_names"
+        app:layout_constraintStart_toEndOf="@id/fight_list_item_defender_name"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -64,7 +42,7 @@
         android:layout_marginTop="@dimen/base_margin"
         android:background="@color/base_separator_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fight_list_item_defenders_names" />
+        app:layout_constraintTop_toBottomOf="@id/fight_list_item_defender_name" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/start_guideline"

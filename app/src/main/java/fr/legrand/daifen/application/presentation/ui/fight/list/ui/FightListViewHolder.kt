@@ -14,11 +14,10 @@ import kotlinx.android.synthetic.main.view_fight_list_item.view.*
 class FightListViewHolder(private val context: Context, fightView: View) :
     RecyclerView.ViewHolder(fightView) {
 
-    fun bindItem(fight: FightViewDataWrapper, listener: (Int) -> Unit) {
+    fun bindItem(fight: FightViewDataWrapper, listener: (Int, Int) -> Unit) {
         with(itemView) {
-            setOnClickListener { listener(fight.getId()) }
-            fight_list_item_attackers_names.text = fight.getAttackersNamesText()
-            fight_list_item_defenders_names.text = fight.getDefendersNamesText()
+            setOnClickListener { listener(fight.getRound(), fight.getTargetId()) }
+            fight_list_item_defender_name.text = fight.getDefenderName()
 
             fight_list_item_type_icon.setImageResource(fight.getAttackTypeIconResource())
             if (fight.isAttack()) {
