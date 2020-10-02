@@ -9,11 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import fr.legrand.daifen.application.R
+import fr.legrand.daifen.application.presentation.extensions.hide
+import fr.legrand.daifen.application.presentation.extensions.observeSafe
+import fr.legrand.daifen.application.presentation.extensions.show
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.realm.item.RealmDiscoveredPlayerClanView
 import fr.legrand.daifen.application.presentation.ui.realm.item.RealmKnowledgeView
 import fr.legrand.daifen.application.presentation.ui.realm.navigator.RealmFragmentNavigatorListener
-import fr.legrand.daifen.application.presentation.utils.observeSafe
 import kotlinx.android.synthetic.main.fragment_realm.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -63,19 +65,37 @@ class RealmFragment : BaseNavFragment<RealmFragmentNavigatorListener>() {
             fragment_realm_buildings.bindItems(realm.buildings)
             fragment_realm_troops.bindItems(realm.troops)
 
-            realm.getGroupedDiscoveredPlayers(requireContext()).forEach {
-                fragment_realm_discovered_players_clans.addView(
-                    RealmDiscoveredPlayerClanView(
-                        context
-                    ).apply {
-                        bindItems(it.value, it.key)
-                    })
+            realm.getGroupedDiscoveredPlayers(requireContext()).let {
+                if (it.isEmpty()) {
+                    fragment_realm_no_discovered_players.show()
+                    fragment_realm_discovered_players_clans.hide()
+                } else {
+                    fragment_realm_no_discovered_players.hide()
+                    fragment_realm_discovered_players_clans.show()
+                    it.forEach {
+                        fragment_realm_discovered_players_clans.addView(
+                            RealmDiscoveredPlayerClanView(
+                                context
+                            ).apply {
+                                bindItems(it.value, it.key)
+                            })
+                    }
+                }
             }
 
-            realm.knowledges.forEach {
-                fragment_realm_knowledges.addView(RealmKnowledgeView(context).apply {
-                    bindItem(it)
-                })
+            realm.knowledges.let {
+                if (it.isEmpty()) {
+                    fragment_realm_no_knowledges.show()
+                    fragment_realm_knowledges.hide()
+                } else {
+                    fragment_realm_no_knowledges.hide()
+                    fragment_realm_knowledges.show()
+                    it.forEach {
+                        fragment_realm_knowledges.addView(RealmKnowledgeView(context).apply {
+                            bindItem(it)
+                        })
+                    }
+                }
             }
         }
     }

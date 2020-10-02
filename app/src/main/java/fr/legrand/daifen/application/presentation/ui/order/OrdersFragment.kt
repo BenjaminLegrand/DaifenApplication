@@ -5,9 +5,9 @@ import android.view.View
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.order.navigator.OrdersFragmentNavigatorListener
-import fr.legrand.daifen.application.presentation.utils.invisible
-import fr.legrand.daifen.application.presentation.utils.observeSafe
-import fr.legrand.daifen.application.presentation.utils.show
+import fr.legrand.daifen.application.presentation.extensions.invisible
+import fr.legrand.daifen.application.presentation.extensions.observeSafe
+import fr.legrand.daifen.application.presentation.extensions.show
 import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

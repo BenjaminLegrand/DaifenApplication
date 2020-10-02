@@ -6,6 +6,7 @@ import fr.legrand.daifen.application.data.entity.model.Realm
 import fr.legrand.daifen.application.presentation.ui.order.item.BuildingViewDataWrapper
 import fr.legrand.daifen.application.presentation.ui.order.item.KnowledgeViewDataWrapper
 import fr.legrand.daifen.application.presentation.ui.order.item.TroopViewDataWrapper
+import fr.legrand.daifen.application.presentation.utils.TroopUtils
 
 private const val SHARE_DATA_SEPARATOR = "\n\n"
 private const val SHARE_DATA_ITEM_SEPARATOR = "\n\t\t"
@@ -20,7 +21,8 @@ data class RealmViewDataWrapper(
     val buildings = realm.buildings.map { BuildingViewDataWrapper(it) }
     val troops = realm.troops.map { TroopViewDataWrapper(it) }
     val knowledges = realm.knowledges.map { KnowledgeViewDataWrapper(it) }
-    private val discoveredPlayers = realm.discoveredPlayers.map { PlayerViewDataWrapper(it) }
+    private val discoveredPlayers =
+        realm.discoveredRealmPlayers.map { RealmPlayerViewDataWrapper(it) }
 
     private val goldPerRound =
         buildings.sumBy { it.getGoldIncome() } + troops.sumBy { it.getGold() }
@@ -76,25 +78,31 @@ data class RealmViewDataWrapper(
                 }
 
     private fun getTroopsAttackStat(context: Context): String {
-        val minTroopAttack = troops.sumBy { it.getAttack() }
-        val maxTroopAttack = troops.sumBy { MAX_DICE_VALUE * it.getAttack() }
-        return context.getString(R.string.realm_min_max_text_format, minTroopAttack, maxTroopAttack)
+        val minTroopAttack = TroopUtils.getMinAttack(troops)
+        val maxTroopAttack = TroopUtils.getMaxAttack(troops)
+        return context.getString(
+            R.string.realm_min_max_text_format,
+            minTroopAttack,
+            maxTroopAttack,
+            (maxTroopAttack + minTroopAttack) / 2
+        )
     }
 
     private fun getTroopsHpStat(context: Context): String {
-        val minTroopHp = troops.sumBy { it.getDefense() + it.getResistance() }
-        val maxTroopHp = troops.sumBy { MAX_DICE_VALUE * it.getDefense() + it.getResistance() }
-        return context.getString(R.string.realm_min_max_text_format, minTroopHp, maxTroopHp)
+        val minTroopHp = TroopUtils.getMinHp(troops)
+        val maxTroopHp = TroopUtils.getMaxHp(troops)
+        return context.getString(
+            R.string.realm_min_max_text_format,
+            minTroopHp,
+            maxTroopHp,
+            (maxTroopHp + minTroopHp) / 2
+        )
     }
 
     private fun getTroopsStatsForShare(context: Context): String = context.getString(
         R.string.realm_share_troops_stats_format,
         getTroopsAttackStat(context), getTroopsHpStat(context)
     )
-
-    companion object {
-        const val MAX_DICE_VALUE = 3
-    }
 
     private fun String.toMarkdownBold(): String {
         return MARKDOWN_BOLD + this + MARKDOWN_BOLD

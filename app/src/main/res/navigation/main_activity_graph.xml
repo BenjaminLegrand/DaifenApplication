@@ -35,4 +35,23 @@
         android:id="@+id/realmFragment"
         android:name="fr.legrand.daifen.application.presentation.ui.realm.RealmFragment"
         android:label="RealmFragment" />
+    <fragment
+        android:id="@+id/fightListFragment"
+        android:name="fr.legrand.daifen.application.presentation.ui.fight.list.FightListFragment"
+        android:label="FightListFragment" >
+        <action
+            android:id="@+id/action_fightListFragment_to_fightDetailActivity"
+            app:destination="@id/fightDetailActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/fightDetailActivity"
+        android:name="fr.legrand.daifen.application.presentation.ui.fight.detail.FightDetailActivity"
+        android:label="FightDetailActivity" >
+        <argument
+            android:name="round"
+            app:argType="integer" />
+        <argument
+            android:name="targetId"
+            app:argType="integer" />
+    </activity>
 </navigation>

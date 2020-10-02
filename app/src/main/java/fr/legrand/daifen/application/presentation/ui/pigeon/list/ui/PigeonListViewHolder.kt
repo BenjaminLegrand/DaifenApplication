@@ -21,7 +21,7 @@ class PigeonListViewHolder(private val context: Context, pigeonView: View) :
 
     fun bindItem(pigeon: PigeonViewDataWrapper, listener: (Int) -> Unit) {
         itemView.setOnClickListener { listener(pigeon.getId()) }
-        pigeonEmitter.text = pigeon.getEmitter()
+        pigeonEmitter.text = pigeon.getEmitterName()
         pigeonSubject.text = pigeon.getSubject()
         pigeonDate.text = pigeon.getDate(context)
         if (pigeon.isUnread()) {

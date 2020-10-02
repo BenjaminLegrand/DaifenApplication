@@ -14,9 +14,9 @@ import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.presentation.ui.base.BaseNavFragment
 import fr.legrand.daifen.application.presentation.ui.pigeon.detail.navigator.PigeonDetailFragmentNavigatorListener
 import fr.legrand.daifen.application.presentation.ui.pigeon.detail.ui.PigeonHistoryItemView
-import fr.legrand.daifen.application.presentation.utils.hide
-import fr.legrand.daifen.application.presentation.utils.observeSafe
-import fr.legrand.daifen.application.presentation.utils.show
+import fr.legrand.daifen.application.presentation.extensions.hide
+import fr.legrand.daifen.application.presentation.extensions.observeSafe
+import fr.legrand.daifen.application.presentation.extensions.show
 import kotlinx.android.synthetic.main.fragment_pigeon_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -48,7 +48,7 @@ class PigeonDetailFragment : BaseNavFragment<PigeonDetailFragmentNavigatorListen
         viewModel.getPigeon(args.pigeonId)
 
         viewModel.pigeon.observeSafe(this) {
-            fragment_pigeon_detail_collapsible_toolbar.title = it.getEmitter()
+            fragment_pigeon_detail_collapsible_toolbar.title = it.getEmitterName()
             fragment_pigeon_detail_subject.text = it.getSubject()
             fragment_pigeon_detail_date.text = it.getDate(requireContext())
             fragment_pigeon_detail_content.text = it.getContent()

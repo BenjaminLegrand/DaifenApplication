@@ -26,12 +26,28 @@
             android:layout_marginTop="?attr/actionBarSize"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fragment_pigeon_list_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_pigeon_list_placeholder"
+            android:layout_width="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:gravity="center"
+                android:text="@string/no_pigeon_available"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

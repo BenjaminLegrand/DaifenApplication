@@ -12,11 +12,11 @@ class PigeonListAdapter : RecyclerView.Adapter<PigeonListViewHolder>() {
     var onItemClickListener: (Int) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PigeonListViewHolder {
-        val gameItemView = LayoutInflater.from(parent.context)
+        val pigeonView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.view_pigeon_list_item, parent, false)
         return PigeonListViewHolder(
             parent.context,
-            gameItemView
+            pigeonView
         )
     }
 

@@ -5,7 +5,7 @@ import fr.legrand.daifen.application.data.repository.OrdersRepository
 import fr.legrand.daifen.application.presentation.base.SingleLiveEvent
 import fr.legrand.daifen.application.presentation.base.StateViewModel
 import fr.legrand.daifen.application.presentation.ui.order.item.OrdersViewDataWrapper
-import fr.legrand.daifen.application.presentation.utils.addToComposite
+import fr.legrand.daifen.application.presentation.extensions.addToComposite
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers

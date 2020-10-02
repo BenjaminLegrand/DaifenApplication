@@ -6,7 +6,7 @@ import fr.legrand.daifen.application.data.repository.RealmRepository
 import fr.legrand.daifen.application.presentation.base.SingleLiveEvent
 import fr.legrand.daifen.application.presentation.base.StateViewModel
 import fr.legrand.daifen.application.presentation.ui.realm.item.RealmViewDataWrapper
-import fr.legrand.daifen.application.presentation.utils.addToComposite
+import fr.legrand.daifen.application.presentation.extensions.addToComposite
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers

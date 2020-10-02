@@ -17,11 +17,20 @@ interface ApiService {
     fun getPigeon(@Query("id") id: Int): Single<PigeonResponse>
 
     @GET("seigneurs/{id}.htm")
-    fun getPlayer(@Path("id") id: Int): Single<PlayerResponse>
+    fun getPlayer(@Path("id") id: Int): Single<PlayerRemoteEntity>
 
     @GET("royaume/confirmation.php")
     fun getRoundOrders(@Query("tourvisu") round: Int): Single<OrdersResponse>
 
     @GET("royaume/index.php")
     fun getRealm(): Single<RealmResponse>
+
+    @GET("index.php")
+    fun getIndex(): Single<IndexResponse>
+
+    @GET("royaume/combats.php")
+    fun retrieveFightList(): Single<FightListResponse>
+
+    @GET("royaume/combat.php")
+    fun retrieveFight(@Query("t") round: Int, @Query("id") targetId: Int): Single<FightResponse>
 }

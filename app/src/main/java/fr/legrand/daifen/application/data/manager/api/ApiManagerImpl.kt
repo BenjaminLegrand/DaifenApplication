@@ -2,17 +2,12 @@ package fr.legrand.daifen.application.data.manager.api
 
 import fr.legrand.daifen.application.BuildConfig
 import fr.legrand.daifen.application.data.entity.remote.*
-import fr.legrand.daifen.application.data.exception.AuthenticationException
-import fr.legrand.daifen.application.data.values.BuildingType
-import fr.legrand.daifen.application.data.values.KnowledgeType
-import fr.legrand.daifen.application.data.values.SpecialTroopActionType
-import fr.legrand.daifen.application.data.values.TroopType
+import fr.legrand.daifen.application.data.values.*
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
-import retrofit2.HttpException
+import io.reactivex.functions.BiFunction
 
-
-private const val HTTP_REDIRECT_CODE = 302
 private const val MEMORIZE_FORM_VALUE = "on"
 
 private const val PIGEON_DETAIL_RECEIVERS_SEPARATOR = ","
@@ -48,13 +43,124 @@ private val SUPPORT_TARGET_REGEX = Regex("(?<=Soutenir).+(?=avec)")
 private val SUPPORT_TROOP_COUNT_REGEX = Regex("^[0-9]+")
 private val SUPPORT_TROOP_TYPE_REGEX = Regex("[a-zA-Z]+")
 
+private val COMBAT_TROOP_TYPE_REGEX = Regex("[a-zA-Z]+$")
+private val COMBAT_PLAYER_ID_REGEX = Regex("[0-9]+(?=\\.htm$)")
+private val COMBAT_TROOP_COUNT_REGEX = Regex("^[0-9]+")
+private val COMBAT_BUILDING_TYPE_REGEX = Regex("[a-zA-Z]+$")
+private val COMBAT_BUILDING_COUNT_REGEX = Regex("^[0-9]+")
+private val COMBAT_TARGET_ID_REGEX = Regex("(?<=combat\\.php\\?id=).+(?=&)")
+
 class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
 
 
     override fun getPigeonList(page: Int): Single<List<PigeonRemoteEntity>> =
         apiService.getPigeonList(page).map {
-            it.pigeonRemoteList
-        }.addRedirectCheck()
+            it.pigeonRemoteList.onEach { it.emitterPlayer.name = it.emitter }
+        }
+
+    override fun getFightList(): Single<List<FightListItemRemoteEntity>> =
+        apiService.retrieveFightList().map {
+            it.attacks.onEach {
+                it.type = FightType.ATTACK
+                it.targetId = COMBAT_TARGET_ID_REGEX.find(it.url)?.value?.toInt() ?: 0
+            } +
+                    it.defens.onEach {
+                        it.type = FightType.DEFENSE
+                        it.targetId = COMBAT_TARGET_ID_REGEX.find(it.url)?.value?.toInt() ?: 0
+                    } +
+                    it.supports.onEach {
+                        it.type = FightType.SUPPORT
+                        it.targetId = COMBAT_TARGET_ID_REGEX.find(it.url)?.value?.toInt() ?: 0
+                    }
+        }
+
+    override fun getFight(round: Int, targetId: Int): Single<FightRemoteEntity> =
+        apiService.retrieveFight(round, targetId).flatMap {
+            val attackersSingle = Observable.merge(it.attackersUrls.mapNotNull {
+                COMBAT_PLAYER_ID_REGEX.find(it)?.value?.trim()?.toInt()?.let {
+                    apiService.getPlayer(it).toObservable()
+                }
+                    ?.map { it.copy(image = "${BuildConfig.BASE_URL}${it.image.dropWhile { it == IMAGE_URL_SEPARATOR }}") }
+            }).toList()
+            val defendersSingle = Observable.merge(it.defendersUrls.mapNotNull {
+                COMBAT_PLAYER_ID_REGEX.find(it)?.value?.trim()?.toInt()?.let {
+                    apiService.getPlayer(it).toObservable()
+                }
+                    ?.map { it.copy(image = "${BuildConfig.BASE_URL}${it.image.dropWhile { it == IMAGE_URL_SEPARATOR }}") }
+            }).toList()
+            return@flatMap Single.zip(
+                attackersSingle,
+                defendersSingle,
+                BiFunction<List<PlayerRemoteEntity>, List<PlayerRemoteEntity>, FightRemoteEntity> { attackers, defenders ->
+                    FightRemoteEntity(
+                        attackers = attackers,
+                        defenders = defenders,
+                        attackersTroops = it.attackersTroops.mapNotNull { text ->
+                            TroopType.fromValue(
+                                COMBAT_TROOP_TYPE_REGEX.find(text)?.value?.trim() ?: ""
+                            )
+                                ?.let {
+                                    TroopRemoteEntity(
+                                        it,
+                                        COMBAT_TROOP_COUNT_REGEX.find(text)?.value?.trim()?.toInt()
+                                            ?: 0
+                                    )
+                                }
+                        },
+                        defendersTroops = it.defendersTroops.mapNotNull { text ->
+                            TroopType.fromValue(
+                                COMBAT_TROOP_TYPE_REGEX.find(text)?.value?.trim() ?: ""
+                            )
+                                ?.let {
+                                    TroopRemoteEntity(
+                                        it,
+                                        COMBAT_TROOP_COUNT_REGEX.find(text)?.value?.trim()?.toInt()
+                                            ?: 0
+                                    )
+                                }
+                        },
+                        attackersLosses = it.attackersLosses.mapNotNull { text ->
+                            TroopType.fromValue(
+                                COMBAT_TROOP_TYPE_REGEX.find(text)?.value?.trim() ?: ""
+                            )
+                                ?.let {
+                                    TroopRemoteEntity(
+                                        it,
+                                        COMBAT_TROOP_COUNT_REGEX.find(text)?.value?.trim()?.toInt()
+                                            ?: 0
+                                    )
+                                }
+                        },
+                        defendersLosses = it.defendersLosses.mapNotNull { text ->
+                            TroopType.fromValue(
+                                COMBAT_TROOP_TYPE_REGEX.find(text)?.value?.trim() ?: ""
+                            )
+                                ?.let {
+                                    TroopRemoteEntity(
+                                        it,
+                                        COMBAT_TROOP_COUNT_REGEX.find(text)?.value?.trim()?.toInt()
+                                            ?: 0
+                                    )
+                                }
+                        },
+                        destroyedBuildings = it.destroyedBuildings.mapNotNull { text ->
+                            BuildingType.fromValue(
+                                COMBAT_BUILDING_TYPE_REGEX.find(text)?.value?.trim() ?: ""
+                            )?.let {
+                                BuildingRemoteEntity(
+                                    it,
+                                    COMBAT_BUILDING_COUNT_REGEX.find(text)?.value?.trim()?.toInt()
+                                        ?: 0
+                                )
+                            }
+                        }
+                    )
+                })
+        }
+
+    override fun checkUserInGame(): Single<Boolean> =
+        apiService.getIndex().map { it.newGameAvailable.isEmpty() }
+
 
     override fun getRealm(): Single<RealmRemoteEntity> =
         apiService.getRealm().map {
@@ -73,7 +179,7 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
                 knowledges = it.knowledges,
                 discoveredPlayers = it.discoveredPlayers
             )
-        }.addRedirectCheck()
+        }
 
     override fun getPigeon(id: Int): Single<PigeonRemoteEntity> =
         apiService.getPigeon(id).map {
@@ -122,8 +228,11 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
             }
         }.flatMap { pigeon ->
             apiService.getPlayer(pigeon.emitterId).map {
-                pigeon.emitterImage =
-                    "${BuildConfig.BASE_URL}${it.image.dropWhile { it == IMAGE_URL_SEPARATOR }}"
+                pigeon.emitterPlayer = PlayerRemoteEntity(
+                    id = pigeon.emitterId,
+                    image = "${BuildConfig.BASE_URL}${it.image.dropWhile { it == IMAGE_URL_SEPARATOR }}",
+                    name = it.name
+                )
                 pigeon
             }
         }
@@ -257,11 +366,11 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
                 }
 
             }
-        }.addRedirectCheck()
+        }
 
 
     override fun login(username: String, password: String): Completable =
-        apiService.login(username, password, MEMORIZE_FORM_VALUE).addRedirectCheck().ignoreElement()
+        apiService.login(username, password, MEMORIZE_FORM_VALUE).ignoreElement()
 
     private fun MutableList<AttackRemoteEntity>.addAttack(
         target: String,
@@ -291,15 +400,5 @@ class ApiManagerImpl(private val apiService: ApiService) : ApiManager {
                 )
             }, target)
         )
-    }
-
-    private fun <T> Single<T>.addRedirectCheck(): Single<T> {
-        return onErrorResumeNext {
-            if (it is HttpException && it.code() == HTTP_REDIRECT_CODE) {
-                Single.error(AuthenticationException())
-            } else {
-                Single.error(it)
-            }
-        }
     }
 }

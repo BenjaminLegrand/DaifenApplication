@@ -9,7 +9,9 @@ import java.util.*
 private const val REMOTE_DATE_FORMAT = "dd/MM/yy HH'h'mm"
 private val REMOTE_ID_REGEX = Regex("(?<=id=)[0-9]+")
 
-class PigeonRemoteEntityDataMapper {
+class PigeonRemoteEntityDataMapper(
+    private val playerRemoteEntityDataMapper: PlayerRemoteEntityDataMapper
+) {
     fun transform(remotes: List<PigeonRemoteEntity>): List<Pigeon> {
         return remotes.mapNotNull {
             try {
@@ -25,11 +27,10 @@ class PigeonRemoteEntityDataMapper {
             return Pigeon(
                 REMOTE_ID_REGEX.find(remote.id)?.value?.toInt()
                     ?: remote.id.toInt(),
-                remote.emitter,
+                playerRemoteEntityDataMapper.transform(remote.emitterPlayer),
                 remote.receivers,
                 remote.subject,
                 SimpleDateFormat(REMOTE_DATE_FORMAT, Locale.getDefault()).parse(remote.date),
-                remote.emitterImage,
                 remote.content,
                 remote.history,
                 remote.unread != null

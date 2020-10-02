@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/fight_list_item_defender_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_margin"
+        app:layout_constraintBottom_toTopOf="@id/fight_list_item_separator"
+        app:layout_constraintEnd_toStartOf="@id/fight_list_item_type_icon"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Player1, Player2" />
+
+
+    <ImageView
+        android:id="@+id/fight_list_item_type_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fight_list_item_attack_type_direction"
+        app:layout_constraintStart_toEndOf="@id/fight_list_item_defender_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fight_list_item_attack_type_direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintStart_toEndOf="@id/fight_list_item_type_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/fight_list_item_separator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_separator_height"
+        android:layout_marginTop="@dimen/base_margin"
+        android:background="@color/base_separator_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fight_list_item_defender_name" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/double_base_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/double_base_margin" />
+</androidx.constraintlayout.widget.ConstraintLayout>

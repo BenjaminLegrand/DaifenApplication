@@ -80,5 +80,14 @@ class ApiManagerTests : KoinTest {
         realmObs.assertNoErrors()
     }
 
+    @Test
+    fun `check login and get fight`() {
+        val obs =
+            apiManager.login(BuildConfig.DAIFEN_TEST_LOGIN, BuildConfig.DAIFEN_TEST_PASSWORD).test()
+        obs.assertNoErrors()
+        obs.assertComplete()
 
+        val fightObs = apiManager.getFight(12, 43076).test()
+        fightObs.assertNoErrors()
+    }
 }

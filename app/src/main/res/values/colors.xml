@@ -9,4 +9,6 @@
     <color name="bottom_bar_unselected_color">#E0E0E0</color>
     <color name="base_separator_color">#757575</color>
     <color name="black">#000</color>
+
+    <color name="error_text_color">#B71C1C</color>
 </resources>

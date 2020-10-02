@@ -13,7 +13,7 @@ data class PigeonRemoteEntity(
     var unread: String? = null,
     @Selector("td:nth-child(3)")
     var date: String = "",
-    var emitterImage: String = "",
+    var emitterPlayer: PlayerRemoteEntity = PlayerRemoteEntity(),
     var emitterId: Int = 0,
     var content: String = "",
     var receivers: List<String> = emptyList(),

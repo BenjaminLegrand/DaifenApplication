@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import fr.legrand.daifen.application.R
 import fr.legrand.daifen.application.presentation.ui.order.item.TroopViewDataWrapper
-import fr.legrand.daifen.application.presentation.ui.realm.item.RealmViewDataWrapper.Companion.MAX_DICE_VALUE
+import fr.legrand.daifen.application.presentation.utils.TroopUtils
 import kotlinx.android.synthetic.main.view_realm_troop_item.view.*
 
 class RealmTroopView(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
@@ -26,8 +26,8 @@ class RealmTroopView(context: Context?, attrs: AttributeSet? = null, defStyleAtt
                 it.getTroopTypeCountText(context)
             }
 
-        val minAttack = items.sumBy { it.getAttack() }
-        val maxAttack = items.sumBy { MAX_DICE_VALUE * it.getAttack() }
+        val minAttack = TroopUtils.getMinAttack(items)
+        val maxAttack = TroopUtils.getMaxAttack(items)
         realm_troop_item_attack.text =
             context.getString(
                 R.string.realm_min_max_text_format,
@@ -36,8 +36,8 @@ class RealmTroopView(context: Context?, attrs: AttributeSet? = null, defStyleAtt
                 (minAttack + maxAttack) / 2
             )
 
-        val minHp = items.sumBy { it.getDefense() + it.getResistance() }
-        val maxHp = items.sumBy { MAX_DICE_VALUE * it.getDefense() + it.getResistance() }
+        val minHp = TroopUtils.getMinHp(items)
+        val maxHp = TroopUtils.getMaxHp(items)
         realm_troop_item_hp.text =
             context.getString(R.string.realm_min_max_text_format, minHp, maxHp, (minHp + maxHp) / 2)
     }

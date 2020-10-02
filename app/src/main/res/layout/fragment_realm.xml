@@ -333,15 +333,27 @@
                         android:id="@+id/realm_discovered_players_card_separator"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/base_separator_height"
-                        android:layout_marginBottom="@dimen/base_half_margin"
+                        android:layout_marginTop="@dimen/base_half_margin"
                         android:background="@color/base_separator_color"
-                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_discovered_players_clans"
                         app:layout_constraintTop_toBottomOf="@id/fragment_realm_discovered_players_label" />
+
+                    <TextView
+                        android:id="@+id/fragment_realm_no_discovered_players"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_margin"
+                        android:text="@string/no_discovered_players"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/realm_discovered_players_card_separator" />
 
                     <LinearLayout
                         android:id="@+id/fragment_realm_discovered_players_clans"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_margin"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -371,7 +383,6 @@
                         android:id="@+id/fragment_realm_knowledges_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/base_half_margin"
                         android:text="@string/realm_knowledges_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         app:layout_constraintBottom_toTopOf="@id/realm_knowledges_card_separator"
@@ -381,15 +392,27 @@
                         android:id="@+id/realm_knowledges_card_separator"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/base_separator_height"
-                        android:layout_marginBottom="@dimen/base_margin"
+                        android:layout_marginTop="@dimen/base_half_margin"
                         android:background="@color/base_separator_color"
-                        app:layout_constraintBottom_toTopOf="@id/fragment_realm_knowledges"
                         app:layout_constraintTop_toBottomOf="@id/fragment_realm_knowledges_label" />
+
+                    <TextView
+                        android:id="@+id/fragment_realm_no_knowledges"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_margin"
+                        android:text="@string/no_knowledges"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/realm_knowledges_card_separator" />
 
                     <LinearLayout
                         android:id="@+id/fragment_realm_knowledges"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_margin"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
