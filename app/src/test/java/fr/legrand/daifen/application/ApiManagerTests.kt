@@ -6,6 +6,7 @@ import fr.legrand.daifen.application.data.exception.AuthenticationException
 import fr.legrand.daifen.application.data.manager.api.ApiManager
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.android.ext.koin.androidContext
@@ -15,6 +16,7 @@ import org.koin.test.KoinTest
 import org.koin.test.inject
 import org.robolectric.RobolectricTestRunner
 
+@Ignore("Used for dev purposes")
 @RunWith(RobolectricTestRunner::class)
 class ApiManagerTests : KoinTest {
 
